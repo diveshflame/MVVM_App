@@ -65,8 +65,8 @@
         <TextBlock Grid.Row="0" Grid.Column="1" FontSize="24" HorizontalAlignment="Center" Text="View Booking"></TextBlock>
         <StackPanel Grid.Row="1" Grid.Column="1" Orientation="Horizontal" >
             <RadioButton Content="View All Bookings" Command="{Binding ViewAdminBookings}"  Style="{StaticResource tabButton}"   BorderBrush="#784ff2"/>
-            <RadioButton Content="Today Bookings" Style="{StaticResource tabButton}" Command="{Binding ViewTodayRegisterDetails}"/>
-            <RadioButton Content="Booking History" Style="{StaticResource tabButton}"/>
+            <RadioButton Content="Today Bookings" Style="{StaticResource tabButton}" Command="{Binding ViewTodayBooking}"/>
+            <RadioButton Content="Booking History" Style="{StaticResource tabButton}" Command="{Binding ViewBookingHistory}" />
         </StackPanel>
         <DataGrid Grid.Row="3" Grid.Column="1" ItemsSource="{Binding AdminDataGridItems}" AutoGenerateColumns="False" GridLinesVisibility="None" BorderBrush="Transparent" >
             <DataGrid.Columns>

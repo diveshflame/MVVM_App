@@ -14,7 +14,7 @@ using System.Windows.Interop;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
-using WpfApp4.views;
+using MVVM_App.views;
 
 namespace MVVM_App.views
 {

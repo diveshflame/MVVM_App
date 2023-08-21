@@ -10,6 +10,7 @@ using System.Threading.Tasks;
 using System.Windows.Input;
 using MVVM_App.Repositories;
 using MVVM_App.ViewModels;
+using System.Windows.Forms;
 
 namespace MVVM_App.ViewModels
 {
@@ -21,6 +22,8 @@ namespace MVVM_App.ViewModels
 
         //Commands
         public ICommand ViewAdminBookings { get; }
+        public ICommand ViewTodayBooking { get; }
+        public ICommand ViewBookingHistory { get; }
         private IAdminBooking adminbooking;
 
         //constructor
@@ -28,8 +31,34 @@ namespace MVVM_App.ViewModels
         {
             adminbooking = new AdminDataGridRepository();
             ViewAdminBookings = new ViewModelCommand(ExecuteViewAdminBookings);
+            ViewBookingHistory = new ViewModelCommand(ExecuteViewBookingHistory);
+            ViewTodayBooking = new ViewModelCommand(ExecuteViewTodayBooking);
             AdminDataGridItems = new ObservableCollection<AdminDataGridItem>();
                LoadData();
+        }
+
+        private void ExecuteViewTodayBooking(object obj)
+        {
+            ViewBookings view = new ViewBookings();
+            AdminDataGridItems = new ObservableCollection<AdminDataGridItem>();
+           
+            var dataGridItem = adminbooking.ViewToday();
+            foreach (var item in dataGridItem)
+            {
+                AdminDataGridItems.Add(item);
+            }
+        }
+
+        private void ExecuteViewBookingHistory(object obj)
+        {
+             ViewBookings view = new ViewBookings();
+            AdminDataGridItems = new ObservableCollection<AdminDataGridItem>();
+
+            var dataGridItem = adminbooking.ViewHistory();
+            foreach (var item in dataGridItem)
+            {
+                AdminDataGridItems.Add(item);
+            }
         }
 
         private void ExecuteViewAdminBookings(object obj)
@@ -46,11 +75,6 @@ namespace MVVM_App.ViewModels
                 AdminDataGridItems.Add(item);
             }
         }
-        //protected  void OnInitialized(System.EventArgs e)
-        //{ 
-        //    base.OnInitialized(e);
-        //    AdminDataGridItems = new ObservableCollection<AdminDataGridItem>();
-        //    LoadData();
-        //}
+       
     }
 }

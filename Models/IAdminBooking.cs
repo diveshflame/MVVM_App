@@ -11,5 +11,6 @@ namespace MVVM_App.Models
         public List<AdminDataGridItem> View();
 
         public List<AdminDataGridItem> ViewToday();
+        public List<AdminDataGridItem> ViewHistory();
     }
 }
