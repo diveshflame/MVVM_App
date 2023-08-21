@@ -83,10 +83,7 @@ namespace MVVM_App.ViewModels
 
                 UserAccount.Username = user.UserName;
                 UserAccount.DisplayName = $"Welcome {user.UserName};)";
-                     UserAccount.Profilepic = null;
-                
-            
-            
+                     UserAccount.Profilepic = null;       
             }
            
 
