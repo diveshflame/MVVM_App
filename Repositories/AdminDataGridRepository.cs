@@ -6,7 +6,7 @@ using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using WpfApp4.Repositories;
+using MVVM_App.Repositories;
 
 namespace MVVM_App.Repositories
 {
@@ -18,6 +18,7 @@ namespace MVVM_App.Repositories
             AdminDataGridItem item = null; ;
             using(NpgsqlConnection conn= GetConnection())
             {
+                conn.Open();
                 string view = "SELECT NAME,DOCTOR_NAME,STARTTIME, ENDTIME, CONSULTANT_DESC FROM USERDETAILS INNER JOIN BOOKING_TABLE ON USERDETAILS.USERID = BOOKING_TABLE.USERID INNER JOIN DOCTOR_TABLE ON " +
                     "BOOKING_TABLE.DOCTOR_ID = DOCTOR_TABLE.DOCTOR_ID INNER JOIN CONSULTANT_TYPE ON DOCTOR_TABLE.CONSULTANT_ID = CONSULTANT_TYPE.CONSULTANT_ID WHERE DELETED_TIMESTAMP IS NULL";
                 NpgsqlCommand cmd = new NpgsqlCommand(view, conn);
@@ -27,7 +28,7 @@ namespace MVVM_App.Repositories
                     {
                         item = new AdminDataGridItem()
                         {
-                            Name = reader.GetString("USERNAME"),
+                            Name = reader.GetString("NAME"),
                             DoctorName = reader.GetString("DOCTOR_NAME"),
                             StartTime = reader.GetDateTime("STARTTIME"),
                             EndTime = reader.GetDateTime("ENDTIME"),

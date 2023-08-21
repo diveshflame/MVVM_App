@@ -8,8 +8,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
-using WpfApp4.Repositories;
-using WpfApp4.ViewModels;
+using MVVM_App.Repositories;
+using MVVM_App.ViewModels;
 
 namespace MVVM_App.ViewModels
 {
@@ -28,6 +28,8 @@ namespace MVVM_App.ViewModels
         {
             adminbooking = new AdminDataGridRepository();
             ViewAdminBookings = new ViewModelCommand(ExecuteViewAdminBookings);
+            AdminDataGridItems = new ObservableCollection<AdminDataGridItem>();
+               LoadData();
         }
 
         private void ExecuteViewAdminBookings(object obj)
@@ -44,5 +46,11 @@ namespace MVVM_App.ViewModels
                 AdminDataGridItems.Add(item);
             }
         }
+        //protected  void OnInitialized(System.EventArgs e)
+        //{ 
+        //    base.OnInitialized(e);
+        //    AdminDataGridItems = new ObservableCollection<AdminDataGridItem>();
+        //    LoadData();
+        //}
     }
 }
