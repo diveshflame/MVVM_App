@@ -11,6 +11,13 @@
     <Folder Include="Model\" />
     <Folder Include="ModelView\" />
     <Folder Include="Commands\" />
+    <Folder Include="Images\" />
+    <Folder Include="View\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="FontAwesome.Sharp" Version="6.3.0" />
+    <PackageReference Include="FontAwesome.WPF" Version="4.7.0.9" />
   </ItemGroup>
 
 </Project>
