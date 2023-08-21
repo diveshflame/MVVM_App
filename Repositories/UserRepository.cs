@@ -56,7 +56,6 @@ namespace WpfApp4.Repositories
                     {
                         validUser = new UserModel()
                         {
-                           
                             UserName = reader[0].ToString(),
                             Password = reader[1].ToString(),
 

@@ -10,6 +10,7 @@ using WpfApp4.Repositories;
 using FontAwesome.WPF;
 using System.Windows.Input;
 using System.ComponentModel;
+using MVVM_App.views;
 
 namespace WpfApp4.ViewModels
 {
@@ -38,6 +39,7 @@ namespace WpfApp4.ViewModels
         public string Caption { get => _caption; set { _caption = value; OnPropertyChanged(nameof(Caption)); } }
         public ICommand ShowAddDoctorCommand { get; }
         public ICommand ShowUpdateDoctorCommand { get; }
+        public ICommand ShowBookings { get; }
 
 
 
@@ -47,9 +49,15 @@ namespace WpfApp4.ViewModels
             UserAccount = new UserAccountModel();
             ShowAddDoctorCommand = new ViewModelCommand(ExecuteAddDoctorView);
             ShowUpdateDoctorCommand = new ViewModelCommand(ExecuteUpdateDoctorView);
+            ShowBookings = new ViewModelCommand(ExecuteShowBookings);
 
             LoadCurrentUserData();
         
+        }
+
+        private void ExecuteShowBookings(object obj)
+        {
+           // CurrentChildView = new ViewBookings();
         }
 
         private void ExecuteUpdateDoctorView(object obj)

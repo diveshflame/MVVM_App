@@ -108,7 +108,7 @@
                                 Height="35"
                                 Margin="15,25,0,40">
 
-                    <Image Source="images\logo.png" Height="30"/>
+                    <Image Source="\images\logo.png" Height="30"/>
                     <TextBlock Text="We Care"
                                    Foreground="{StaticResource titleColor2}"
                                    FontSize="20"
@@ -131,8 +131,16 @@
                                  Tag="{StaticResource color2}"
                                  Command="{Binding ShowUpdateDoctorCommand}">
                     <StackPanel Orientation="Horizontal">
-                        <fa:FontAwesome Icon="User" />
-                        <TextBlock Text="Customers"/>
+                        <fa:FontAwesome Icon="Book" Margin="10,2,0,0" />
+                        <TextBlock Text="Customer" Margin="10,0,0,0"/>
+                    </StackPanel>
+                </RadioButton>
+                <RadioButton Style="{StaticResource menuButton}"
+                                 Tag="{StaticResource color2}"
+                                 Command="{Binding ShowUpdateDoctorCommand}">
+                    <StackPanel Orientation="Horizontal">
+                        <fa:FontAwesome Icon="Book" Margin="10,2,0,0" />
+                        <TextBlock Text="View Booking" Margin="10,0,0,0"/>
                     </StackPanel>
                 </RadioButton>
             </StackPanel>
@@ -235,7 +243,7 @@
                                      StrokeThickness="2"
                                      >
                                                 <Ellipse.Fill>
-                                                    <ImageBrush ImageSource="images\arjun12 (4).png"/>
+                                                    <ImageBrush ImageSource="C:\Users\ashal\source\repos\MVVM_App\images\arjun12 (4).png"/>
                                                 </Ellipse.Fill>
                                             </Ellipse>
                                         </DataTemplate>
