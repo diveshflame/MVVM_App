@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MVVM_App.ViewModels;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -24,5 +25,12 @@ namespace MVVM_App.views
         {
             InitializeComponent();
         }
+
+        private void btn1_Click(object sender, RoutedEventArgs e)
+        {
+            AddConsultViewModel add= new AddConsultViewModel();
+            add.Insert(addConsultant.Text);
+        }
+
     }
 }

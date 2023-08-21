@@ -17,16 +17,20 @@
     
     <Window.Resources>
 
-        <DataTemplate DataType="{x:Type viewModel:AddDoctor}">
-            <local:AddDoctor/>
+        <DataTemplate DataType="{x:Type viewModel:AddTimings}">
+            <local:AddTimings/>
         </DataTemplate>
 
         <DataTemplate DataType="{x:Type viewModel:UpdateDoctor}">
             <local:UpdateDoctor/>
         </DataTemplate>
 
-        <DataTemplate DataType="{x:Type viewModel:AddConsult}">
+        <DataTemplate DataType="{x:Type viewModel:AddConsultViewModel}">
             <local:AddConsult/>
+        </DataTemplate>
+
+        <DataTemplate DataType="{x:Type viewModel:AddDoctor}">
+            <local:AddDoctor/>
         </DataTemplate>
 
         <Style x:Key="DropdownItemStyle" TargetType="Button">
@@ -125,7 +129,7 @@
                 <RadioButton Style="{StaticResource menuButton}"
                                  Tag="{StaticResource primaryBackColor1}"
                                  IsChecked="True"
-                                 Command="{Binding ShowAddDoctorCommand}" >
+                                 Command="{Binding ShowAddTimingsCommand}" >
                     <StackPanel Orientation="Horizontal">
                         <fa:FontAwesome Icon="FileText" Margin="10,2,0,0"/>
                         <TextBlock Text="Update Timings" Margin="10,0,0,0"/>
@@ -133,7 +137,7 @@
                 </RadioButton>
                 <RadioButton Style="{StaticResource menuButton}"
                                  Tag="{StaticResource primaryBackColor1}"
-                                 Command="{Binding ShowUpdateDoctorCommand}">
+                                 Command="{Binding ShowAddDoctorCommand}">
                     <StackPanel Orientation="Horizontal">
                         <fa:FontAwesome Icon="User"  Margin="15,2,0,0" />
                         <TextBlock Text="Add Doctor"  Margin="10,0,0,0"/>
@@ -142,6 +146,14 @@
                 <RadioButton Style="{StaticResource menuButton}"
                                  Tag="{StaticResource primaryBackColor1}"
                                  Command="{Binding ShowUpdateDoctorCommand}">
+                    <StackPanel Orientation="Horizontal">
+                        <fa:FontAwesome Icon="User"  Margin="15,2,0,0" />
+                        <TextBlock Text="Update Doctor"  Margin="10,0,0,0"/>
+                    </StackPanel>
+                </RadioButton>
+                <RadioButton Style="{StaticResource menuButton}"
+                                 Tag="{StaticResource primaryBackColor1}"
+                                 Command="{Binding ShowAddConsultCommand}">
                     <StackPanel Orientation="Horizontal">
                         <fa:FontAwesome Icon="User"  Margin="15,2,0,0" />
                         <TextBlock Text="Add Consultation Type"  Margin="10,0,0,0"/>

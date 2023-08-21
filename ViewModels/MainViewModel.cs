@@ -36,10 +36,12 @@ namespace MVVM_App.ViewModels
                     } 
         }
         public string Caption { get => _caption; set { _caption = value; OnPropertyChanged(nameof(Caption)); } }
-        public ICommand ShowAddDoctorCommand { get; }
+        public ICommand ShowAddTimingsCommand { get; }
         public ICommand ShowUpdateDoctorCommand { get; }
 
-        public ICommand ShowConsultType { get; }
+        public ICommand ShowAddConsultCommand { get; }
+
+        public ICommand ShowAddDoctorCommand { get; }
 
 
 
@@ -47,17 +49,24 @@ namespace MVVM_App.ViewModels
         { 
             _userRepository = new UserRepository();
             UserAccount = new UserAccountModel();
-            ShowAddDoctorCommand = new ViewModelCommand(ExecuteAddDoctorView);
+            ShowAddTimingsCommand = new ViewModelCommand(ExecuteAddTimingsView);
             ShowUpdateDoctorCommand = new ViewModelCommand(ExecuteUpdateDoctorView);
-            ShowConsultType = new ViewModelCommand(ExecuteaddConsultView);
+            ShowAddConsultCommand = new ViewModelCommand(ExecuteAddConsultView);
+            ShowAddDoctorCommand = new ViewModelCommand(ExecuteAddDoctorView);
 
             LoadCurrentUserData();
         
         }
 
-        private void ExecuteaddConsultView(object obj)
+        private void ExecuteAddDoctorView(object obj)
         {
-            CurrentChildView = new AddConsult();
+            CurrentChildView = new AddDoctor();
+            Caption = "Add Doctor";
+        }
+
+        private void ExecuteAddConsultView(object obj)
+        {
+            CurrentChildView = new AddConsultViewModel();
             Caption = "Add Consult";
         }
 
@@ -68,9 +77,9 @@ namespace MVVM_App.ViewModels
          
         }
 
-        private void ExecuteAddDoctorView(object obj)
+        private void ExecuteAddTimingsView(object obj)
         {
-            CurrentChildView = new AddDoctor();
+            CurrentChildView = new AddTimings();
             Caption = "Add Doctor";
          
         }
