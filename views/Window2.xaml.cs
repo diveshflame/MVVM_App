@@ -15,7 +15,7 @@ using System.Runtime.InteropServices;
 using System.Runtime;
 using System.Windows.Interop;
 
-namespace WpfApp4.views
+namespace MVVM_App.views
 {
     /// <summary>
     /// Interaction logic for Window2.xaml

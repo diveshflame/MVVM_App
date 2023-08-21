@@ -12,19 +12,17 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
-using MVVM_App.ViewModels;
 
 namespace MVVM_App.views
 {
     /// <summary>
-    /// Interaction logic for AddDoctor.xaml
+    /// Interaction logic for AddConsult.xaml
     /// </summary>
-    public partial class AddDoctor : UserControl
+    public partial class AddConsult : UserControl
     {
-        public AddDoctor()
+        public AddConsult()
         {
             InitializeComponent();
-           
         }
     }
 }

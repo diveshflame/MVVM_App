@@ -5,9 +5,9 @@ using System.Data;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows;
-using WpfApp4.views;
+using MVVM_App.views;
 
-namespace WpfApp4
+namespace MVVM_App
 {
     /// <summary>
     /// Interaction logic for App.xaml

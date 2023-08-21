@@ -13,7 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace WpfApp4.views
+namespace MVVM_App.views
 {
     /// <summary>
     /// Interaction logic for UpdateDoctor.xaml
