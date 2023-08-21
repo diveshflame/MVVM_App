@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Data.SqlClient;
+using Npgsql;
 
 namespace WpfApp4.Repositories
 {
@@ -13,11 +14,11 @@ namespace WpfApp4.Repositories
         public RepositoryBase()
         {
 
-            con = @"Data Source=.;Initial Catalog=TestMVVM;Integrated Security=True";
+            con = @"Server=localhost;Port=5432;User Id=postgres;Password=Ashritha@2000;Database=WeCareDB;";
         }
-      protected SqlConnection GetConnection()
+      protected NpgsqlConnection GetConnection()
         {
-            return new SqlConnection(con);  
+            return new NpgsqlConnection(con);  
         }
     }
 }

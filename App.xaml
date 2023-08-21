@@ -8,8 +8,8 @@
 
 		<ResourceDictionary >
 			<ResourceDictionary.MergedDictionaries>
-				<ResourceDictionary Source="C:\Users\arjkr\source\repos\WpfApp4\WpfApp4\Styles\UIColors.xaml"/>
-				<ResourceDictionary Source="C:\Users\arjkr\source\repos\WpfApp4\WpfApp4\Styles\ButtonStyles.xaml"/>
+                <ResourceDictionary Source="Styles\UIColors.xaml"/>
+                <ResourceDictionary Source="Styles\ButtonStyles.xaml"/>
 
 			</ResourceDictionary.MergedDictionaries>
 		</ResourceDictionary>
