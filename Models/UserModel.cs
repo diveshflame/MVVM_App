@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace WpfApp4.Models
+namespace MVVM_App.Models
 {
     public class UserModel
     {

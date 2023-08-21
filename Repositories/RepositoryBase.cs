@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using System.Data.SqlClient;
 using Npgsql;
 
-namespace WpfApp4.Repositories
+namespace MVVM_App.Repositories
 {
     public abstract class RepositoryBase
     {
@@ -14,7 +14,7 @@ namespace WpfApp4.Repositories
         public RepositoryBase()
         {
 
-            con = @"Server=localhost;Port=5432;User Id=postgres;Password=Ashritha@2000;Database=WeCareDB;";
+            con = @"Server=localhost;Port=5432;User Id=postgres;Password=007;Database=WeCareDB;";
         }
       protected NpgsqlConnection GetConnection()
         {

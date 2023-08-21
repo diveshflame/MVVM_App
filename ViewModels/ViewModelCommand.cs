@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
 
-namespace WpfApp4.ViewModels
+namespace MVVM_App.ViewModels
 {
     internal class ViewModelCommand : ICommand
     {
