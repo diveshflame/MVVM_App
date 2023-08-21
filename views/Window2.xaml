@@ -277,6 +277,7 @@
                                                         <StackPanel Orientation="Horizontal">
 
                                                             <Image Source="images\logout1.png" Width="16" Height="16" VerticalAlignment="Center"/>
+
                                                             <TextBlock Text="Logout" VerticalAlignment="Center"/>
                                                         </StackPanel>
                                                     </DataTemplate>
@@ -308,7 +309,7 @@
                                     Margin="25"/>
                 
         </Grid>
-                </Border>
+        </Border>
         </Grid>
     </Border>
 </Window>
