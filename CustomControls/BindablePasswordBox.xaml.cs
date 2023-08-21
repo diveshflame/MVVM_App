@@ -14,7 +14,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace WpfApp4.CustomControls
+namespace MVVM_App.CustomControls
 {
     /// <summary>
     /// Interaction logic for BindablePasswordBox.xaml

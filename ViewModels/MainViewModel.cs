@@ -5,13 +5,13 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
-using WpfApp4.Models;
-using WpfApp4.Repositories;
+using MVVM_App.Models;
+using MVVM_App.Repositories;
 using FontAwesome.WPF;
 using System.Windows.Input;
 using System.ComponentModel;
 
-namespace WpfApp4.ViewModels
+namespace MVVM_App.ViewModels
 {
     public class MainViewModel:ViewModelBase
     {
@@ -39,6 +39,8 @@ namespace WpfApp4.ViewModels
         public ICommand ShowAddDoctorCommand { get; }
         public ICommand ShowUpdateDoctorCommand { get; }
 
+        public ICommand ShowConsultType { get; }
+
 
 
         public MainViewModel() 
@@ -47,9 +49,16 @@ namespace WpfApp4.ViewModels
             UserAccount = new UserAccountModel();
             ShowAddDoctorCommand = new ViewModelCommand(ExecuteAddDoctorView);
             ShowUpdateDoctorCommand = new ViewModelCommand(ExecuteUpdateDoctorView);
+            ShowConsultType = new ViewModelCommand(ExecuteaddConsultView);
 
             LoadCurrentUserData();
         
+        }
+
+        private void ExecuteaddConsultView(object obj)
+        {
+            CurrentChildView = new AddConsult();
+            Caption = "Add Consult";
         }
 
         private void ExecuteUpdateDoctorView(object obj)
