@@ -59,7 +59,6 @@ namespace MVVM_App.Repositories
                     {
                         validUser = new UserModel()
                         {
-                           
                             UserName = reader[0].ToString(),
                             Password = reader[1].ToString(),
 

@@ -1,11 +1,8 @@
 ﻿<Application x:Class="MVVM_App.App"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml
-
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:local="clr-namespace:MVVM_App"
-             Startup="ApplicationStart" 
-    >
-    <!--StartupUri="views/userDashboard.xaml"-->
+             Startup="ApplicationStart">
     
     
     <Application.Resources>
