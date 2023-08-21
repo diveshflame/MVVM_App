@@ -1,0 +1,170 @@
+﻿<Window x:Class="WpfApp4.views.Window1"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:viewModel="clr-namespace:WpfApp4.ViewModels"
+        xmlns:local="clr-namespace:WpfApp4.views"
+        xmlns:CustomControls="clr-namespace:WpfApp4.CustomControls"
+        mc:Ignorable="d"
+        Title="Login1"  Height="450" Width="800" FontSize="18" WindowState="Maximized"
+        ResizeMode="CanResize" MinHeight="450" MinWidth="800">
+    <Window.DataContext>
+        <viewModel:LoginViewModel/>
+    </Window.DataContext>
+    <Window.Resources>
+        <Style TargetType="Hyperlink">
+            <Setter Property="Hyperlink.TextDecorations" Value="none" />
+            <Setter Property="Foreground" Value="Black" />
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="Foreground" Value="Blue" />
+                    <Setter Property="Hyperlink.TextDecorations" Value="Underline" />
+                </Trigger>
+
+            </Style.Triggers>
+
+        </Style>
+        <BooleanToVisibilityConverter x:Key="Boolean"/>
+    </Window.Resources>
+    <Window.Visibility>
+        <Binding Path="IsViewVisible" Mode="TwoWay" Converter="{StaticResource Boolean}"/>
+    </Window.Visibility>      
+       
+    <Window.Background>
+        <ImageBrush ImageSource="https://img.freepik.com/free-vector/clean-medical-background_53876-116875.jpg?size=626" ></ImageBrush>
+    </Window.Background>
+    <Viewbox>
+        <Grid Width="550" Height="800" 
+          VerticalAlignment="Center"
+          HorizontalAlignment="Center"
+          Margin="10">
+
+            <Border Margin="52,142,23,142" 
+                    Background="{StaticResource panelActiveColor}" 
+                    CornerRadius="15" 
+                    
+                    BorderBrush="DarkGray" 
+                    BorderThickness="1">
+                <StackPanel Margin="30"
+                            HorizontalAlignment="Center"
+                            Width="300"
+                            Height="400"
+                            VerticalAlignment="Center">
+
+                    <Image Source="https://th.bing.com/th/id/OIP.DWV1_35ib2eqmOk7N5rHXQHaHa?pid=ImgDet"
+               Width="50" Margin="0,0,0,15"
+               Height="50" 
+               RenderTransformOrigin="-2.129,1.023"/>
+
+                    <!--Label for Welcome Back!-->
+                    <Label Content="Welcome  Back!" 
+                       Margin="0,0,0,8" 
+                       Foreground="black" 
+                       FontWeight="Bold" 
+                       FontSize="25" 
+                       HorizontalAlignment="Center" />
+
+                    <!--Login to your existing Button!-->
+                    <Label Content="Log in to your existing account" 
+                       Margin="0,0,0,10" 
+                       Foreground="Black"  
+                       FontSize="17" 
+                       Padding="0"
+                       HorizontalAlignment="Center" />
+
+                    <Separator Margin="0,2,0,10"/>
+
+                    <!--Label for UserName-->
+                    <Label Content="Username" 
+                   Foreground="Black" 
+                   FontStyle="Normal"
+                   FontSize="16"                        
+                   FontWeight="SemiBold"/>
+
+                    <Label Content="{Binding Errormessage}" 
+                   Foreground="Red" 
+                   FontStyle="Normal"
+                   FontSize="16"                        
+                   FontWeight="SemiBold"/>
+
+                    <TextBox x:Name="txtusername" 
+                      Text="{Binding UserName, UpdateSourceTrigger=PropertyChanged}"
+                   Background="white" 
+                   Foreground="DimGray" 
+                   BorderBrush="DarkCyan"
+                   BorderThickness="2"
+                   FontSize="18"
+                   Width="300" 
+                   HorizontalAlignment="center"  />
+
+                    <!--Label for Password-->
+                    <Label Content="Password" 
+                    Foreground="Black" 
+                    FontStyle="Normal"
+                    FontSize="16"
+                    FontWeight="SemiBold" />
+
+                    <CustomControls:BindablePasswordBox Password ="{Binding Password,Mode=TwoWay ,UpdateSourceTrigger=PropertyChanged}">
+                    </CustomControls:BindablePasswordBox>
+                    
+                
+
+                    <!--Button for Submit-->
+                    <Button x:Name="btnsubmit"  
+                            Content="LOG IN"  
+                            Margin="0,30,0,6"  
+                            Width="120" Height="30"  
+                            Command="{Binding LoginCommand}" 
+                            Foreground="White" 
+                            FontSize="16" 
+                            FontWeight="Bold" 
+                            BorderBrush="Black"
+                            BorderThickness="1" 
+                          >
+
+
+                        <Button.Style>
+                            <Style TargetType="Button">
+                                <Setter Property="Background" Value="DarkCyan"/>
+                                <Style.Triggers>
+                                    <Trigger Property="IsMouseOver" Value="True">
+                                        <Setter Property="Background" Value="DarkGreen"/>
+                                    </Trigger>
+                                </Style.Triggers>
+                            </Style>
+                        </Button.Style>
+
+                        <Button.Template>
+                            <ControlTemplate TargetType="Button">
+                                <Border Background="{TemplateBinding Background}" 
+                                        BorderThickness="{TemplateBinding BorderThickness}" 
+                                        BorderBrush="{TemplateBinding BorderBrush}"
+                                        CornerRadius="5">
+                                    <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                </Border>
+                            </ControlTemplate>
+                        </Button.Template>
+                    </Button>
+
+                    <TextBlock  Margin="0,10,0,0"  VerticalAlignment="Center" HorizontalAlignment="Center">
+                    <Hyperlink NavigateUri=""  >
+                        <Run Text="Forgot Password?" FontSize="15"/>
+                    </Hyperlink>
+                    </TextBlock>
+
+                    <TextBlock  Margin="0,6,0,0" VerticalAlignment="Center" HorizontalAlignment="Center">
+                        <Hyperlink NavigateUri="" 
+                                   >
+                            <Run Text="Create new account" FontSize="15"/>
+                        </Hyperlink>
+                    </TextBlock>
+                </StackPanel>
+            </Border>
+        </Grid>
+    </Viewbox>
+
+
+   
+</Window>
+
