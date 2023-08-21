@@ -5,12 +5,12 @@ using System.Net;
 using System.Text;
 using System.Threading.Tasks;
 using System.Data;
-using WpfApp4.Models;
+using MVVM_App.Models;
 
 using Npgsql;
 using NpgsqlTypes;
 
-namespace WpfApp4.Repositories
+namespace MVVM_App.Repositories
 {
     public class UserRepository : RepositoryBase, IUserRepository
     {

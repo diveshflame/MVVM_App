@@ -5,14 +5,14 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
-using WpfApp4.Models;
-using WpfApp4.Repositories;
+using MVVM_App.Models;
+using MVVM_App.Repositories;
 using FontAwesome.WPF;
 using System.Windows.Input;
 using System.ComponentModel;
 using MVVM_App.views;
 
-namespace WpfApp4.ViewModels
+namespace MVVM_App.ViewModels
 {
     public class MainViewModel:ViewModelBase
     {
@@ -41,6 +41,8 @@ namespace WpfApp4.ViewModels
         public ICommand ShowUpdateDoctorCommand { get; }
         public ICommand ShowBookings { get; }
 
+        public ICommand ShowConsultType { get; }
+
 
 
         public MainViewModel() 
@@ -49,7 +51,7 @@ namespace WpfApp4.ViewModels
             UserAccount = new UserAccountModel();
             ShowAddDoctorCommand = new ViewModelCommand(ExecuteAddDoctorView);
             ShowUpdateDoctorCommand = new ViewModelCommand(ExecuteUpdateDoctorView);
-            ShowBookings = new ViewModelCommand(ExecuteShowBookings);
+            ShowConsultType = new ViewModelCommand(ExecuteaddConsultView);
 
             LoadCurrentUserData();
         
@@ -58,6 +60,12 @@ namespace WpfApp4.ViewModels
         private void ExecuteShowBookings(object obj)
         {
            // CurrentChildView = new ViewBookings();
+        }
+
+        private void ExecuteaddConsultView(object obj)
+        {
+            CurrentChildView = new AddConsult();
+            Caption = "Add Consult";
         }
 
         private void ExecuteUpdateDoctorView(object obj)

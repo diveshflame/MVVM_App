@@ -1,15 +1,15 @@
-﻿<Window x:Class="WpfApp4.views.Window2"
+﻿<Window x:Class="MVVM_App.views.Window2"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:WpfApp4.views"
+        xmlns:local="clr-namespace:MVVM_App.views"
         xmlns:fa="http://schemas.fontawesome.io/icons/"
-        xmlns:viewModel="clr-namespace:WpfApp4.ViewModels"
+        xmlns:viewModel="clr-namespace:MVVM_App.ViewModels"
         WindowStyle="None" 
         Background="Transparent"
         AllowsTransparency="True"
-        Height="450" Width="800" >
+        Height="650" Width="1000">
     <Window.DataContext>
         <viewModel:MainViewModel/>
     </Window.DataContext>
@@ -24,7 +24,11 @@
         <DataTemplate DataType="{x:Type viewModel:UpdateDoctor}">
             <local:UpdateDoctor/>
         </DataTemplate>
-        
+
+        <DataTemplate DataType="{x:Type viewModel:AddConsult}">
+            <local:AddConsult/>
+        </DataTemplate>
+
         <Style x:Key="DropdownItemStyle" TargetType="Button">
             <Setter Property="Padding" Value="10"/>
             <Setter Property="Foreground" Value="White"/>
@@ -119,16 +123,24 @@
                 </StackPanel>
 
                 <RadioButton Style="{StaticResource menuButton}"
-                                 Tag="{StaticResource color1}"
+                                 Tag="{StaticResource primaryBackColor1}"
                                  IsChecked="True"
                                  Command="{Binding ShowAddDoctorCommand}" >
                     <StackPanel Orientation="Horizontal">
                         <fa:FontAwesome Icon="FileText" Margin="10,2,0,0"/>
-                        <TextBlock Text="Home" Margin="10,0,0,0"/>
+                        <TextBlock Text="Update Timings" Margin="10,0,0,0"/>
                     </StackPanel>
                 </RadioButton>
                 <RadioButton Style="{StaticResource menuButton}"
-                                 Tag="{StaticResource color2}"
+                                 Tag="{StaticResource primaryBackColor1}"
+                                 Command="{Binding ShowUpdateDoctorCommand}">
+                    <StackPanel Orientation="Horizontal">
+                        <fa:FontAwesome Icon="User"  Margin="15,2,0,0" />
+                        <TextBlock Text="Add Doctor"  Margin="10,0,0,0"/>
+                    </StackPanel>
+                </RadioButton>
+                <RadioButton Style="{StaticResource menuButton}"
+                                 Tag="{StaticResource primaryBackColor1}"
                                  Command="{Binding ShowUpdateDoctorCommand}">
                     <StackPanel Orientation="Horizontal">
                         <fa:FontAwesome Icon="Book" Margin="10,2,0,0" />
@@ -191,7 +203,7 @@
                     </StackPanel>
                     <StackPanel Grid.Column="0">
             </StackPanel>
-                    <Grid Grid.Row="1" Margin="0,10,0,0" >
+                    <Grid Grid.Row="1" Margin="0,10,0,0" Background="#281269" >
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition/>
                             <ColumnDefinition/>

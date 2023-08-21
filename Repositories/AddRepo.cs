@@ -6,11 +6,11 @@ using System.Linq;
 using System.Net;
 using System.Text;
 using System.Threading.Tasks;
-using WpfApp4.Models;
+using MVVM_App.Models;
 using System.Reflection.PortableExecutable;
 using Npgsql;
 
-namespace WpfApp4.Repositories
+namespace MVVM_App.Repositories
 {
   
     public class AddRepo : RepositoryBase,IAddDocRepo

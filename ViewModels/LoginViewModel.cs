@@ -7,12 +7,12 @@ using System.Security;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Input;
-using WpfApp4.ViewModels;
-using WpfApp4.Repositories;
-using WpfApp4.Models;
+using MVVM_App.ViewModels;
+using MVVM_App.Repositories;
+using MVVM_App.Models;
 using System.Security.Principal;
 
-namespace WpfApp4.ViewModels
+namespace MVVM_App.ViewModels
 {
     public class LoginViewModel : ViewModelBase 
     {
