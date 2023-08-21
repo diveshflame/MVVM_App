@@ -1,9 +1,19 @@
-﻿<Application x:Class="MVVM_App.App"
+﻿<Application x:Class="WpfApp4.App"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             xmlns:local="clr-namespace:MVVM_App"
-             StartupUri="MainWindow.xaml">
-    <Application.Resources>
-         
-    </Application.Resources>
+             xmlns:local="clr-namespace:WpfApp4"
+             Startup="ApplicationStart">
+	<Application.Resources>
+
+
+		<ResourceDictionary >
+			<ResourceDictionary.MergedDictionaries>
+				<ResourceDictionary Source="C:\Users\arjkr\source\repos\WpfApp4\WpfApp4\Styles\UIColors.xaml"/>
+				<ResourceDictionary Source="C:\Users\arjkr\source\repos\WpfApp4\WpfApp4\Styles\ButtonStyles.xaml"/>
+
+			</ResourceDictionary.MergedDictionaries>
+		</ResourceDictionary>
+
+
+	</Application.Resources>
 </Application>
