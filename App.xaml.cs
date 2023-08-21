@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MVVM_App.views;
+using System;
 using System.Collections.Generic;
 using System.Configuration;
 using System.Data;
@@ -29,5 +30,6 @@ namespace WpfApp4
                 }
             };
         }
+
     }
 }

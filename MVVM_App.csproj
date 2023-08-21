@@ -8,11 +8,26 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="Model\" />
-    <Folder Include="ModelView\" />
-    <Folder Include="Commands\" />
+    <Compile Remove="Commands\**" />
+    <Compile Remove="ModelView\**" />
+    <Compile Remove="Model\**" />
+    <Compile Remove="View\**" />
+    <EmbeddedResource Remove="Commands\**" />
+    <EmbeddedResource Remove="ModelView\**" />
+    <EmbeddedResource Remove="Model\**" />
+    <EmbeddedResource Remove="View\**" />
+    <None Remove="Commands\**" />
+    <None Remove="ModelView\**" />
+    <None Remove="Model\**" />
+    <None Remove="View\**" />
+    <Page Remove="Commands\**" />
+    <Page Remove="ModelView\**" />
+    <Page Remove="Model\**" />
+    <Page Remove="View\**" />
+  </ItemGroup>
+
+  <ItemGroup>
     <Folder Include="Images\" />
-    <Folder Include="View\" />
   </ItemGroup>
 
   <ItemGroup>

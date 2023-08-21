@@ -25,7 +25,7 @@ namespace WpfApp4.Repositories
             {
                 connection.Open();
                 command.Connection = connection;
-                command.CommandText = "select * from newuser where username=@username and password=@password";
+                command.CommandText = "select * from userdetails where username=@username and password=@password";
                 command.Parameters.Add("@username", SqlDbType.NVarChar).Value=credential.UserName;
                 command.Parameters.Add("@password", SqlDbType.NVarChar).Value = credential.Password;
                 validUser = command.ExecuteScalar() == null ? false : true;
@@ -46,7 +46,7 @@ namespace WpfApp4.Repositories
             {
                 connection.Open();
                 command.Connection = connection;
-                command.CommandText = "select * from newuser where username=@username ";
+                command.CommandText = "select * from userdetails where username=@username ";
                 command.Parameters.Add("@username", SqlDbType.NVarChar).Value = username;
                 using (var reader = command.ExecuteReader()) 
                 {
