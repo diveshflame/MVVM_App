@@ -10,6 +10,7 @@ using MVVM_App.Repositories;
 using FontAwesome.WPF;
 using System.Windows.Input;
 using System.ComponentModel;
+using MVVM_App.views;
 
 namespace MVVM_App.ViewModels
 {
@@ -38,6 +39,7 @@ namespace MVVM_App.ViewModels
         public string Caption { get => _caption; set { _caption = value; OnPropertyChanged(nameof(Caption)); } }
         public ICommand ShowAddTimingsCommand { get; }
         public ICommand ShowUpdateDoctorCommand { get; }
+        public ICommand ShowBookings { get; }
 
         public ICommand ShowAddConsultCommand { get; }
 
@@ -53,9 +55,20 @@ namespace MVVM_App.ViewModels
             ShowUpdateDoctorCommand = new ViewModelCommand(ExecuteUpdateDoctorView);
             ShowAddConsultCommand = new ViewModelCommand(ExecuteAddConsultView);
             ShowAddDoctorCommand = new ViewModelCommand(ExecuteAddDoctorView);
+            ShowUpdateDoctorCommand = new ViewModelCommand(ExecuteUpdateDoctorView);
+            ShowConsultType = new ViewModelCommand(ExecuteaddConsultView);
+            ShowBookings = new ViewModelCommand(ExecuteShowBookings);
 
             LoadCurrentUserData();
         
+        }
+
+     
+
+        private void ExecuteShowBookings(object obj)
+        {
+            CurrentChildView = new ViewBookings();
+            Caption = "View Bookings";
         }
 
         private void ExecuteAddDoctorView(object obj)
@@ -92,10 +105,7 @@ namespace MVVM_App.ViewModels
 
                 UserAccount.Username = user.UserName;
                 UserAccount.DisplayName = $"Welcome {user.UserName};)";
-                     UserAccount.Profilepic = null;
-                
-            
-            
+                     UserAccount.Profilepic = null;       
             }
            
 

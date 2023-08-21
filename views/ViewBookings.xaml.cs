@@ -13,14 +13,14 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace MVVM_App.View
+namespace MVVM_App.views
 {
     /// <summary>
-    /// Interaction logic for LoginView.xaml
+    /// Interaction logic for ViewBookings.xaml
     /// </summary>
-    public partial class LoginView : Page
+    public partial class ViewBookings : UserControl
     {
-        public LoginView()
+        public ViewBookings()
         {
             InitializeComponent();
         }

@@ -30,6 +30,7 @@ namespace MVVM_App.Repositories
                 command.CommandText = "select * from userdetails where username=@username and password=@password";
                 command.Parameters.Add("@username", NpgsqlDbType.Varchar).Value=credential.UserName;
                 command.Parameters.Add("@password", NpgsqlDbType.Varchar).Value = credential.Password;
+
                 validUser = command.ExecuteScalar() == null ? false : true;
             }
             return validUser;
@@ -49,14 +50,15 @@ namespace MVVM_App.Repositories
                 connection.Open();
                 command.Connection = connection;
                 command.CommandText = "select * from userdetails where username=@username ";
+
                 command.Parameters.Add("@username", NpgsqlDbType.Varchar).Value = username;
+
                 using (var reader = command.ExecuteReader()) 
                 {
                 if(reader.Read())
                     {
                         validUser = new UserModel()
                         {
-                           
                             UserName = reader[0].ToString(),
                             Password = reader[1].ToString(),
 

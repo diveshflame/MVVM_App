@@ -7,10 +7,16 @@
     <UseWPF>true</UseWPF>
   </PropertyGroup>
 
+
+
   <ItemGroup>
-    <Compile Remove="Commands\**" />
-    <Compile Remove="ModelView\**" />
-    <Compile Remove="Model\**" />
+    <Folder Include="Images\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="FontAwesome.Sharp" Version="6.3.0" />
+    <PackageReference Include="FontAwesome.WPF" Version="4.7.0.9" />
+
     <EmbeddedResource Remove="Commands\**" />
     <EmbeddedResource Remove="ModelView\**" />
     <EmbeddedResource Remove="Model\**" />

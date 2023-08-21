@@ -14,7 +14,6 @@
         <viewModel:MainViewModel/>
     </Window.DataContext>
 
-    
     <Window.Resources>
 
         <DataTemplate DataType="{x:Type viewModel:AddTimings}">
@@ -116,7 +115,7 @@
                                 Height="35"
                                 Margin="15,25,0,40">
 
-                    <Image Source="C:\Users\arjkr\source\repos\MVVM_App\images\logo.png" Height="30"/>
+                    <Image Source="\images\logo.png" Height="30"/>
                     <TextBlock Text="We Care"
                                    Foreground="{StaticResource titleColor2}"
                                    FontSize="20"
@@ -259,7 +258,7 @@
                                      StrokeThickness="2"
                                      >
                                                 <Ellipse.Fill>
-                                                    <ImageBrush ImageSource="C:\Users\arjkr\source\repos\MVVM_App\images\arjun12 (4).png"/>
+                                                    <ImageBrush ImageSource="C:\Users\ashal\source\repos\MVVM_App\images\arjun12 (4).png"/>
                                                 </Ellipse.Fill>
                                             </Ellipse>
                                         </DataTemplate>
@@ -278,6 +277,7 @@
                                                         <StackPanel Orientation="Horizontal">
 
                                                             <Image Source="images\logout1.png" Width="16" Height="16" VerticalAlignment="Center"/>
+
                                                             <TextBlock Text="Logout" VerticalAlignment="Center"/>
                                                         </StackPanel>
                                                     </DataTemplate>
@@ -309,7 +309,7 @@
                                     Margin="25"/>
                 
         </Grid>
-                </Border>
+        </Border>
         </Grid>
     </Border>
 </Window>
