@@ -1,12 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Data.SqlClient;
 using System.Linq;
 using System.Net;
 using System.Text;
 using System.Threading.Tasks;
 using System.Data;
 using WpfApp4.Models;
+
+using Npgsql;
+using NpgsqlTypes;
 
 namespace WpfApp4.Repositories
 {
@@ -21,13 +23,14 @@ namespace WpfApp4.Repositories
         {
             bool validUser;
             using (var connection = GetConnection())
-                using(var command = new SqlCommand())
+                using(var command = new NpgsqlCommand())
             {
                 connection.Open();
                 command.Connection = connection;
                 command.CommandText = "select * from userdetails where username=@username and password=@password";
-                command.Parameters.Add("@username", SqlDbType.NVarChar).Value=credential.UserName;
-                command.Parameters.Add("@password", SqlDbType.NVarChar).Value = credential.Password;
+                command.Parameters.Add("@username", NpgsqlDbType.Varchar).Value=credential.UserName;
+                command.Parameters.Add("@password", NpgsqlDbType.Varchar).Value = credential.Password;
+
                 validUser = command.ExecuteScalar() == null ? false : true;
             }
             return validUser;
@@ -42,12 +45,14 @@ namespace WpfApp4.Repositories
         {
             UserModel validUser = null;
             using (var connection = GetConnection())
-            using (var command = new SqlCommand())
+            using (var command = new NpgsqlCommand())
             {
                 connection.Open();
                 command.Connection = connection;
                 command.CommandText = "select * from userdetails where username=@username ";
-                command.Parameters.Add("@username", SqlDbType.NVarChar).Value = username;
+
+                command.Parameters.Add("@username", NpgsqlDbType.Varchar).Value = username;
+
                 using (var reader = command.ExecuteReader()) 
                 {
                 if(reader.Read())

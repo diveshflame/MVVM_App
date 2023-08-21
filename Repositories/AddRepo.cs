@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using WpfApp4.Models;
 using System.Reflection.PortableExecutable;
+using Npgsql;
 
 namespace WpfApp4.Repositories
 {
@@ -19,13 +20,13 @@ namespace WpfApp4.Repositories
             List<string> list2 = new List<string>();
 
             using (var connection = GetConnection()) // You need to replace GetConnection() with your actual connection creation logic
-            using (var command = new SqlCommand())
+            using (var command = new NpgsqlCommand())
             {
                 connection.Open();
                 command.Connection = connection;
-                command.CommandText = "SELECT Doctor_Name from Doctor";
+                command.CommandText = "SELECT Doctor_Name from Doctor_Table";
 
-                using (SqlDataReader reader = command.ExecuteReader())
+                using (NpgsqlDataReader reader = command.ExecuteReader())
                 {
                     while (reader.Read())
                     {

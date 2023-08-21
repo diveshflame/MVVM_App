@@ -7,24 +7,7 @@
     <UseWPF>true</UseWPF>
   </PropertyGroup>
 
-  <ItemGroup>
-    <Compile Remove="Commands\**" />
-    <Compile Remove="ModelView\**" />
-    <Compile Remove="Model\**" />
-    <Compile Remove="View\**" />
-    <EmbeddedResource Remove="Commands\**" />
-    <EmbeddedResource Remove="ModelView\**" />
-    <EmbeddedResource Remove="Model\**" />
-    <EmbeddedResource Remove="View\**" />
-    <None Remove="Commands\**" />
-    <None Remove="ModelView\**" />
-    <None Remove="Model\**" />
-    <None Remove="View\**" />
-    <Page Remove="Commands\**" />
-    <Page Remove="ModelView\**" />
-    <Page Remove="Model\**" />
-    <Page Remove="View\**" />
-  </ItemGroup>
+
 
   <ItemGroup>
     <Folder Include="Images\" />
@@ -33,11 +16,22 @@
   <ItemGroup>
     <PackageReference Include="FontAwesome.Sharp" Version="6.3.0" />
     <PackageReference Include="FontAwesome.WPF" Version="4.7.0.9" />
+
+    <EmbeddedResource Remove="Commands\**" />
+    <EmbeddedResource Remove="ModelView\**" />
+    <EmbeddedResource Remove="Model\**" />
+    <None Remove="Commands\**" />
+    <None Remove="ModelView\**" />
+    <None Remove="Model\**" />
+    <Page Remove="Commands\**" />
+    <Page Remove="ModelView\**" />
+    <Page Remove="Model\**" />
   </ItemGroup>
 
   <ItemGroup>
     <PackageReference Include="FontAwesome.WPF" Version="4.7.0.9" />
     <PackageReference Include="Microsoft.Data.SqlClient" Version="5.1.1" />
+    <PackageReference Include="Npgsql" Version="7.0.4" />
     <PackageReference Include="System.Data.SqlClient" Version="4.8.5" />
   </ItemGroup>
 
