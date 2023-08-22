@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace MVVM_App.Models
 {
-    public class AdminDataGridItem
+    public class DataGridItem
     {
         public string Name { get; set; }
         public string DoctorName { get; set; }

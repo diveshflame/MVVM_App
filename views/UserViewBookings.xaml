@@ -1,8 +1,9 @@
-﻿<UserControl x:Class="MVVM_App.views.ViewBookings"
+﻿<UserControl x:Class="MVVM_App.views.UserViewBookings"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:fa="http://schemas.fontawesome.io/icons/"
              xmlns:local="clr-namespace:MVVM_App.views"
              xmlns:viewModel="clr-namespace:MVVM_App.ViewModels"
              xmlns:Model="clr-namespace:MVVM_App.Models"
@@ -10,8 +11,9 @@
              d:DesignHeight="450" d:DesignWidth="800">
 
     <UserControl.DataContext>
-        <viewModel:ViewBookings/>
+        <viewModel:UserViewBooking/>
     </UserControl.DataContext>
+    
     <Grid Background="#eff2f7">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
@@ -64,24 +66,32 @@
         </Grid.Resources>
         <TextBlock Grid.Row="0" Grid.Column="1" FontSize="24" HorizontalAlignment="Center" Text="View Booking"></TextBlock>
         <StackPanel Grid.Row="1" Grid.Column="1" Orientation="Horizontal" >
-            <RadioButton Content="View All Bookings" Command="{Binding ViewAdminBookings}"  Style="{StaticResource tabButton}"   BorderBrush="#784ff2"/>
+            <RadioButton Content="View All Bookings" Command="{Binding ViewUserBookings}"  Style="{StaticResource tabButton}"   BorderBrush="#784ff2"/>
             <RadioButton Content="Today Bookings" Style="{StaticResource tabButton}" Command="{Binding ViewTodayBooking}"/>
             <RadioButton Content="Booking History" Style="{StaticResource tabButton}" Command="{Binding ViewBookingHistory}" />
         </StackPanel>
-        
+
         <!--Data grid for table-->
-        
-        <DataGrid Grid.Row="3" Grid.Column="1" ItemsSource="{Binding DataGridItems}" AutoGenerateColumns="False" GridLinesVisibility="None" BorderBrush="Transparent"
+
+        <DataGrid Grid.Row="3" Grid.Column="1" ItemsSource="{Binding UserDatagridItems}" AutoGenerateColumns="False" GridLinesVisibility="None" BorderBrush="Transparent"
                    HeadersVisibility="Column" CanUserResizeRows="False" 
                       ColumnWidth="100" Background="White"  
                       IsReadOnly="True" HorizontalAlignment="Center"
-                      CanUserReorderColumns="False" >
+                      CanUserReorderColumns="False" Name="UserBooking">
             <DataGrid.Columns>
-                <DataGridTextColumn Binding="{Binding Name, UpdateSourceTrigger=PropertyChanged}" Header="User Name"/>
                 <DataGridTextColumn Binding="{Binding DoctorName , UpdateSourceTrigger=PropertyChanged}" Header="Doctor Name"/>
                 <DataGridTextColumn Binding="{Binding Consultant_Desc , UpdateSourceTrigger=PropertyChanged}" Header="Consultant Type"/>
                 <DataGridTextColumn Binding="{Binding StartTime , UpdateSourceTrigger=PropertyChanged}" Header="Start Time"/>
                 <DataGridTextColumn Binding="{Binding EndTime , UpdateSourceTrigger=PropertyChanged}" Header="End Time"/>
+                <DataGridTemplateColumn Header="Cancel Appointment" Width="150">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate x:Name="Delete_Appnt">
+                            <Button Width="90" Height="30" Opacity="0.8" Background="Transparent" BorderBrush="Transparent" Cursor="Hand" >
+                                <fa:ImageAwesome Icon="TrashOutline" Foreground="red" Width="90" Height="25" ></fa:ImageAwesome>
+                            </Button>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
             </DataGrid.Columns>
         </DataGrid>
 
