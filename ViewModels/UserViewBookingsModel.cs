@@ -10,7 +10,7 @@ using System.Windows.Input;
 
 namespace MVVM_App.ViewModels
 {
-    public class UserViewBooking:ViewModelBase
+    public class UserViewBookingsModel:ViewModelBase
     {
         //Fields
         private ObservableCollection<DataGridItem> userDatagridItems;
@@ -26,7 +26,7 @@ namespace MVVM_App.ViewModels
 
 
         //constructor
-        public UserViewBooking()
+        public UserViewBookingsModel()
         {
             adminbooking = new DataGridRepository();
             ViewUserBookings = new ViewModelCommand(ExecuteViewUserBookings);
@@ -48,7 +48,7 @@ namespace MVVM_App.ViewModels
         private void ExecuteViewUserBookings(object obj)
         {
           
-            UserViewBooking view = new UserViewBooking();
+            UserViewBookingsModel view = new UserViewBookingsModel();
             UserDatagridItems = new ObservableCollection<DataGridItem>();
             var dataGridItem = adminbooking.ViewUserBookings();
             foreach (var item in dataGridItem)
