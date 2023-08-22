@@ -42,7 +42,6 @@ namespace MVVM_App.ViewModels
         {
             ViewBookings view = new ViewBookings();
             DataGridItems = new ObservableCollection<DataGridItem>();
-           
             var dataGridItem = adminbooking.ViewToday();
             foreach (var item in dataGridItem)
             {
@@ -52,7 +51,7 @@ namespace MVVM_App.ViewModels
 
         private void ExecuteViewBookingHistory(object obj)
         {
-             ViewBookings view = new ViewBookings();
+            ViewBookings view = new ViewBookings();
             DataGridItems = new ObservableCollection<DataGridItem>();
 
             var dataGridItem = adminbooking.ViewHistory();

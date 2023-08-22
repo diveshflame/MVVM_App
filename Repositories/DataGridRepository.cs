@@ -10,6 +10,7 @@ using MVVM_App.Repositories;
 using System.Windows.Documents;
 using Microsoft.VisualBasic.ApplicationServices;
 using System.Windows;
+using System.Windows.Controls;
 
 namespace MVVM_App.Repositories
 {
@@ -156,49 +157,43 @@ namespace MVVM_App.Repositories
         {
             throw new NotImplementedException();
         }
-        public void Delete()
+        public void DeleteUserBooking(DataRowView a)
         {
+            string getbookingid = a["Booking_Id"].ToString();
+            DateTime cancelDate = (DateTime)a["StartTime"];
+            string docid = a["Doctor_Id"].ToString();
+            DateTime starttime = DateTime.Parse(a["StartTime"].ToString());
+            DateTime endtime = DateTime.Parse(a["EndTime"].ToString());
+            var Differencedate = cancelDate - DateTime.Now;
+            if (Differencedate.Days < 2)
+            {
+                //btnDelete.IsEnabled = false;
+                MessageBox.Show("You cannnot Cancel the appointment 48 hours prior to the appointment.Please Contact the doctor's office.", "Detail");
+            }
+            else
+            {
+                a.Delete();
+                DateTime dateTime = DateTime.Now;
 
-            //if (MessageBox.Show("Do you want to delete?", "Confirmation", MessageBoxButton.YesNo) == MessageBoxResult.Yes)
-            //{
-            //    DataRowView row = (DataRowView)mytable.SelectedItem;
-            //    string pk = row["Booking_Id"].ToString();
-            //    DateTime cancelDate = (DateTime)row["StartTime"];
-            //    string docid = row["Doctor_Id"].ToString();
-            //    DateTime starttime = DateTime.Parse(row["StartTime"].ToString());
-            //    DateTime endtime = DateTime.Parse(row["EndTime"].ToString());
-            //    var Differencedate = cancelDate - DateTime.Now;
-            //    if (Differencedate.Days < 2)
-            //    {
-            //        //btnDelete.IsEnabled = false;
-            //        MessageBox.Show("You cannnot Cancel the appointment 48 hours prior to the appointment.Please Contact the doctor's office.", "Detail");
-            //    }
-            //    else
-            //    {
-            //        row.Delete();
-            //        DateTime dateTime = DateTime.Now;
-
-            //        using (conn = new SqlConnection("Data Source=.;Initial Catalog=UserBase;Integrated Security=True"))
-            //        {
-            //            conn.Open();
-            //            string View = "update Booking_Table set Daleted_TimeStamp=" + "'" + dateTime.ToString("yyyy-MM-dd HH:mm:ss") + "'" + "where Booking_Id=" + pk;
-            //            cmd = new SqlCommand(View, conn);
-            //            DataTable dt = new DataTable();
-            //            cmd.ExecuteNonQuery();
-            //            dt.Load(cmd.ExecuteReader());
-            //            string delete = "insert into DoctorAvailability values (@doctor,@starttime,@endtime)";
-            //            SqlCommand cmd2 = new SqlCommand(delete, conn);
-            //            cmd2.Parameters.AddWithValue("@doctor", docid);
-            //            cmd2.Parameters.AddWithValue("@starttime", starttime);
-            //            cmd2.Parameters.AddWithValue("@endtime", endtime);
-            //            cmd2.ExecuteNonQuery();
-            //            mytable.ItemsSource = dt.DefaultView;
-
-            //        }
-            //        showData();
-            //    }
-            //}
+                using (NpgsqlConnection conn = GetConnection())
+                {
+                    conn.Open();
+                    string View = "update Booking_Table set Daleted_TimeStamp=" + "'" + dateTime.ToString("yyyy-MM-dd HH:mm:ss") + "'" + "where Booking_Id=" + getbookingid;
+                    NpgsqlCommand cmd = new NpgsqlCommand(View, conn);
+                    //DataTable dt = new DataTable();
+                    // cmd.ExecuteNonQuery();
+                    // dt.Load(cmd.ExecuteReader());
+                    string delete = "insert into DoctorAvailability values (@doctor,@starttime,@endtime)";
+                    NpgsqlCommand cmd2 = new NpgsqlCommand(delete, conn);
+                    cmd2.Parameters.AddWithValue("@doctor", docid);
+                    cmd2.Parameters.AddWithValue("@starttime", starttime);
+                    cmd2.Parameters.AddWithValue("@endtime", endtime);
+                    cmd2.ExecuteNonQuery();
+                }
+            }
         }
 
+
     }
-}
+
+    }

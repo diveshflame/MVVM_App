@@ -3,6 +3,7 @@ using MVVM_App.Repositories;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -14,6 +15,7 @@ namespace MVVM_App.ViewModels
     {
         //Fields
         private ObservableCollection<DataGridItem> userDatagridItems;
+        public DataRowView Selecteditem { get; set; }    
 
         public ObservableCollection<DataGridItem> UserDatagridItems { get => userDatagridItems; set { userDatagridItems = value; OnPropertyChanged(nameof(UserDatagridItems)); } }
 
@@ -22,7 +24,9 @@ namespace MVVM_App.ViewModels
         public ICommand ViewUserTodayBooking { get; }
         public ICommand ViewUserBookingHistory { get; }
 
+        public ICommand DeleteUserBooking { get; }
         private IAdminBooking adminbooking;
+
 
 
         //constructor
@@ -32,8 +36,10 @@ namespace MVVM_App.ViewModels
             ViewUserBookings = new ViewModelCommand(ExecuteViewUserBookings);
             ViewUserTodayBooking = new ViewModelCommand(ExecuteViewUserTodayBooking);
             ViewUserBookingHistory = new ViewModelCommand(ExecuteViewUserBookingHistory);
-           
+            DeleteUserBooking = new ViewModelCommand(ExecuteDeleteUserBooking);
         }
+
+     
 
         private void ExecuteViewUserBookingHistory(object obj)
         {
@@ -55,6 +61,11 @@ namespace MVVM_App.ViewModels
             {
                 UserDatagridItems.Add(item);
             }
+        }
+        //Delete User Bookings
+        private void ExecuteDeleteUserBooking(object obj)
+        {
+            adminbooking.DeleteUserBooking(Selecteditem);
         }
 
      

@@ -30,7 +30,6 @@ namespace MVVM_App.ViewModels
             EndTime = repocall.EndT();
 
 
-
         }
         public List<string> selectdoc(string text)
         {

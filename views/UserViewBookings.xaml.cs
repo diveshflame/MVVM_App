@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MVVM_App.ViewModels;
+using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Linq;
@@ -26,11 +27,14 @@ namespace MVVM_App.views
             InitializeComponent();
         }
 
-        public void SelectRow()
-        {
-            DataRowView row = (DataRowView)UserBooking.SelectedItem;
-            
+        //public DataRowView SelectRow(int bookingId)
+        //{
+        //    DataRowView row = (DataRowView)UserBooking.SelectedItem;
+        //    return row;
+        //    AddTimingsViewModel selectD = new AddTimingsViewModel();
+        //    consultType = selectD.selectdoc(doctorType1.SelectedItem.ToString());
+        //    ConsultType1.ItemsSource = consultType;
 
-        }
+        //}
     }
 }

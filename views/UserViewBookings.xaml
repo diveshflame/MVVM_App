@@ -77,7 +77,7 @@
                    HeadersVisibility="Column" CanUserResizeRows="False" 
                       ColumnWidth="100" Background="White"  
                       IsReadOnly="True" HorizontalAlignment="Center"
-                      CanUserReorderColumns="False" Name="UserBooking">
+                      CanUserReorderColumns="False" Name="UserBooking" SelectedItem="{Binding Selecteditem}">
             <DataGrid.Columns>
                 <DataGridTextColumn Binding="{Binding DoctorName , UpdateSourceTrigger=PropertyChanged}" Header="Doctor Name"/>
                 <DataGridTextColumn Binding="{Binding Consultant_Desc , UpdateSourceTrigger=PropertyChanged}" Header="Consultant Type"/>
