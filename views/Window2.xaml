@@ -16,18 +16,21 @@
 
     <Window.Resources>
 
-        <DataTemplate DataType="{x:Type viewModel:AddDoctor}">
-            <local:AddDoctor/>
+        <DataTemplate DataType="{x:Type viewModel:AddTimings}">
+            <local:AddTimings/>
         </DataTemplate>
 
         <DataTemplate DataType="{x:Type viewModel:UpdateDoctor}">
             <local:UpdateDoctor/>
         </DataTemplate>
 
-        <DataTemplate DataType="{x:Type viewModel:AddConsult}">
+        <DataTemplate DataType="{x:Type viewModel:AddConsultViewModel}">
             <local:AddConsult/>
         </DataTemplate>
-        
+
+        <DataTemplate DataType="{x:Type viewModel:AddDoctorViewModel}">
+            <local:AddDoctor/>
+        </DataTemplate>
         <DataTemplate DataType="{x:Type viewModel:ViewBookings}">
             <local:ViewBookings/>
         </DataTemplate>
@@ -124,19 +127,27 @@
                                    VerticalAlignment="Center"
                                    Margin="10,0,0,0"/>
                 </StackPanel>
-
+                <RadioButton Style="{StaticResource menuButton}"
+                                 Tag="{StaticResource color2}"
+                                 Command="{Binding ShowBookings}">
+                    <StackPanel Orientation="Horizontal">
+                        <fa:FontAwesome Icon="Book" Margin="10,2,0,0" />
+                        <TextBlock Text="View Booking" Margin="10,0,0,0"/>
+                    </StackPanel>
+                </RadioButton>
                 <RadioButton Style="{StaticResource menuButton}"
                                  Tag="{StaticResource primaryBackColor1}"
                                  IsChecked="True"
-                                 Command="{Binding ShowAddDoctorCommand}" >
+                                 Command="{Binding ShowAddTimingsCommand}" >
                     <StackPanel Orientation="Horizontal">
                         <fa:FontAwesome Icon="FileText" Margin="10,2,0,0"/>
                         <TextBlock Text="Update Timings" Margin="10,0,0,0"/>
                     </StackPanel>
                 </RadioButton>
+                
                 <RadioButton Style="{StaticResource menuButton}"
                                  Tag="{StaticResource primaryBackColor1}"
-                                 Command="{Binding ShowUpdateDoctorCommand}">
+                                 Command="{Binding ShowAddDoctorCommand}">
                     <StackPanel Orientation="Horizontal">
                         <fa:FontAwesome Icon="User"  Margin="15,2,0,0" />
                         <TextBlock Text="Add Doctor"  Margin="10,0,0,0"/>
@@ -146,16 +157,16 @@
                                  Tag="{StaticResource primaryBackColor1}"
                                  Command="{Binding ShowUpdateDoctorCommand}">
                     <StackPanel Orientation="Horizontal">
-                        <fa:FontAwesome Icon="Book" Margin="10,2,0,0" />
-                        <TextBlock Text="Customer" Margin="10,0,0,0"/>
+                        <fa:FontAwesome Icon="User"  Margin="15,2,0,0" />
+                        <TextBlock Text="Update Doctor"  Margin="10,0,0,0"/>
                     </StackPanel>
                 </RadioButton>
                 <RadioButton Style="{StaticResource menuButton}"
-                                 Tag="{StaticResource color2}"
-                                 Command="{Binding ShowBookings}">
+                                 Tag="{StaticResource primaryBackColor1}"
+                                 Command="{Binding ShowAddConsultCommand}">
                     <StackPanel Orientation="Horizontal">
-                        <fa:FontAwesome Icon="Book" Margin="10,2,0,0" />
-                        <TextBlock Text="View Booking" Margin="10,0,0,0"/>
+                        <fa:FontAwesome Icon="User"  Margin="15,2,0,0" />
+                        <TextBlock Text="Add Consultation Type"  Margin="10,0,0,0"/>
                     </StackPanel>
                 </RadioButton>
             </StackPanel>
@@ -258,7 +269,7 @@
                                      StrokeThickness="2"
                                      >
                                                 <Ellipse.Fill>
-                                                    <ImageBrush ImageSource="C:\Users\ashal\source\repos\MVVM_App\images\arjun12 (4).png"/>
+                                                    <ImageBrush ImageSource="C:\Users\arjkr\source\repos\MVVM_App\images\arjun12 (4).png"/>
                                                 </Ellipse.Fill>
                                             </Ellipse>
                                         </DataTemplate>

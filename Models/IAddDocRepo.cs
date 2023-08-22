@@ -10,5 +10,10 @@ namespace MVVM_App.Models
     {
         public List<string> get();
 
+        public void add(string id);
+        public List<TimeSpan> startT();
+        public List<TimeSpan> EndT();
+
+        public List<string> getco();
     }
 }
