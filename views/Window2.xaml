@@ -28,8 +28,11 @@
             <local:AddConsult/>
         </DataTemplate>
 
-        <DataTemplate DataType="{x:Type viewModel:AddDoctor}">
+        <DataTemplate DataType="{x:Type viewModel:AddDoctorViewModel}">
             <local:AddDoctor/>
+        </DataTemplate>
+        <DataTemplate DataType="{x:Type viewModel:ViewBookings}">
+            <local:ViewBookings/>
         </DataTemplate>
 
         <Style x:Key="DropdownItemStyle" TargetType="Button">
@@ -124,7 +127,14 @@
                                    VerticalAlignment="Center"
                                    Margin="10,0,0,0"/>
                 </StackPanel>
-
+                <RadioButton Style="{StaticResource menuButton}"
+                                 Tag="{StaticResource color2}"
+                                 Command="{Binding ShowBookings}">
+                    <StackPanel Orientation="Horizontal">
+                        <fa:FontAwesome Icon="Book" Margin="10,2,0,0" />
+                        <TextBlock Text="View Booking" Margin="10,0,0,0"/>
+                    </StackPanel>
+                </RadioButton>
                 <RadioButton Style="{StaticResource menuButton}"
                                  Tag="{StaticResource primaryBackColor1}"
                                  IsChecked="True"
@@ -134,6 +144,7 @@
                         <TextBlock Text="Update Timings" Margin="10,0,0,0"/>
                     </StackPanel>
                 </RadioButton>
+                
                 <RadioButton Style="{StaticResource menuButton}"
                                  Tag="{StaticResource primaryBackColor1}"
                                  Command="{Binding ShowAddDoctorCommand}">
@@ -258,7 +269,7 @@
                                      StrokeThickness="2"
                                      >
                                                 <Ellipse.Fill>
-                                                    <ImageBrush ImageSource="C:\Users\ashal\source\repos\MVVM_App\images\arjun12 (4).png"/>
+                                                    <ImageBrush ImageSource="C:\Users\arjkr\source\repos\MVVM_App\images\arjun12 (4).png"/>
                                                 </Ellipse.Fill>
                                             </Ellipse>
                                         </DataTemplate>

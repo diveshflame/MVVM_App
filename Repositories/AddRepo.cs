@@ -165,7 +165,67 @@ namespace MVVM_App.Repositories
             return list2;
         }
 
+        public void addDoctor(string text, string v)
+        {
+            int a = 0;
+            using (var connection = GetConnection()) // You need to replace GetConnection() with your actual connection creation logic
+            using (var command = new NpgsqlCommand())
+            {
+                connection.Open();
+                command.Connection = connection;
+                command.CommandText = "SELECT consultant_id from consultant_Type where @c = consultant_desc";
+                command.Parameters.Add(new NpgsqlParameter("@c", v));
+                using (NpgsqlDataReader reader = command.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        // Add the value from the "Doctor_Name" column to the j list
+                        a = reader.GetInt32(0);
+                            
+                            // Assuming the column is of string type
+                    }
+                }
+            }
+            int ?b = null;
+            using (var connection = GetConnection()) // You need to replace GetConnection() with your actual connection creation logic
+            using (var command = new NpgsqlCommand())
+            {
+                connection.Open();
+                command.Connection = connection;
+                command.CommandText = "SELECT doctor_Id from doctor_table where @d=Doctor_Name";
+                command.Parameters.Add(new NpgsqlParameter("@d", text));
+                using (NpgsqlDataReader reader = command.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        // Add the value from the "Doctor_Name" column to the j list
+                        b = reader.GetInt32(0);
 
+                        // Assuming the column is of string type
+                    }
+                }
+            }
+            if(b!=null)
+            {
+                MessageBox.Show("This name already exists. Please enter a valid Full Name", "Failed", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+            else
+            {
+                using (NpgsqlConnection conn = GetConnection())
+                {
+                    string insert = "insert into doctor_table(Doctor_name,consultant_id) values(@Doctorn,@Consult_Id)";
+                    NpgsqlCommand cmd = new NpgsqlCommand(insert, conn);
+                    cmd.Parameters.Add(new NpgsqlParameter("@Consult_Id", a));
 
+                    cmd.Parameters.Add(new NpgsqlParameter("@Doctorn", text));
+
+                    conn.Open();
+                    cmd.ExecuteNonQuery();
+                    MessageBox.Show("Successfully Added !!", "Saved", MessageBoxButton.OK, MessageBoxImage.Information);
+                    conn.Close();
+                }
+            }
+
+        }
     }
 }

@@ -56,7 +56,7 @@ namespace MVVM_App.ViewModels
             ShowAddConsultCommand = new ViewModelCommand(ExecuteAddConsultView);
             ShowAddDoctorCommand = new ViewModelCommand(ExecuteAddDoctorView);
             ShowUpdateDoctorCommand = new ViewModelCommand(ExecuteUpdateDoctorView);
-            ShowConsultType = new ViewModelCommand(ExecuteaddConsultView);
+      
             ShowBookings = new ViewModelCommand(ExecuteShowBookings);
 
             LoadCurrentUserData();
@@ -73,7 +73,7 @@ namespace MVVM_App.ViewModels
 
         private void ExecuteAddDoctorView(object obj)
         {
-            CurrentChildView = new AddDoctor();
+            CurrentChildView = new AddDoctorViewModel();
             Caption = "Add Doctor";
         }
 

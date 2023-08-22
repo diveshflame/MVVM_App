@@ -26,5 +26,10 @@ namespace MVVM_App.views
             InitializeComponent();
            
         }
+
+        private void doctorType1_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            
+        }
     }
 }

@@ -9,5 +9,9 @@ namespace MVVM_App.Models
     public class ConsultModel
     {
         public string consultName { get; set;}  
+
+        public string docname { get; set;}  
+
+        public string consulD { get; set;}
     }
 }

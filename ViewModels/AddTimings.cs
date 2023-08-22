@@ -9,6 +9,7 @@ using System.Windows.Controls.Ribbon;
 using System.Windows.Markup;
 using MVVM_App.Models;
 using MVVM_App.Repositories;
+using static System.Net.Mime.MediaTypeNames;
 
 namespace MVVM_App.ViewModels
 {
@@ -25,8 +26,12 @@ namespace MVVM_App.ViewModels
 
            StartTime = repocall.startT();
 
-           EndTime = repocall.EndT();  
-          
+           EndTime = repocall.EndT();
+
+            AddRepo addRepo = new AddRepo();
+
+       /*     addRepo.selectionchangedoc1(string text);*/
+
         }
         
     }

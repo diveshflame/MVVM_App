@@ -8,12 +8,12 @@
         xmlns:viewModel="clr-namespace:MVVM_App.ViewModels"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
-    
+
     <UserControl.DataContext>
-        <viewModel:AddDoctor/>
+        <viewModel:AddDoctorViewModel/>
     </UserControl.DataContext>
     <Grid>
-       
+
 
         <!-- Main Content -->
 
@@ -42,36 +42,22 @@
 
                 <StackPanel Grid.Row="3" Orientation="Horizontal" HorizontalAlignment="Left"  Margin="0,10,0,40">
 
-                    <TextBlock x:Name="text1" HorizontalAlignment="Left" Text="Select Consultation Type" Width="200" VerticalAlignment="Center" FontSize="5" FontWeight="SemiBold" />
-                    <ComboBox x:Name="ConsultType" Width="250" VerticalAlignment="Center" ItemsSource="{Binding consuld}">
-                        <ComboBox.ItemTemplate>
-                            <DataTemplate>
-                                <TextBlock Text="{Binding}" />
-                            </DataTemplate>
-                        </ComboBox.ItemTemplate>
-                        </ComboBox>
+                    <TextBlock x:Name="text1" HorizontalAlignment="Left" Text="Select Consultation Type" Width="200" VerticalAlignment="Center" FontSize="15" FontWeight="SemiBold" />
+                    <ComboBox x:Name="ConsultType" Width="250" VerticalAlignment="Center" ItemsSource="{Binding consuld}"></ComboBox>
                 </StackPanel>
 
                 <StackPanel Grid.Row="2" Orientation="Horizontal"  HorizontalAlignment="Left" Margin="0,10">
-                    <TextBlock x:Name="text2" Text="Enter the Name" Width="200" VerticalAlignment="Center" FontSize="5" FontWeight="SemiBold"  />
+                    <TextBlock x:Name="text2" Text="Enter the Name" Width="200" VerticalAlignment="Center" FontSize="15" FontWeight="SemiBold"  />
                     <TextBox x:Name="Doctor" Width="250" VerticalAlignment="Center" />
                 </StackPanel>
 
 
-                <StackPanel Grid.Column="0" Grid.Row="2" Orientation="Horizontal"  HorizontalAlignment="Center" Margin="30,0,0,0">
-                    <TextBlock Text=":" Width="10" VerticalAlignment="Center" FontSize="20" FontWeight="Bold"  />
-                </StackPanel>
-                <StackPanel Grid.Column="0" Grid.Row="3" Orientation="Horizontal"  HorizontalAlignment="Center" Margin="30,-30,0,0">
-                    <TextBlock Text=":" Width="10" VerticalAlignment="Center" FontSize="20" FontWeight="Bold"  />
-                </StackPanel>
-
                 <StackPanel Grid.Column="0" Grid.Row="4" Orientation="Horizontal"  HorizontalAlignment="Right" Margin="120,0,0,0">
-                    <Button x:Name="btn1"  Grid.Row="5" Content="Add Doctor" HorizontalAlignment="Right"
-                            VerticalAlignment="Top" Margin="450,-12,0,0"  Width="70"
+                    <Button x:Name="btn1" Content="Add Doctor"  Width="70"
                             Height="25" Background="CadetBlue" Foreground="White" FontSize="11"
-                            FontWeight="SemiBold" BorderThickness="0" Grid.RowSpan="3" Grid.ColumnSpan="4">
+                            FontWeight="SemiBold" BorderThickness="0" Click="btn1_Click">
                         <Button.Template>
-                            <ControlTemplate TargetType="Button">
+                            <ControlTemplate TargetType="{x:Type Button}">
                                 <Border Background="{TemplateBinding Background}" BorderThickness="{TemplateBinding BorderThickness}" BorderBrush="{TemplateBinding BorderBrush}" CornerRadius="5">
                                     <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
                                 </Border>
@@ -83,7 +69,7 @@
                             Height="25" Background="CadetBlue" Foreground="White" FontSize="11"
                             FontWeight="SemiBold" BorderThickness="0"  Grid.RowSpan="4" Grid.ColumnSpan="4">
                         <Button.Template>
-                            <ControlTemplate TargetType="Button">
+                            <ControlTemplate TargetType="{x:Type Button}">
                                 <Border Background="{TemplateBinding Background}" BorderThickness="{TemplateBinding BorderThickness}" BorderBrush="{TemplateBinding BorderBrush}" CornerRadius="5">
                                     <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
                                 </Border>

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MVVM_App.ViewModels;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -23,6 +24,13 @@ namespace MVVM_App.views
         public AddDoctor()
         {
             InitializeComponent();
+         
+        }
+
+        private void btn1_Click(object sender, RoutedEventArgs e)
+        {
+            AddDoctorViewModel add = new AddDoctorViewModel();
+            add.Insert(Doctor.Text,ConsultType.SelectedItem.ToString());
         }
     }
 }
