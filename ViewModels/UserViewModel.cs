@@ -42,7 +42,6 @@ namespace MVVM_App.ViewModels
 
         public ICommand ShowUserBookings { get; }
 
-       
 
 
         public UserViewModel()
@@ -56,7 +55,7 @@ namespace MVVM_App.ViewModels
 
         private void ExecuteShowUserBookings(object obj)
         {
-            CurrentChildView = new UserViewBooking();
+            CurrentChildView = new UserViewBookingsModel();
             Caption = "View Bookings";
         }
 
