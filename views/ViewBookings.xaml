@@ -68,7 +68,7 @@
             <RadioButton Content="Today Bookings" Style="{StaticResource tabButton}" Command="{Binding ViewTodayBooking}"/>
             <RadioButton Content="Booking History" Style="{StaticResource tabButton}" Command="{Binding ViewBookingHistory}" />
         </StackPanel>
-        <DataGrid Grid.Row="3" Grid.Column="1" ItemsSource="{Binding AdminDataGridItems}" AutoGenerateColumns="False" GridLinesVisibility="None" BorderBrush="Transparent" >
+        <DataGrid Grid.Row="3" Grid.Column="1" ItemsSource="{Binding DataGridItems}" AutoGenerateColumns="False" GridLinesVisibility="None" BorderBrush="Transparent" >
             <DataGrid.Columns>
                 <DataGridTextColumn Binding="{Binding Name, UpdateSourceTrigger=PropertyChanged}" Header="User Name"/>
                 <DataGridTextColumn Binding="{Binding DoctorName , UpdateSourceTrigger=PropertyChanged}" Header="Doctor Name"/>

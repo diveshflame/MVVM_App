@@ -77,7 +77,7 @@
                                  Tag="{StaticResource color2}"
                                  Command="{Binding ShowCustomerViewCommand}">
                         <StackPanel Orientation="Horizontal">
-                            <fa:IconImage Icon="UserGroup" Style="{StaticResource menuButtonIcon}"/>
+                            <fa:IconImage Icon="Book" Style="{StaticResource menuButtonIcon}"/>
                             <TextBlock Text="View" Style="{StaticResource menuButtonText}" />
                         </StackPanel>
                     </RadioButton>

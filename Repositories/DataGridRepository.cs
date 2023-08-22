@@ -10,12 +10,12 @@ using MVVM_App.Repositories;
 
 namespace MVVM_App.Repositories
 {
-    public class AdminDataGridRepository : RepositoryBase, IAdminBooking
+    public class DataGridRepository : RepositoryBase, IAdminBooking
     {
-        public List<AdminDataGridItem> View()
+        public List<DataGridItem> View()
         {
-            List<AdminDataGridItem> NewList =new List<AdminDataGridItem>();
-            AdminDataGridItem item = null; ;
+            List<DataGridItem> NewList =new List<DataGridItem>();
+            DataGridItem item = null; ;
             using(NpgsqlConnection conn= GetConnection())
             {
                 conn.Open();
@@ -26,7 +26,7 @@ namespace MVVM_App.Repositories
                 {
                     while(reader.Read())
                     {
-                        item = new AdminDataGridItem()
+                        item = new DataGridItem()
                         {
                             Name = reader.GetString("NAME"),
                             DoctorName = reader.GetString("DOCTOR_NAME"),
@@ -42,10 +42,10 @@ namespace MVVM_App.Repositories
             return NewList;
         }
 
-        public List<AdminDataGridItem> ViewHistory()
+        public List<DataGridItem> ViewHistory()
         {
-            List<AdminDataGridItem> NewList = new List<AdminDataGridItem>();
-            AdminDataGridItem item = null; ;
+            List<DataGridItem> NewList = new List<DataGridItem>();
+            DataGridItem item = null; ;
             using (NpgsqlConnection conn = GetConnection())
             {
                 conn.Open();
@@ -56,7 +56,7 @@ namespace MVVM_App.Repositories
                 {
                     while (reader.Read())
                     {
-                        item = new AdminDataGridItem()
+                        item = new DataGridItem()
                         {
                             Name = reader.GetString("NAME"),
                             DoctorName = reader.GetString("DOCTOR_NAME"),
@@ -72,10 +72,10 @@ namespace MVVM_App.Repositories
             return NewList;
         }
 
-        public List<AdminDataGridItem> ViewToday()
+        public List<DataGridItem> ViewToday()
         {
-            List<AdminDataGridItem> NewList = new List<AdminDataGridItem>();
-            AdminDataGridItem item = null; ;
+            List<DataGridItem> NewList = new List<DataGridItem>();
+            DataGridItem item = null; ;
             using (NpgsqlConnection conn = GetConnection())
             {
                 conn.Open();
@@ -86,7 +86,7 @@ namespace MVVM_App.Repositories
                 {
                     while (reader.Read())
                     {
-                        item = new AdminDataGridItem()
+                        item = new DataGridItem()
                         {
                             Name = reader.GetString("NAME"),
                             DoctorName = reader.GetString("DOCTOR_NAME"),

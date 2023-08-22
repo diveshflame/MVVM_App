@@ -17,8 +17,8 @@ namespace MVVM_App.ViewModels
     public class ViewBookings: ViewModelBase
     {
         //Fields
-        private ObservableCollection<AdminDataGridItem> adminDataGridItems;
-        public ObservableCollection<AdminDataGridItem> AdminDataGridItems { get => adminDataGridItems; set { adminDataGridItems = value; OnPropertyChanged(nameof(adminDataGridItems)); } }
+        private ObservableCollection<DataGridItem> dataGridItems;
+        public ObservableCollection<DataGridItem> DataGridItems { get => dataGridItems; set { dataGridItems = value; OnPropertyChanged(nameof(DataGridItems)); } }
 
         //Commands
         public ICommand ViewAdminBookings { get; }
@@ -29,42 +29,42 @@ namespace MVVM_App.ViewModels
         //constructor
         public ViewBookings() 
         {
-            adminbooking = new AdminDataGridRepository();
+            adminbooking = new DataGridRepository();
             ViewAdminBookings = new ViewModelCommand(ExecuteViewAdminBookings);
             ViewBookingHistory = new ViewModelCommand(ExecuteViewBookingHistory);
             ViewTodayBooking = new ViewModelCommand(ExecuteViewTodayBooking);
-            AdminDataGridItems = new ObservableCollection<AdminDataGridItem>();
+            DataGridItems = new ObservableCollection<DataGridItem>();
                LoadData();
         }
 
         private void ExecuteViewTodayBooking(object obj)
         {
             ViewBookings view = new ViewBookings();
-            AdminDataGridItems = new ObservableCollection<AdminDataGridItem>();
+            DataGridItems = new ObservableCollection<DataGridItem>();
            
             var dataGridItem = adminbooking.ViewToday();
             foreach (var item in dataGridItem)
             {
-                AdminDataGridItems.Add(item);
+                DataGridItems.Add(item);
             }
         }
 
         private void ExecuteViewBookingHistory(object obj)
         {
              ViewBookings view = new ViewBookings();
-            AdminDataGridItems = new ObservableCollection<AdminDataGridItem>();
+            DataGridItems = new ObservableCollection<DataGridItem>();
 
             var dataGridItem = adminbooking.ViewHistory();
             foreach (var item in dataGridItem)
             {
-                AdminDataGridItems.Add(item);
+                DataGridItems.Add(item);
             }
         }
 
         private void ExecuteViewAdminBookings(object obj)
         {
             ViewBookings view = new ViewBookings();
-            AdminDataGridItems = new ObservableCollection<AdminDataGridItem>();
+            DataGridItems = new ObservableCollection<DataGridItem>();
             LoadData();
         }
         private void LoadData()
@@ -72,7 +72,7 @@ namespace MVVM_App.ViewModels
             var dataGridItem = adminbooking.View();
             foreach (var item in dataGridItem)
             {
-                AdminDataGridItems.Add(item);
+                DataGridItems.Add(item);
             }
         }
        
