@@ -8,9 +8,17 @@ namespace MVVM_App.Models
 {
     public interface IAdminBooking
     {
+        //Admin User Bookings
         public List<DataGridItem> View();
 
         public List<DataGridItem> ViewToday();
         public List<DataGridItem> ViewHistory();
+        
+        //User View Bookings
+        public List<DataGridItem> ViewUserBookings();
+        public List<DataGridItem> ViewUsersTodayBooking();
+        public List<DataGridItem> ViewUsersHistory();
+
+        public void Delete();
     }
 }

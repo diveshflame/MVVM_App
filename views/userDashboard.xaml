@@ -4,12 +4,24 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+         xmlns:VM="clr-namespace:MVVM_App.ViewModels"
         xmlns:local="clr-namespace:MVVM_App.views"
     mc:Ignorable="d"
         Title="MainWindowView" Height="640" Width="1260"
         WindowStartupLocation="CenterScreen"
         Background="Transparent" WindowStyle="None"
         AllowsTransparency="True">
+
+    <Window.DataContext>
+        <VM:UserViewModel/>
+    </Window.DataContext>
+
+    <Window.Resources>
+        <DataTemplate DataType="{x:Type VM:UserViewBooking}">
+            <local:UserViewBookings/>
+        </DataTemplate>
+    </Window.Resources>
+
 
     <Border CornerRadius="10"                    
             BorderThickness="1">
@@ -75,7 +87,7 @@
 
                     <RadioButton Style="{StaticResource menuButton}"
                                  Tag="{StaticResource color2}"
-                                 Command="{Binding ShowCustomerViewCommand}">
+                                 Command="{Binding ShowUserBookings}">
                         <StackPanel Orientation="Horizontal">
                             <fa:IconImage Icon="Book" Style="{StaticResource menuButtonIcon}"/>
                             <TextBlock Text="View" Style="{StaticResource menuButtonText}" />
@@ -118,7 +130,7 @@
                             <TextBlock Text="Settings" Style="{StaticResource menuButtonText}"/>
                             <TextBlock Text="Log Out" PreviewMouseDown="TextBlock_MouseEnter" Style="{StaticResource menuButtonText}"/>
                         </ComboBox>
-                        <TextBox Background="Transparent" Foreground="White" Text="Welcome, Divesh" Margin="1,3"  />
+                        <TextBox Background="Transparent" Foreground="White" Text="Welcome, Divesh" Margin="1,3" />
                         <Image Source="\Images\BoyIcon.png"/>
                     </StackPanel>
                 </Grid>

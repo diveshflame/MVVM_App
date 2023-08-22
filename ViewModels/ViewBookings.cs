@@ -24,6 +24,7 @@ namespace MVVM_App.ViewModels
         public ICommand ViewAdminBookings { get; }
         public ICommand ViewTodayBooking { get; }
         public ICommand ViewBookingHistory { get; }
+
         private IAdminBooking adminbooking;
 
         //constructor
@@ -33,8 +34,8 @@ namespace MVVM_App.ViewModels
             ViewAdminBookings = new ViewModelCommand(ExecuteViewAdminBookings);
             ViewBookingHistory = new ViewModelCommand(ExecuteViewBookingHistory);
             ViewTodayBooking = new ViewModelCommand(ExecuteViewTodayBooking);
-            DataGridItems = new ObservableCollection<DataGridItem>();
-               LoadData();
+            //DataGridItems = new ObservableCollection<DataGridItem>();
+            //   LoadData();
         }
 
         private void ExecuteViewTodayBooking(object obj)
