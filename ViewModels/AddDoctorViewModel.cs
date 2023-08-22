@@ -14,7 +14,6 @@ namespace MVVM_App.ViewModels
         public IAddDocRepo repocall = new AddRepo();
         public AddDoctorViewModel()
         {
-
             consuld = repocall.getco();
         }
 
@@ -27,5 +26,7 @@ namespace MVVM_App.ViewModels
             AddRepo addRepo = new AddRepo();
             addRepo.addDoctor(text,v);
         }
+
+        
     }
 }
