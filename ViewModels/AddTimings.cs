@@ -9,19 +9,30 @@ using System.Windows.Controls.Ribbon;
 using System.Windows.Markup;
 using MVVM_App.Models;
 using MVVM_App.Repositories;
+using static System.Net.Mime.MediaTypeNames;
 
 namespace MVVM_App.ViewModels
 {
-    public class AddDoctor : ViewModelBase
+    public class AddTimings : ViewModelBase
     {
         public IAddDocRepo repocall = new AddRepo();
 
         public List<string> DoctorNames { get; set; }
-        public AddDoctor()
+        public List<TimeSpan> StartTime { get; set; }
+        public List<TimeSpan> EndTime { get; set; }
+        public AddTimings()
         {
            DoctorNames = repocall.get();
-          
-        }
 
+           StartTime = repocall.startT();
+
+           EndTime = repocall.EndT();
+
+            AddRepo addRepo = new AddRepo();
+
+       /*     addRepo.selectionchangedoc1(string text);*/
+
+        }
+        
     }
 }

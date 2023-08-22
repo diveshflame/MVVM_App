@@ -8,7 +8,67 @@
         xmlns:viewModel="clr-namespace:MVVM_App.ViewModels"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
-    <Grid>
-            
-    </Grid>
+
+	<Viewbox>
+		<Grid  Margin="55">
+			
+
+			<Border Background="White" CornerRadius="10"
+                Margin="23,0,23,70" Padding="30"
+                VerticalAlignment="Center" Height="106">
+				<Grid>
+					<Grid.RowDefinitions>
+						<RowDefinition Height="Auto"/>
+						<RowDefinition Height="Auto"/>
+					</Grid.RowDefinitions>
+					<Grid.ColumnDefinitions>
+						<ColumnDefinition Width="Auto"/>
+						<ColumnDefinition Width="Auto"/>
+					</Grid.ColumnDefinitions>
+					<StackPanel Grid.Row="0" Orientation="Horizontal" HorizontalAlignment="Left"  Margin="0,10">
+						<TextBlock x:Name="text1" Text="Enter New Consultation Type:" Width="200" VerticalAlignment="Center" FontSize="14" FontWeight="SemiBold" />
+						<TextBox x:Name="addConsultant" Margin="10,0" Width="200" Height="20" VerticalAlignment="Center"></TextBox>
+					</StackPanel>
+
+					<Button x:Name="btn1"
+                            Content="Add"
+                            Grid.Column="1"
+                            Padding="15 5"
+                            Margin="2,12"
+                            Width="55" Height="20"
+                            Foreground="White"
+                            FontSize="13"
+                            FontWeight="SemiBold"
+                            BorderBrush="Black"
+                            BorderThickness="1"
+                           Click="btn1_Click" >
+
+
+						<Button.Style>
+							<Style TargetType="Button">
+								<Setter Property="Background" Value="CadetBlue"/>
+								<Style.Triggers>
+									<Trigger Property="IsMouseOver" Value="True">
+										<Setter Property="Background" Value="DarkGreen"/>
+										<Setter Property="Foreground" Value="White"/>
+									</Trigger>
+								</Style.Triggers>
+							</Style>
+						</Button.Style>
+
+						<Button.Template>
+							<ControlTemplate TargetType="Button">
+								<Border Background="{TemplateBinding Background}"
+                                        BorderThickness="{TemplateBinding BorderThickness}"
+                                        BorderBrush="{TemplateBinding BorderBrush}"
+                                        CornerRadius="5">
+									<ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+								</Border>
+							</ControlTemplate>
+						</Button.Template>
+					</Button>
+				</Grid>
+			</Border>
+		</Grid>
+	</Viewbox>
 </UserControl>

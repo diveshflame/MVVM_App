@@ -1,5 +1,4 @@
-﻿using MVVM_App.ViewModels;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -13,24 +12,24 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using MVVM_App.ViewModels;
 
 namespace MVVM_App.views
 {
     /// <summary>
-    /// Interaction logic for AddConsult.xaml
+    /// Interaction logic for AddDoctor.xaml
     /// </summary>
-    public partial class AddConsult : UserControl
+    public partial class AddTimings : UserControl
     {
-        public AddConsult()
+        public AddTimings()
         {
             InitializeComponent();
+           
         }
 
-        private void btn1_Click(object sender, RoutedEventArgs e)
+        private void doctorType1_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            AddConsultViewModel add= new AddConsultViewModel();
-            add.Insert(addConsultant.Text);
+            
         }
-
     }
 }
