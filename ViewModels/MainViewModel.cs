@@ -92,7 +92,7 @@ namespace MVVM_App.ViewModels
 
         private void ExecuteAddTimingsView(object obj)
         {
-            CurrentChildView = new AddTimings();
+            CurrentChildView = new AddTimingsViewModel();
             Caption = "Add Doctor";
          
         }
