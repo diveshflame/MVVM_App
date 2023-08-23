@@ -24,5 +24,10 @@ namespace MVVM_App.views
         {
             InitializeComponent();
         }
+
+        private void UpdateDoctorButton(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }
