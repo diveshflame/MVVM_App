@@ -28,9 +28,10 @@
             <local:AddConsult/>
         </DataTemplate>
 
-        <DataTemplate DataType="{x:Type viewModel:AddDoctorViewModel}">
-            <local:AddDoctor/>
-        </DataTemplate>-->
+        <DataTemplate DataType="{x:Type viewModel:BookAppointmentViewModel}">
+            <local:BookAppointment/>
+        </DataTemplate>
+
         <DataTemplate DataType="{x:Type viewModel:UserViewBookingsModel}">
             <local:UserViewBookings/>
         </DataTemplate>
@@ -137,7 +138,9 @@
                 <RadioButton Style="{StaticResource menuButton}"
                                  Tag="{StaticResource primaryBackColor1}"
                                  IsChecked="True"
-                                  Command="{Binding ShowUserBookings}" >
+
+                                  Command="{Binding ShowBookApp}">
+
                     <StackPanel Orientation="Horizontal">
                         <fa:FontAwesome Icon="FileText" Margin="10,2,0,0"/>
                         <TextBlock Text="Book Appointments" Margin="10,0,0,0"/>

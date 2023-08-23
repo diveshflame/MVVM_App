@@ -40,17 +40,52 @@ namespace MVVM_App.views
         {
 
         }
+        private void CheckBox_Checked(object sender, RoutedEventArgs e)
+        {
+            CheckBox checkBox = (CheckBox)sender;
+            if (checkBox.IsChecked == true)
+            {
+                Fromtime1.IsEnabled = false;
+                Endtime1.IsEnabled = false;
+            }
+            else
+            {
+                Fromtime1.IsEnabled = true;
+                Endtime1.IsEnabled = true;
+            }
+        }
+        private void CheckBox_Unchecked(object sender, RoutedEventArgs e)
+        {
+            CheckBox checkBox = (CheckBox)sender;
+            if (checkBox.IsChecked == false)
+            {
+                Fromtime1.IsEnabled = true;
+                Endtime1.IsEnabled = true;
+            }
+            else
+            {
 
+                Fromtime1.IsEnabled = false;
+                Endtime1.IsEnabled = false;
+
+            }
+        }
         private void btn1_Click(object sender, RoutedEventArgs e)
         {
             int T = 0;
+            int f = 0;
             DateTime d12 = DateTime.Now;
             DateTime dat1 = DateTime.Now;
             DateTime dat2 = DateTime.Now;
+            DateTime startDate=DateTime.Now;
+             DateTime endDate=DateTime.Now; 
             string s1="";
             string s2="";
-            DateTime startDate = Datepicker1.SelectedDate.Value;
-            DateTime endDate = Datepicker2.SelectedDate.Value;
+            if (Datepicker1.SelectedDate != null && Datepicker2.SelectedDate != null)
+            {
+                startDate = Datepicker1.SelectedDate.Value;
+                endDate = Datepicker2.SelectedDate.Value;
+            }
             if (Fromtime1.SelectedItem != null && Endtime1.SelectedItem != null)
             {
                s1 = Fromtime1.SelectedItem.ToString();
@@ -78,14 +113,16 @@ namespace MVVM_App.views
                     dat2 = DateTime.Parse(Datepicker1.SelectedDate.Value.ToString("yyyy/MM/dd ") + Time);
                 }
 
-                selectC.Selectcon(dat1, dat2, doctorType1.SelectedItem.ToString(), startDate, endDate);
+             f= selectC.Selectcon(dat1, dat2, doctorType1.SelectedItem.ToString(), startDate, endDate);
 
                 if (checker1.IsChecked == false)
                 {
                     T = 1;
                 }
-        
+                if (f == 0)
+                {
                     selectC.check(dat1, dat2, doctorType1.SelectedItem.ToString(), startDate, endDate, s1, s2, T);
+                }
                 
             }
         }
@@ -123,18 +160,19 @@ namespace MVVM_App.views
                 MessageBox.Show("Enter valid From date and To date", "Failed", MessageBoxButton.OK, MessageBoxImage.Error);
                 return false;
             }
-            TimeSpan selectedTime1 = TimeSpan.Parse(Fromtime1.SelectedItem.ToString());
-            TimeSpan selectedTime2 = TimeSpan.Parse(Endtime1.SelectedItem.ToString());
+            TimeSpan selectedTime1= new TimeSpan();
+            TimeSpan selectedTime2= new TimeSpan();
+            if (Fromtime1.SelectedItem != null && Endtime1.SelectedItem != null)
+            {
+                selectedTime1 = TimeSpan.Parse(Fromtime1.SelectedItem.ToString());
+                selectedTime2 = TimeSpan.Parse(Endtime1.SelectedItem.ToString());
+            }
             if (selectedTime1 > selectedTime2 && checker1.IsChecked == false)
             {
                 Fromtime1.SelectedItem = null;
                 Endtime1.SelectedItem = null;
                 MessageBox.Show("Enter valid From time and To time", "Failed", MessageBoxButton.OK, MessageBoxImage.Error);
                 return false;
-
-
-
-
 
             }
             return true;
