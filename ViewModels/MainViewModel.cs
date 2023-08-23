@@ -85,7 +85,7 @@ namespace MVVM_App.ViewModels
 
         private void ExecuteUpdateDoctorView(object obj)
         {
-            CurrentChildView = new UpdateDoctor();
+            CurrentChildView = new UpdateDoctorViewModel();
             Caption = "Update Doctor";
          
         }

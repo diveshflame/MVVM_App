@@ -10,6 +10,7 @@ using MVVM_App.Repositories;
 using System.Windows.Documents;
 using Microsoft.VisualBasic.ApplicationServices;
 using System.Windows;
+using System.Windows.Controls;
 
 namespace MVVM_App.Repositories
 {
@@ -92,6 +93,7 @@ namespace MVVM_App.Repositories
                     {
                         item = new DataGridItem()
                         {
+                            
                             Name = reader.GetString("NAME"),
                             DoctorName = reader.GetString("DOCTOR_NAME"),
                             StartTime = reader.GetDateTime("STARTTIME"),
@@ -134,6 +136,8 @@ namespace MVVM_App.Repositories
                     {
                         item = new DataGridItem()
                         {
+                            Booking_Id = reader.GetInt32("BOOKING_ID"),
+                            Doctor_Id=reader.GetInt32("DOCTOR_ID"),
                             DoctorName = reader.GetString("DOCTOR_NAME"),
                             StartTime = reader.GetDateTime("STARTTIME"),
                             EndTime = reader.GetDateTime("ENDTIME"),
@@ -149,56 +153,127 @@ namespace MVVM_App.Repositories
 
         public List<DataGridItem> ViewUsersHistory()
         {
-            throw new NotImplementedException();
+            List<DataGridItem> NewList = new List<DataGridItem>();
+            DataGridItem item = null;
+            using (NpgsqlConnection conn = GetConnection())
+            {
+                conn.Open();
+                string View = @"SELECT BOOKING_ID,
+                                    BOOKING_TABLE.DOCTOR_ID,
+	                                CONSULTANT_DESC,
+	                                DOCTOR_NAME,
+	                                STARTTIME,
+	                                ENDTIME
+                               FROM BOOKING_TABLE
+                               JOIN DOCTOR_TABLE ON BOOKING_TABLE.DOCTOR_ID = DOCTOR_TABLE.DOCTOR_ID
+                               JOIN CONSULTANT_TYPE ON BOOKING_TABLE.CONSULTANT_ID = CONSULTANT_TYPE.CONSULTANT_ID
+                               WHERE  DELETED_TIMESTAMP IS NULL AND DATE(STARTTIME)< CURRENT_DATE AND  BOOKING_TABLE.USERID IN
+                                    (SELECT USERID
+                                        FROM USERDETAILS
+                                        WHERE ACTIVE_SESSION = 0)";
+                NpgsqlCommand cmd = new NpgsqlCommand(View, conn);
+                using (var reader = cmd.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        item = new DataGridItem()
+                        {
+                            Booking_Id = reader.GetInt32("BOOKING_ID"),
+                            Doctor_Id = reader.GetInt32("DOCTOR_ID"),
+                            DoctorName = reader.GetString("DOCTOR_NAME"),
+                            StartTime = reader.GetDateTime("STARTTIME"),
+                            EndTime = reader.GetDateTime("ENDTIME"),
+                            Consultant_Desc = reader.GetString("CONSULTANT_DESC"),
+                        };
+                        NewList.Add(item);
+                    }
+                }
+
+            }
+            return NewList;
         }
 
         public List<DataGridItem> ViewUsersTodayBooking()
         {
-            throw new NotImplementedException();
+            List<DataGridItem> NewList = new List<DataGridItem>();
+            DataGridItem item = null;
+            using (NpgsqlConnection conn = GetConnection())
+            {
+                conn.Open();
+                string View = @"SELECT BOOKING_ID,
+                                    BOOKING_TABLE.DOCTOR_ID,
+	                                CONSULTANT_DESC,
+	                                DOCTOR_NAME,
+	                                STARTTIME,
+	                                ENDTIME
+                               FROM BOOKING_TABLE
+                               JOIN DOCTOR_TABLE ON BOOKING_TABLE.DOCTOR_ID = DOCTOR_TABLE.DOCTOR_ID
+                               JOIN CONSULTANT_TYPE ON BOOKING_TABLE.CONSULTANT_ID = CONSULTANT_TYPE.CONSULTANT_ID
+                               WHERE DELETED_TIMESTAMP IS NULL AND DATE(STARTTIME)= CURRENT_DATE AND BOOKING_TABLE.USERID IN
+                                    (SELECT USERID
+                                        FROM USERDETAILS
+                                        WHERE ACTIVE_SESSION = 0)";
+                NpgsqlCommand cmd = new NpgsqlCommand(View, conn);
+                using (var reader = cmd.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        item = new DataGridItem()
+                        {
+                            Booking_Id = reader.GetInt32("BOOKING_ID"),
+                            Doctor_Id = reader.GetInt32("DOCTOR_ID"),
+                            DoctorName = reader.GetString("DOCTOR_NAME"),
+                            StartTime = reader.GetDateTime("STARTTIME"),
+                            EndTime = reader.GetDateTime("ENDTIME"),
+                            Consultant_Desc = reader.GetString("CONSULTANT_DESC"),
+                        };
+                        NewList.Add(item);
+                    }
+                }
+
+            }
+            return NewList;
         }
-        public void Delete()
+        public bool DeleteUserBooking(int BookingId, int DoctorId, DateTime startTime, DateTime endTime)
         {
-
-            //if (MessageBox.Show("Do you want to delete?", "Confirmation", MessageBoxButton.YesNo) == MessageBoxResult.Yes)
-            //{
-            //    DataRowView row = (DataRowView)mytable.SelectedItem;
-            //    string pk = row["Booking_Id"].ToString();
-            //    DateTime cancelDate = (DateTime)row["StartTime"];
-            //    string docid = row["Doctor_Id"].ToString();
-            //    DateTime starttime = DateTime.Parse(row["StartTime"].ToString());
-            //    DateTime endtime = DateTime.Parse(row["EndTime"].ToString());
-            //    var Differencedate = cancelDate - DateTime.Now;
-            //    if (Differencedate.Days < 2)
-            //    {
-            //        //btnDelete.IsEnabled = false;
-            //        MessageBox.Show("You cannnot Cancel the appointment 48 hours prior to the appointment.Please Contact the doctor's office.", "Detail");
-            //    }
-            //    else
-            //    {
-            //        row.Delete();
-            //        DateTime dateTime = DateTime.Now;
-
-            //        using (conn = new SqlConnection("Data Source=.;Initial Catalog=UserBase;Integrated Security=True"))
-            //        {
-            //            conn.Open();
-            //            string View = "update Booking_Table set Daleted_TimeStamp=" + "'" + dateTime.ToString("yyyy-MM-dd HH:mm:ss") + "'" + "where Booking_Id=" + pk;
-            //            cmd = new SqlCommand(View, conn);
-            //            DataTable dt = new DataTable();
-            //            cmd.ExecuteNonQuery();
-            //            dt.Load(cmd.ExecuteReader());
-            //            string delete = "insert into DoctorAvailability values (@doctor,@starttime,@endtime)";
-            //            SqlCommand cmd2 = new SqlCommand(delete, conn);
-            //            cmd2.Parameters.AddWithValue("@doctor", docid);
-            //            cmd2.Parameters.AddWithValue("@starttime", starttime);
-            //            cmd2.Parameters.AddWithValue("@endtime", endtime);
-            //            cmd2.ExecuteNonQuery();
-            //            mytable.ItemsSource = dt.DefaultView;
-
-            //        }
-            //        showData();
-            //    }
-            //}
+            bool isvalid = false;
+            int getbookingid = BookingId;
+            int getDoctorid= DoctorId;
+            DateTime getstarttime = startTime;
+            DateTime getendtime = endTime;
+            DateTime cancelDate = getstarttime;
+            var Differencedate = cancelDate - DateTime.Now;
+            if (MessageBox.Show("Do you want to delete?", "Confirmation", MessageBoxButton.YesNo) == MessageBoxResult.Yes)
+            {
+                if (Differencedate.Days < 2)
+                {
+                    MessageBox.Show("You cannnot Cancel the appointment 48 hours prior to the appointment.Please Contact the doctor's office.", "Detail");
+                }
+                else
+                {
+                    DateTime dateTime = DateTime.Now;
+                    using (NpgsqlConnection conn = GetConnection())
+                    {
+                        conn.Open();
+                        string View = "UPDATE Booking_Table SET Deleted_TimeStamp = @nowdate::timestamp WHERE Booking_Id = @id;";
+                        NpgsqlCommand cmd = new NpgsqlCommand(View, conn);
+                        cmd.Parameters.AddWithValue("@nowdate", dateTime);
+                        cmd.Parameters.AddWithValue("@id", getbookingid);
+                        cmd.ExecuteNonQuery();
+                        string delete = "insert into Doctor_Availability(doctor_id,available_starttime,available_endtime) values (@doctor,@starttime,@endtime)";
+                        NpgsqlCommand cmd2 = new NpgsqlCommand(delete, conn);
+                        cmd2.Parameters.AddWithValue("@doctor", getDoctorid);
+                        cmd2.Parameters.AddWithValue("@starttime", getstarttime);
+                        cmd2.Parameters.AddWithValue("@endtime", getendtime);
+                        cmd2.ExecuteNonQuery();
+                    }
+                    isvalid = true;
+                }
+            }
+            return isvalid;
         }
+
 
     }
-}
+
+    }

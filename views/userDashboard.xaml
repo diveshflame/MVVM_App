@@ -14,9 +14,9 @@
         <viewModel:UserViewModel/>
     </Window.DataContext>
 
-    <Window.Resources>
+   <Window.Resources>
 
-        <DataTemplate DataType="{x:Type viewModel:AddTimingsViewModel}">
+        <!--<DataTemplate DataType="{x:Type viewModel:AddTimingsViewModel}">
             <local:AddTimings/>
         </DataTemplate>
 
@@ -31,6 +31,7 @@
         <DataTemplate DataType="{x:Type viewModel:BookAppointmentViewModel}">
             <local:BookAppointment/>
         </DataTemplate>
+
         <DataTemplate DataType="{x:Type viewModel:UserViewBookingsModel}">
             <local:UserViewBookings/>
         </DataTemplate>
@@ -137,7 +138,9 @@
                 <RadioButton Style="{StaticResource menuButton}"
                                  Tag="{StaticResource primaryBackColor1}"
                                  IsChecked="True"
+
                                   Command="{Binding ShowBookApp}">
+
                     <StackPanel Orientation="Horizontal">
                         <fa:FontAwesome Icon="FileText" Margin="10,2,0,0"/>
                         <TextBlock Text="Book Appointments" Margin="10,0,0,0"/>
@@ -254,7 +257,7 @@
                                      StrokeThickness="2"
                                      >
                                                 <Ellipse.Fill>
-                                                    <ImageBrush ImageSource="C:\Users\arjkr\source\repos\MVVM_App\images\arjun12 (4).png"/>
+                                                    <ImageBrush ImageSource="C:\Users\ashal\source\repos\MVVM_App\images\arjun12 (4).png"/>
                                                 </Ellipse.Fill>
                                             </Ellipse>
                                         </DataTemplate>
