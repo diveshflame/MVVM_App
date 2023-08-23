@@ -15,5 +15,7 @@ namespace MVVM_App.Models
         public List<TimeSpan> EndT();
 
         public List<string> getco();
+
+        public List<string> UpdateDoc();
     }
 }

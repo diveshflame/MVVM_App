@@ -137,7 +137,7 @@
                 <RadioButton Style="{StaticResource menuButton}"
                                  Tag="{StaticResource primaryBackColor1}"
                                  IsChecked="True"
-                                  Command="{Binding ShowUserBookings}" >
+                                  Command="{Binding ShowBookApp}" >
                     <StackPanel Orientation="Horizontal">
                         <fa:FontAwesome Icon="FileText" Margin="10,2,0,0"/>
                         <TextBlock Text="Book Appointments" Margin="10,0,0,0"/>

@@ -14,10 +14,10 @@ using static System.Net.Mime.MediaTypeNames;
 
 namespace MVVM_App.Repositories
 {
-  
-    public class AddRepo : RepositoryBase,IAddDocRepo
+
+    public class AddRepo : RepositoryBase, IAddDocRepo
     {
-        public List<string>get()
+        public List<string> get()
         {
             List<string> list2 = new List<string>();
 
@@ -40,7 +40,7 @@ namespace MVVM_App.Repositories
             return list2;
         }
 
-            public List<string>getco()
+        public List<string> getco()
         {
             List<string> list2 = new List<string>();
 
@@ -87,24 +87,24 @@ namespace MVVM_App.Repositories
                     {
                         while (reader.Read())
                         {
-                            count=reader.GetInt32(0);   
+                            count = reader.GetInt32(0);
                         }
                     }
-                            if (count>0)
+                    if (count > 0)
                     {
                         MessageBox.Show("Consultant Type Already Exists", "Failed", MessageBoxButton.OK, MessageBoxImage.Error);
 
                     }
                     else
                     {
-                       
+
 
                         using (NpgsqlConnection conn = GetConnection())
                         {
                             string insert = "insert into Consultant_Type(consultant_desc) values(@Consult_Desc)";
                             NpgsqlCommand cmd = new NpgsqlCommand(insert, conn);
                             cmd.Parameters.Add(new NpgsqlParameter("@Consult_Desc", id));
-                           
+
                             conn.Open();
                             cmd.ExecuteNonQuery();
                             MessageBox.Show("Successfully Added !!", "Saved", MessageBoxButton.OK, MessageBoxImage.Information);
@@ -182,12 +182,12 @@ namespace MVVM_App.Repositories
                     {
                         // Add the value from the "Doctor_Name" column to the j list
                         a = reader.GetInt32(0);
-                            
-                            // Assuming the column is of string type
+
+                        // Assuming the column is of string type
                     }
                 }
             }
-            int ?b = null;
+            int? b = null;
             using (var connection = GetConnection()) // You need to replace GetConnection() with your actual connection creation logic
             using (var command = new NpgsqlCommand())
             {
@@ -206,7 +206,7 @@ namespace MVVM_App.Repositories
                     }
                 }
             }
-            if(b!=null)
+            if (b != null)
             {
                 MessageBox.Show("This name already exists. Please enter a valid Full Name", "Failed", MessageBoxButton.OK, MessageBoxImage.Error);
             }
@@ -291,10 +291,10 @@ namespace MVVM_App.Repositories
 
         }
 
-        public void selectionconchanged(DateTime dat1, DateTime dat2,string s,DateTime startDate,DateTime EndDate)
+        public void selectionconchanged(DateTime dat1, DateTime dat2, string s, DateTime startDate, DateTime EndDate)
         {
 
-        
+
             int b = 0;
             using (var connection = GetConnection()) // You need to replace GetConnection() with your actual connection creation logic
             using (var command = new NpgsqlCommand())
@@ -339,16 +339,13 @@ namespace MVVM_App.Repositories
                 MessageBox.Show("Already added timings", "Failed", MessageBoxButton.OK, MessageBoxImage.Error);
                 return;
             }
-          
 
-
-
-           }
+        }
 
 
 
 
-        public void ischecked(DateTime dat1, DateTime dat2, string s, DateTime startDate, DateTime EndDate, string FromTime, string EndTime,int t)
+        public void ischecked(DateTime dat1, DateTime dat2, string s, DateTime startDate, DateTime EndDate, string FromTime, string EndTime, int t)
         {
             DateTime d1 = DateTime.Now;
             DateTime d2 = DateTime.Now;
@@ -398,7 +395,7 @@ namespace MVVM_App.Repositories
                         d2 = DateTime.Parse(currentDate.ToString("dd/MM/yyyy ") + Time);
                     }
 
-                    if(t == 1)
+                    if (t == 1)
                     {
                         dc1 = d1;
                         dc2 = d2;
@@ -423,8 +420,8 @@ namespace MVVM_App.Repositories
                             dc3 = dc3.AddHours(1);
                         }
 
-                            MessageBox.Show("Successfully Registered", "Saved", MessageBoxButton.OK, MessageBoxImage.Information);
-                        }
+                        MessageBox.Show("Successfully Registered", "Saved", MessageBoxButton.OK, MessageBoxImage.Information);
+                    }
                     else
                     {
                         DateTime d3 = DateTime.Now;
@@ -464,12 +461,115 @@ namespace MVVM_App.Repositories
                             conn.Close();
                         }
                     }
-                  
+
 
                 }
             }
 
 
         }
+
+        public List<string> UpdateDoc()
+        {
+            throw new NotImplementedException();
+        }
     }
 }
+        //public void UpdateDoctor()
+        //{
+        //    List<string> list = new List<string>();
+        //    List<string> Doclist = new List<string>();
+        //    using (NpgsqlConnection conn = GetConnection())
+        //    {
+        //        conn.Open();
+        //        NpgsqlCommand cmd = new NpgsqlCommand("SELECT CONSULTANT_DESC FROM CONSULTANT_TYPE", conn);
+        //    using (NpgsqlDataReader reader = cmd.ExecuteReader())
+        //    {
+        //        while (reader.Read())
+        //        {
+        //           // list.Add(reader.GetTimeSpan(0));
+        //        }
+        //    }
+        //}
+        //        //return list2;
+                  //    }
+
+
+
+
+//    SqlCommand cmd = new SqlCommand("SELECT CONSULTANT_DESC FROM CONSULTANT_TYPE", con);
+//            SqlCommand doccmd = new SqlCommand("Select Doctor_Name from Doctor", con);
+//            using (cmd)
+//            {
+//                con.Open();
+//                using (SqlDataReader reader = cmd.ExecuteReader())
+//                {
+//                    while (reader.Read())
+//                    {
+//                        list.Add(reader.GetString(0));
+//                    }
+//                }
+//                con.Close();
+//            }
+//            ConsultType.ItemsSource = list;
+//            using (doccmd)
+//            {
+//                con.Open();
+//                using (SqlDataReader reader = doccmd.ExecuteReader())
+//                {
+//                    while (reader.Read())
+//                    {
+//                        Doclist.Add(reader.GetString(0));
+//                    }
+//                }
+//                con.Close();
+//            }
+//            DoctorType.ItemsSource = Doclist;
+//        }
+//    }
+//}
+
+//using (var connection = GetConnection()) // You need to replace GetConnection() with your actual connection creation logic
+//using (var command = new NpgsqlCommand())
+//{
+//    connection.Open();
+//    command.Connection = connection;
+//    command.CommandText = "SELECT demoendtime from demo_time";
+
+//    using (NpgsqlDataReader reader = command.ExecuteReader())
+//    {
+//        while (reader.Read())
+//        {
+//            // Add the value from the "Doctor_Name" column to the j list
+//            list2.Add(reader.GetTimeSpan(0)); // Assuming the column is of string type
+//        }
+//    }
+//}
+//return list2;
+//        }
+//List<DataGridItem> NewList = new List<DataGridItem>();
+//DataGridItem item = null; ;
+//using (NpgsqlConnection conn = GetConnection())
+//{
+//    conn.Open();
+//    string view = "SELECT NAME,DOCTOR_NAME,STARTTIME, ENDTIME, CONSULTANT_DESC FROM USERDETAILS INNER JOIN BOOKING_TABLE ON USERDETAILS.USERID = BOOKING_TABLE.USERID INNER JOIN DOCTOR_TABLE ON " +
+//        "BOOKING_TABLE.DOCTOR_ID = DOCTOR_TABLE.DOCTOR_ID INNER JOIN CONSULTANT_TYPE ON DOCTOR_TABLE.CONSULTANT_ID = CONSULTANT_TYPE.CONSULTANT_ID WHERE DELETED_TIMESTAMP IS NULL AND DATE(STARTTIME)>=CURRENT_DATE";
+//    NpgsqlCommand cmd = new NpgsqlCommand(view, conn);
+//    using (var reader = cmd.ExecuteReader())
+//    {
+//        while (reader.Read())
+//        {
+//            item = new DataGridItem()
+//            {
+//                Name = reader.GetString("NAME"),
+//                DoctorName = reader.GetString("DOCTOR_NAME"),
+//                StartTime = reader.GetDateTime("STARTTIME"),
+//                EndTime = reader.GetDateTime("ENDTIME"),
+//                Consultant_Desc = reader.GetString("CONSULTANT_DESC"),
+//            };
+//            NewList.Add(item);
+//        }
+//    }
+
+//}
+//return NewList;
