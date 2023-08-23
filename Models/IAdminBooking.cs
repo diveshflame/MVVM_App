@@ -20,7 +20,7 @@ namespace MVVM_App.Models
         public List<DataGridItem> ViewUsersTodayBooking();
         public List<DataGridItem> ViewUsersHistory();
 
-        public void  DeleteUserBooking(DataRowView selectedview);
+        public bool  DeleteUserBooking(int BookingId, int DoctorId, DateTime startTime, DateTime endTime);
 
     }
 }

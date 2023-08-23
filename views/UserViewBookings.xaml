@@ -13,7 +13,11 @@
     <UserControl.DataContext>
         <viewModel:UserViewBookingsModel/>
     </UserControl.DataContext>
+    <UserControl.Resources>
+        <BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter" />
+    </UserControl.Resources>
     
+
     <Grid Background="#eff2f7">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
@@ -67,31 +71,49 @@
         <TextBlock Grid.Row="0" Grid.Column="1" FontSize="24" HorizontalAlignment="Center" Text="View Booking"></TextBlock>
         <StackPanel Grid.Row="1" Grid.Column="1" Orientation="Horizontal" >
             <RadioButton Content="View All Bookings" Command="{Binding ViewUserBookings}"  Style="{StaticResource tabButton}"   BorderBrush="#784ff2"/>
-            <RadioButton Content="Today Bookings" Style="{StaticResource tabButton}" Command="{Binding ViewTodayBooking}"/>
-            <RadioButton Content="Booking History" Style="{StaticResource tabButton}" Command="{Binding ViewBookingHistory}" />
+            <RadioButton Content="Today Bookings" Style="{StaticResource tabButton}" Command="{Binding ViewUserTodayBooking}"/>
+            <RadioButton Content="Booking History" Style="{StaticResource tabButton}" Command="{Binding ViewUserBookingHistory}" />
         </StackPanel>
 
-        <!--Data grid for table-->
+        <!--Data grid for View all appointment table-->
 
         <DataGrid Grid.Row="3" Grid.Column="1" ItemsSource="{Binding UserDatagridItems}" AutoGenerateColumns="False" GridLinesVisibility="None" BorderBrush="Transparent"
                    HeadersVisibility="Column" CanUserResizeRows="False" 
-                      ColumnWidth="100" Background="White"  
+                      ColumnWidth="130" Background="White"  
                       IsReadOnly="True" HorizontalAlignment="Center"
-                      CanUserReorderColumns="False" Name="UserBooking" SelectedItem="{Binding Selecteditem}">
+                      CanUserReorderColumns="False" Name="UserBooking" Visibility="{Binding IsDataGridVisible, Converter={StaticResource BooleanToVisibilityConverter}}">
+           
             <DataGrid.Columns>
                 <DataGridTextColumn Binding="{Binding DoctorName , UpdateSourceTrigger=PropertyChanged}" Header="Doctor Name"/>
                 <DataGridTextColumn Binding="{Binding Consultant_Desc , UpdateSourceTrigger=PropertyChanged}" Header="Consultant Type"/>
                 <DataGridTextColumn Binding="{Binding StartTime , UpdateSourceTrigger=PropertyChanged}" Header="Start Time"/>
                 <DataGridTextColumn Binding="{Binding EndTime , UpdateSourceTrigger=PropertyChanged}" Header="End Time"/>
-                <DataGridTemplateColumn Header="Cancel Appointment" Width="150">
+                <DataGridTemplateColumn Header="Cancel Appointment"  Width="150" >
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate x:Name="Delete_Appnt">
-                            <Button Width="90" Height="30" Opacity="0.8" Background="Transparent" BorderBrush="Transparent" Cursor="Hand" >
+                            <Button Click="Deleteappoitment" Command="{Binding DataContext.ViewUserBookings, RelativeSource={RelativeSource AncestorType={x:Type DataGrid}}}"
+                                CommandParameter="{Binding}" Width="90" Height="30" Opacity="0.8" Background="Transparent" BorderBrush="Transparent" Cursor="Hand"  
+                                    Visibility="{Binding Isbuttonvisible, Converter={StaticResource BooleanToVisibilityConverter}}" >
                                 <fa:ImageAwesome Icon="TrashOutline" Foreground="red" Width="90" Height="25" ></fa:ImageAwesome>
                             </Button>
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>
+            </DataGrid.Columns>
+        </DataGrid>
+
+        <!--Data grid for Today and History table-->
+
+        <DataGrid Grid.Row="3" Grid.Column="1" ItemsSource="{Binding UserNewDatagridItems}" AutoGenerateColumns="False" GridLinesVisibility="None" BorderBrush="Transparent"
+                   HeadersVisibility="Column" CanUserResizeRows="False" 
+                      ColumnWidth="130" Background="White"  
+                      IsReadOnly="True" HorizontalAlignment="Center"
+                      CanUserReorderColumns="False"  Visibility="{Binding IsDataGridVisible2, Converter={StaticResource BooleanToVisibilityConverter}}" >
+            <DataGrid.Columns>
+                <DataGridTextColumn Binding="{Binding DoctorName , UpdateSourceTrigger=PropertyChanged}" Header="Doctor Name"/>
+                <DataGridTextColumn Binding="{Binding Consultant_Desc , UpdateSourceTrigger=PropertyChanged}" Header="Consultant Type"/>
+                <DataGridTextColumn Binding="{Binding StartTime , UpdateSourceTrigger=PropertyChanged}" Header="Start Time"/>
+                <DataGridTextColumn Binding="{Binding EndTime , UpdateSourceTrigger=PropertyChanged}" Header="End Time"/>
             </DataGrid.Columns>
         </DataGrid>
 
