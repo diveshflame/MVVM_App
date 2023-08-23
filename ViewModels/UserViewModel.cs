@@ -17,7 +17,7 @@ namespace MVVM_App.ViewModels
         private IUserRepository _userRepository;
         private ViewModelBase _currentChildView;
         private string _caption;
-
+        public ICommand ShowBookApp { get; }
         public UserAccountModel UserAccount
         {
             get { return _userAccount; }
@@ -49,8 +49,15 @@ namespace MVVM_App.ViewModels
             _userRepository = new UserRepository();
             UserAccount = new UserAccountModel();
             ShowUserBookings = new ViewModelCommand(ExecuteShowUserBookings);
+            ShowBookApp = new ViewModelCommand(ExecuteShowBookings);
            // LoadCurrentUserData();
 
+        }
+
+        private void ExecuteShowBookings(object obj)
+        {
+           CurrentChildView = new BookAppointmentViewModel();
+            Caption = "Book Appointment";
         }
 
         private void ExecuteShowUserBookings(object obj)
