@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -19,6 +20,7 @@ namespace MVVM_App.Models
         public List<DataGridItem> ViewUsersTodayBooking();
         public List<DataGridItem> ViewUsersHistory();
 
-        public void Delete();
+        public bool  DeleteUserBooking(int BookingId, int DoctorId, DateTime startTime, DateTime endTime);
+
     }
 }
