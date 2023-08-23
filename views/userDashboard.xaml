@@ -1,31 +1,85 @@
 ﻿<Window x:Class="MVVM_App.views.userDashboard"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-         xmlns:fa="http://schemas.awesome.incremented/wpf/xaml/fontawesome.sharp"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-         xmlns:VM="clr-namespace:MVVM_App.ViewModels"
         xmlns:local="clr-namespace:MVVM_App.views"
-    mc:Ignorable="d"
-        Title="MainWindowView" Height="640" Width="1260"
-        WindowStartupLocation="CenterScreen"
-        Background="Transparent" WindowStyle="None"
-        AllowsTransparency="True">
-
+        xmlns:fa="http://schemas.fontawesome.io/icons/"
+        xmlns:viewModel="clr-namespace:MVVM_App.ViewModels"
+        WindowStyle="None" 
+        Background="Transparent"
+        AllowsTransparency="True"
+        Height="650" Width="1000">
     <Window.DataContext>
-        <VM:UserViewModel/>
+        <viewModel:UserViewModel/>
     </Window.DataContext>
 
     <Window.Resources>
-        <DataTemplate DataType="{x:Type VM:UserViewBooking}">
+
+        <DataTemplate DataType="{x:Type viewModel:AddTimingsViewModel}">
+            <local:AddTimings/>
+        </DataTemplate>
+
+        <DataTemplate DataType="{x:Type viewModel:UpdateDoctor}">
+            <local:UpdateDoctor/>
+        </DataTemplate>
+
+        <DataTemplate DataType="{x:Type viewModel:AddConsultViewModel}">
+            <local:AddConsult/>
+        </DataTemplate>
+
+        <DataTemplate DataType="{x:Type viewModel:AddDoctorViewModel}">
+            <local:AddDoctor/>
+        </DataTemplate>
+        <DataTemplate DataType="{x:Type viewModel:UserViewBookingsModel}">
             <local:UserViewBookings/>
         </DataTemplate>
+
+        <Style x:Key="DropdownItemStyle" TargetType="Button">
+            <Setter Property="Padding" Value="10"/>
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="Background" Value="Transparent"/>
+            <Setter Property="BorderBrush" Value="Transparent"/>
+            <Setter Property="BorderThickness" Value="0"/>
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="Background" Value="#4CAF50"/>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+        <Style x:Key="EllipseToggleButtonStyle" TargetType="ToggleButton">
+            <Setter Property="Width" Value="60"/>
+            <Setter Property="Height" Value="80"/>
+            <Setter Property="Content">
+                <Setter.Value>
+                    <Ellipse Width="50" Height="50" Fill="Green"/>
+                </Setter.Value>
+            </Setter>
+            <Setter Property="Background" Value="Transparent"/>
+            <Setter Property="BorderBrush" Value="Transparent"/>
+            <Setter Property="Padding" Value="0"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="ToggleButton">
+                        <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Top"/>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <Style x:Key="UserDropdownStyle" TargetType="Popup">
+            <Setter Property="Placement" Value="Bottom"/>
+            <Setter Property="AllowsTransparency" Value="True"/>
+            <Setter Property="IsOpen" Value="False"/>
+            <Setter Property="StaysOpen" Value="False"/>
+            <Setter Property="Margin" Value="10"/>
+            <Setter Property="VerticalOffset" Value="40"/>
+            <Setter Property="HorizontalAlignment" Value="Right"/>
+            <Setter Property="PopupAnimation" Value="Slide"/>
+        </Style>
     </Window.Resources>
-
-
     <Border CornerRadius="10"                    
             BorderThickness="1">
-
         <Border.BorderBrush>
             <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
                 <GradientStop Color="{StaticResource winBorderColor1}" Offset="0"/>
@@ -34,72 +88,75 @@
             </LinearGradientBrush>
         </Border.BorderBrush>
         <Grid>
-
             <Grid.ColumnDefinitions>
+
                 <ColumnDefinition Width="250"/>
+
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
 
-            <!--VERTICAL NAVIGATION-->
+
             <Border CornerRadius="10,0,0,10"
                     Grid.Column="0">
-
                 <Border.Background>
                     <LinearGradientBrush StartPoint="0,0" EndPoint="1,0.7">
                         <GradientStop Color="{StaticResource secondaryBackColor1}" Offset="0"/>
                         <GradientStop Color="{StaticResource secondaryBackColor2}" Offset="1"/>
                     </LinearGradientBrush>
                 </Border.Background>
-
-                <StackPanel>
-                    <StackPanel Orientation="Horizontal"
-                                Height="45"
-                                Margin="15,5,0,30">
-
-                        <Image Source="/Images/Logo.png" Height="40"/>
-                        <TextBlock Text="We Care"
-                                   Foreground="{StaticResource titleColor2}"
-                                   FontSize="30"
-                                   FontFamily="Montserrat"
-                                   FontWeight="Medium"
-                                   VerticalAlignment="Center"
-                                   Margin="10,0,0,0"/>
-                    </StackPanel>
-
-                    <RadioButton Style="{StaticResource menuButton}"
-                                 Tag="{StaticResource color1}"
-                                 IsChecked="True"
-                                 Command="{Binding ShowHomeViewCommand}">
-                        <StackPanel Orientation="Horizontal">
-                            <fa:IconImage Icon="Home" Style="{StaticResource menuButtonIcon}"/>
-                            <TextBlock Text="DashBoard" Style="{StaticResource menuButtonText}"/>
-                        </StackPanel>
-                    </RadioButton>
-
-                    <RadioButton Style="{StaticResource menuButton}"
-                                 Tag="{StaticResource color2}"
-                                 Command="{Binding ShowCustomerViewCommand}">
-                        <StackPanel Orientation="Horizontal">
-                            <fa:IconImage Icon="UserGroup" Style="{StaticResource menuButtonIcon}"/>
-                            <TextBlock Text="Book" Style="{StaticResource menuButtonText}"/>
-                        </StackPanel>
-                    </RadioButton>
-
-                    <RadioButton Style="{StaticResource menuButton}"
-                                 Tag="{StaticResource color2}"
-                                 Command="{Binding ShowUserBookings}">
-                        <StackPanel Orientation="Horizontal">
-                            <fa:IconImage Icon="Book" Style="{StaticResource menuButtonIcon}"/>
-                            <TextBlock Text="View" Style="{StaticResource menuButtonText}" />
-                        </StackPanel>
-                    </RadioButton>
-                </StackPanel>
             </Border>
-
 
             <Border CornerRadius="0,10,10,0"
                     Grid.Column="1">
 
+            </Border>
+
+            <StackPanel Grid.Column="0">
+
+                <!--Logo-->
+                <StackPanel Orientation="Horizontal"
+                                Height="35"
+                                Margin="15,25,0,40">
+
+                    <Image Source="\images\logo.png" Height="30"/>
+                    <TextBlock Text="We Care"
+                                   Foreground="{StaticResource titleColor2}"
+                                   FontSize="20"
+                                   FontFamily="Montserrat"
+                                   FontWeight="Medium"
+                                   VerticalAlignment="Center"
+                                   Margin="10,0,0,0"/>
+                </StackPanel>
+                <RadioButton Style="{StaticResource menuButton}"
+                                 Tag="{StaticResource color2}"
+                                 Command="{Binding ShowUserBookings}">
+                    <StackPanel Orientation="Horizontal">
+                        <fa:FontAwesome Icon="Home" Margin="10,2,0,0" />
+                        <TextBlock Text="Home" Margin="10,0,0,0"/>
+                    </StackPanel>
+                </RadioButton>
+                <RadioButton Style="{StaticResource menuButton}"
+                                 Tag="{StaticResource primaryBackColor1}"
+                                 IsChecked="True"
+                                  >
+                    <StackPanel Orientation="Horizontal">
+                        <fa:FontAwesome Icon="FileText" Margin="10,2,0,0"/>
+                        <TextBlock Text="Book Appointments" Margin="10,0,0,0"/>
+                    </StackPanel>
+                </RadioButton>
+
+                <RadioButton Style="{StaticResource menuButton}"
+                                 Tag="{StaticResource primaryBackColor1}"
+                                 >
+                    <StackPanel Orientation="Horizontal">
+                        <fa:FontAwesome Icon="User"  Margin="15,2,0,0" />
+                        <TextBlock Text="View Appointments"  Margin="10,0,0,0"/>
+                    </StackPanel>
+                </RadioButton>
+              
+            </StackPanel>
+            <Border CornerRadius="0,10,10,0"
+                    Grid.Column="1">
                 <Border.Background>
                     <LinearGradientBrush StartPoint="1,1" EndPoint="0,0">
                         <GradientStop Color="{StaticResource primaryBackColor1}" Offset="0"/>
@@ -107,14 +164,15 @@
                     </LinearGradientBrush>
                 </Border.Background>
                 <Grid>
-
                     <Grid.RowDefinitions>
+                        <!--Control bar-->
                         <RowDefinition Height="25"/>
-                        <RowDefinition Height="35"/>
+                        <!--Header / Caption-->
+                        <RowDefinition Height="45"/>
+                        <!--Content section / Child views-->
                         <RowDefinition Height="*"/>
                     </Grid.RowDefinitions>
-
-
+                    <!--Control bar-->
                     <StackPanel x:Name="pnlControlBar"
                                 Grid.Row="0"
                                 Orientation="Horizontal"
@@ -122,17 +180,130 @@
                                 Background="Transparent"
                                 Margin="0,0,5,0"
                                 MouseLeftButtonDown="pnlControlBar_MouseLeftButtonDown"
-                                MouseEnter="pnlControlBar_MouseEnter">
-
-                        <!--USER PROFILE COMBOBOX-->
-                        <ComboBox x:Name="userProfile" SelectionChanged="userProfile_SelectionChanged" Width="13" Height="20" Background="Red" >
-                            <TextBlock Text="My Profile" Style="{StaticResource menuButtonText}" />
-                            <TextBlock Text="Settings" Style="{StaticResource menuButtonText}"/>
-                            <TextBlock Text="Log Out" PreviewMouseDown="TextBlock_MouseEnter" Style="{StaticResource menuButtonText}"/>
-                        </ComboBox>
-                        <TextBox Background="Transparent" Foreground="White" Text="Welcome, Divesh" Margin="1,3" />
-                        <Image Source="\Images\BoyIcon.png"/>
+                              MouseEnter="pnlControlBar_MouseEnter" >
+                        <Button x:Name="btnClose"
+                                Style="{StaticResource controlButton}"
+                                Tag="{StaticResource color4}"
+                              Click="btnClose_Click">
+                            <fa:FontAwesome Icon="WindowClose" />
+                        </Button>
+                        <Button x:Name="btnMaximize"
+                                Style="{StaticResource controlButton}"
+                                Tag="{StaticResource color6}"
+                             Click="btnMaximize_Click" >
+                            <fa:FontAwesome Icon="Square" />
+                        </Button>
+                        <Button x:Name="btnMinimize"
+                                Style="{StaticResource controlButton}"
+                                Tag="{StaticResource color6}"
+                             Click="btnMinimize_Click" >
+                            <fa:FontAwesome Icon="WindowMinimize" Width="12"/>
+                        </Button>
                     </StackPanel>
+                    <StackPanel Grid.Column="0">
+                    </StackPanel>
+                    <Grid Grid.Row="1" Margin="0,10,0,0" Background="#281269" >
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition/>
+                            <ColumnDefinition/>
+                        </Grid.ColumnDefinitions>
+
+                        <!--Caption-->
+                        <StackPanel Grid.Column="0"
+                                    Orientation="Horizontal"
+                                    VerticalAlignment="Center">
+                            <fa:FontAwesome Icon="{Binding Icon}"
+                                          Height="20"
+                                          Width="20"
+                                          Foreground="{StaticResource titleColor2}"
+                                          Margin="35,0,10,0"/>
+
+                            <TextBlock Text="{Binding Caption}"
+                                       Foreground="{StaticResource titleColor2}"
+                                       FontSize="16"
+                                       FontFamily="Montserrat"
+                                       FontWeight="Medium"
+                                       VerticalAlignment="Center"/>
+                        </StackPanel>
+
+                        <!--User options-->
+                        <StackPanel Grid.Column="1"
+                                    Orientation="Horizontal"
+                                    FlowDirection="RightToLeft"
+                                    VerticalAlignment="Center"
+                                    Margin="0,0,10,0">
+                            <Button Style="{StaticResource iconButton}"
+                                    Tag="{StaticResource color1}">
+                                <fa:FontAwesome Icon="AngleDown"
+                                              Height="12" Width="12"
+                                              />
+                            </Button>
+                            <TextBlock Text="{Binding CurrentUserAccount.DisplayName}"
+                                       Foreground="{StaticResource titleColor3}"
+                                       FontFamily="Montserrat"
+                                       FontSize="12"
+                                       VerticalAlignment="Center"/>
+                            <Grid>
+                                <ToggleButton x:Name="userProfileButton" Style="{StaticResource EllipseToggleButtonStyle}"
+                       Click="UserProfileButton_Click">
+
+                                    <ToggleButton.ContentTemplate>
+                                        <DataTemplate>
+                                            <Ellipse Height="35" Width="35"
+                                     Stroke="{StaticResource color2}"
+                                     StrokeThickness="2"
+                                     >
+                                                <Ellipse.Fill>
+                                                    <ImageBrush ImageSource="C:\Users\arjkr\source\repos\MVVM_App\images\arjun12 (4).png"/>
+                                                </Ellipse.Fill>
+                                            </Ellipse>
+                                        </DataTemplate>
+                                    </ToggleButton.ContentTemplate>
+                                </ToggleButton>
+
+                                <Popup x:Name="userDropdownPopup" Style="{StaticResource UserDropdownStyle}"
+       PlacementTarget="{Binding ElementName=userProfileButton}"
+       VerticalOffset="-35" HorizontalOffset="35">
+                                    <Border Background="#333" BorderBrush="#555" BorderThickness="1" CornerRadius="4">
+                                        <StackPanel Width="120">
+                                            <Button Content="Settings" HorizontalContentAlignment="Left" Style="{StaticResource DropdownItemStyle}" Click="SettingsButton_Click"/>
+                                            <Button Content="Logout" HorizontalContentAlignment="Left" Style="{StaticResource DropdownItemStyle}" Click="LogoutButton_Click">
+                                                <Button.ContentTemplate>
+                                                    <DataTemplate>
+                                                        <StackPanel Orientation="Horizontal">
+
+                                                            <Image Source="images\logout1.png" Width="16" Height="16" VerticalAlignment="Center"/>
+
+                                                            <TextBlock Text="Logout" VerticalAlignment="Center"/>
+                                                        </StackPanel>
+                                                    </DataTemplate>
+                                                </Button.ContentTemplate>
+                                            </Button>
+                                        </StackPanel>
+                                    </Border>
+                                </Popup>
+                            </Grid>
+
+                            <Button Style="{StaticResource iconButton}"
+                                    Tag="{StaticResource color3}">
+                                <fa:FontAwesome Icon="TimesCircle" />
+                            </Button>
+                            <Button Style="{StaticResource iconButton}"
+                                    Tag="{StaticResource color4}">
+                                <fa:FontAwesome Icon="Envelope" />
+                            </Button>
+                            <Button Style="{StaticResource iconButton}"
+                                    Tag="{StaticResource color5}">
+                                <fa:FontAwesome Icon="Bell" />
+                            </Button>
+                        </StackPanel>
+
+                    </Grid>
+                    <!--Content section / Child views-->
+                    <ContentControl Content="{Binding CurrentChildView}"
+                                    Grid.Row="2"
+                                    Margin="25"/>
+
                 </Grid>
             </Border>
         </Grid>
