@@ -128,8 +128,7 @@
                                    Margin="10,0,0,0"/>
                 </StackPanel>
                 <RadioButton Style="{StaticResource menuButton}"
-                                 Tag="{StaticResource color2}"
-                                 Command="{Binding ShowUserBookings}">
+                                 Tag="{StaticResource color2}">
                     <StackPanel Orientation="Horizontal">
                         <fa:FontAwesome Icon="Home" Margin="10,2,0,0" />
                         <TextBlock Text="Home" Margin="10,0,0,0"/>
@@ -147,7 +146,8 @@
 
                 <RadioButton Style="{StaticResource menuButton}"
                                  Tag="{StaticResource primaryBackColor1}"
-                                 >
+                                 
+                                 Command="{Binding ShowUserBookings}">
                     <StackPanel Orientation="Horizontal">
                         <fa:FontAwesome Icon="User"  Margin="15,2,0,0" />
                         <TextBlock Text="View Appointments"  Margin="10,0,0,0"/>

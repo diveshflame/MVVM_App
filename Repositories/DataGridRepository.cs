@@ -126,7 +126,7 @@ namespace MVVM_App.Repositories
                                WHERE DELETED_TIMESTAMP IS NULL AND DATE(STARTTIME)>= CURRENT_DATE AND BOOKING_TABLE.USERID IN
                                     (SELECT USERID
                                         FROM USERDETAILS
-                                        WHERE ACTIVE_SESSION = 0)";
+                                        WHERE ACTIVE_SESSION = 1)";
                 NpgsqlCommand cmd = new NpgsqlCommand(View, conn);
                 using (var reader = cmd.ExecuteReader())
                 {
