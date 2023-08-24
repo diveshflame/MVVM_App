@@ -140,7 +140,7 @@ namespace MVVM_App.views
             }
             if (ConsultType1.SelectedItem == null)
             {
-                MessageBox.Show("Consult Type is required", "Failed", MessageBoxButton.OK, MessageBoxImage.Error);
+                MessageBox.Show("Department is required", "Failed", MessageBoxButton.OK, MessageBoxImage.Error);
                 return false;
             }
             if (Datepicker1.SelectedDate == null)

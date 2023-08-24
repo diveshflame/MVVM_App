@@ -43,12 +43,25 @@ namespace MVVM_App.ViewModels
 
         private void ExecuteUpdateDoctor(object obj)
         {
-            if (string.IsNullOrWhiteSpace(SelectedConsultationtype) || string.IsNullOrWhiteSpace(SelectedDoctorName))
+            if ((string.IsNullOrWhiteSpace(SelectedDoctorName) && string.IsNullOrWhiteSpace(SelectedConsultationtype)))
             {
                 MessageBox.Show("Please Select a Valid Value", "Failed", MessageBoxButton.OK, MessageBoxImage.Error);
                 SelectedConsultationtype = null;
                 SelectedDoctorName = null;
             }
+            else if(string.IsNullOrWhiteSpace(SelectedDoctorName))
+            {
+                MessageBox.Show("Doctor is required", "Failed", MessageBoxButton.OK, MessageBoxImage.Error);
+                SelectedConsultationtype = null;
+                SelectedDoctorName = null;
+            }
+            else if((string.IsNullOrWhiteSpace(SelectedConsultationtype)))
+            {
+                MessageBox.Show("Department is required", "Failed", MessageBoxButton.OK, MessageBoxImage.Error);
+                SelectedConsultationtype = null;
+                SelectedDoctorName = null;
+            }
+        
             else
             {
                 int getDoctorId = addDocRepo.GetDoctorId(SelectedDoctorName);

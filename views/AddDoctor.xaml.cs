@@ -59,7 +59,7 @@ namespace MVVM_App.views
 
             if (ConsultType.SelectedItem == null)
             {
-                MessageBox.Show("Consult Type is required", "Failed", MessageBoxButton.OK, MessageBoxImage.Error);
+                MessageBox.Show("Department is required", "Failed", MessageBoxButton.OK, MessageBoxImage.Error);
                 return false;
             }
 

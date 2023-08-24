@@ -25,7 +25,7 @@ namespace MVVM_App.Repositories
             {
                 conn.Open();
                 string view = "SELECT NAME,DOCTOR_NAME,STARTTIME, ENDTIME, CONSULTANT_DESC FROM USERDETAILS INNER JOIN BOOKING_TABLE ON USERDETAILS.USERID = BOOKING_TABLE.USERID INNER JOIN DOCTOR_TABLE ON " +
-                    "BOOKING_TABLE.DOCTOR_ID = DOCTOR_TABLE.DOCTOR_ID INNER JOIN CONSULTANT_TYPE ON DOCTOR_TABLE.CONSULTANT_ID = CONSULTANT_TYPE.CONSULTANT_ID WHERE DELETED_TIMESTAMP IS NULL AND DATE(STARTTIME)>=CURRENT_DATE";
+                    "BOOKING_TABLE.DOCTOR_ID = DOCTOR_TABLE.DOCTOR_ID INNER JOIN CONSULTANT_TYPE ON DOCTOR_TABLE.CONSULTANT_ID = CONSULTANT_TYPE.CONSULTANT_ID WHERE DELETED_TIMESTAMP IS NULL AND DATE(STARTTIME)>=CURRENT_DATE ORDER BY STARTTIME";
                 NpgsqlCommand cmd = new NpgsqlCommand(view, conn);
                 using(var reader = cmd.ExecuteReader()) 
                 {
@@ -55,7 +55,7 @@ namespace MVVM_App.Repositories
             {
                 conn.Open();
                 string view = "SELECT NAME,DOCTOR_NAME,STARTTIME, ENDTIME, CONSULTANT_DESC FROM USERDETAILS INNER JOIN BOOKING_TABLE ON USERDETAILS.USERID = BOOKING_TABLE.USERID INNER JOIN DOCTOR_TABLE ON " +
-                    "BOOKING_TABLE.DOCTOR_ID = DOCTOR_TABLE.DOCTOR_ID INNER JOIN CONSULTANT_TYPE ON DOCTOR_TABLE.CONSULTANT_ID = CONSULTANT_TYPE.CONSULTANT_ID AND DELETED_TIMESTAMP IS NULL ";
+                    "BOOKING_TABLE.DOCTOR_ID = DOCTOR_TABLE.DOCTOR_ID INNER JOIN CONSULTANT_TYPE ON DOCTOR_TABLE.CONSULTANT_ID = CONSULTANT_TYPE.CONSULTANT_ID AND DELETED_TIMESTAMP IS NULL ORDER BY STARTTIME ";
                 NpgsqlCommand cmd = new NpgsqlCommand(view, conn);
                 using (var reader = cmd.ExecuteReader())
                 {
@@ -85,7 +85,7 @@ namespace MVVM_App.Repositories
             {
                 conn.Open();
                 string view = "SELECT NAME,DOCTOR_NAME,STARTTIME, ENDTIME, CONSULTANT_DESC FROM USERDETAILS INNER JOIN BOOKING_TABLE ON USERDETAILS.USERID = BOOKING_TABLE.USERID INNER JOIN DOCTOR_TABLE ON " +
-                    "BOOKING_TABLE.DOCTOR_ID = DOCTOR_TABLE.DOCTOR_ID INNER JOIN CONSULTANT_TYPE ON DOCTOR_TABLE.CONSULTANT_ID = CONSULTANT_TYPE.CONSULTANT_ID WHERE DELETED_TIMESTAMP IS NULL AND DATE(STARTTIME)=CURRENT_DATE";
+                    "BOOKING_TABLE.DOCTOR_ID = DOCTOR_TABLE.DOCTOR_ID INNER JOIN CONSULTANT_TYPE ON DOCTOR_TABLE.CONSULTANT_ID = CONSULTANT_TYPE.CONSULTANT_ID WHERE DELETED_TIMESTAMP IS NULL AND DATE(STARTTIME)=CURRENT_DATE ORDER BY STARTTIME";
                 NpgsqlCommand cmd = new NpgsqlCommand(view, conn);
                 using (var reader = cmd.ExecuteReader())
                 {
@@ -128,7 +128,7 @@ namespace MVVM_App.Repositories
                                WHERE DELETED_TIMESTAMP IS NULL AND DATE(STARTTIME)>= CURRENT_DATE AND BOOKING_TABLE.USERID IN
                                     (SELECT USERID
                                         FROM USERDETAILS
-                                        WHERE ACTIVE_SESSION = 1)";
+                                        WHERE ACTIVE_SESSION = 1) ORDER BY STARTTIME";
                 NpgsqlCommand cmd = new NpgsqlCommand(View, conn);
                 using (var reader = cmd.ExecuteReader())
                 {
@@ -170,7 +170,7 @@ namespace MVVM_App.Repositories
                                WHERE  DELETED_TIMESTAMP IS NULL AND DATE(STARTTIME)< CURRENT_DATE AND  BOOKING_TABLE.USERID IN
                                     (SELECT USERID
                                         FROM USERDETAILS
-                                        WHERE ACTIVE_SESSION = 1)";
+                                        WHERE ACTIVE_SESSION = 1) ORDER BY STARTTIME";
                 NpgsqlCommand cmd = new NpgsqlCommand(View, conn);
                 using (var reader = cmd.ExecuteReader())
                 {
@@ -212,7 +212,7 @@ namespace MVVM_App.Repositories
                                WHERE DELETED_TIMESTAMP IS NULL AND DATE(STARTTIME)= CURRENT_DATE AND BOOKING_TABLE.USERID IN
                                     (SELECT USERID
                                         FROM USERDETAILS
-                                        WHERE ACTIVE_SESSION = 1)";
+                                        WHERE ACTIVE_SESSION = 1) ORDER BY STARTTIME";
                 NpgsqlCommand cmd = new NpgsqlCommand(View, conn);
                 using (var reader = cmd.ExecuteReader())
                 {

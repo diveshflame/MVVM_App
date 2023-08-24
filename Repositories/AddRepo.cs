@@ -574,7 +574,7 @@ namespace MVVM_App.Repositories
                 }
                 if (getCheckedDocId != null)
                 {
-                    MessageBox.Show("You Cannot update!!!!The doctor is already booked", "Warning");
+                    MessageBox.Show("You Cannot update!!!!The doctor is already booked", "Failed", MessageBoxButton.OK, MessageBoxImage.Error);
                     IsValid = true;
                 }
                 else
@@ -586,7 +586,8 @@ namespace MVVM_App.Repositories
                     
                     updatecmd.ExecuteNonQuery();
                     con.Close();
-                    MessageBox.Show("Successfully Updated");
+                    MessageBox.Show("Successfully Updated", "Success", MessageBoxButton.OK, MessageBoxImage.Information);
+
 
                 }
                 IsValid = true;
