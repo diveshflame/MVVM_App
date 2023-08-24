@@ -58,6 +58,18 @@ namespace MVVM_App.views
             this.WindowState |= WindowState.Minimized;
         }
 
-   
+        private void Run_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            ChangePassword changepassView = new ChangePassword();
+            changepassView.Show();
+            this.Close();
+        }
+
+        private void Run_MouseDown_1(object sender, MouseButtonEventArgs e)
+        {
+            RegistrationPage page = new RegistrationPage();
+            page.Show();
+            this.Close();
+        }
     }
 }

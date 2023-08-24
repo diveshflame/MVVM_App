@@ -17,29 +17,26 @@ using System.Windows.Shapes;
 namespace MVVM_App.CustomControls
 {
     /// <summary>
-    /// Interaction logic for BindablePasswordBox.xaml
+    /// Interaction logic for ConfirmPasswordButton.xaml
     /// </summary>
-    public partial class BindablePasswordBox : UserControl
+    public partial class ConfirmPasswordButton : UserControl
     {
         public static readonly DependencyProperty PasswordProperty =
-            DependencyProperty.Register("Password",typeof(SecureString),typeof(BindablePasswordBox));
+           DependencyProperty.Register("Password", typeof(SecureString), typeof(ConfirmPasswordButton));
         public SecureString Password
         {
             get { return (SecureString)GetValue(PasswordProperty); }
             set { SetValue(PasswordProperty, value); }
         }
-        public BindablePasswordBox()
+        public ConfirmPasswordButton()
         {
             InitializeComponent();
-            txtpassword.PasswordChanged += OnPasswordChanged;
+            confirmPassword.PasswordChanged += OnPasswordChanged;
         }
-
         private void OnPasswordChanged(object sender, RoutedEventArgs e)
         {
-            Password = txtpassword.SecurePassword;
+            Password = confirmPassword.SecurePassword;
         }
-
-
 
     }
 }
