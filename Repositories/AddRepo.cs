@@ -123,9 +123,9 @@ namespace MVVM_App.Repositories
 
         //Link with demotime
 
-        public List<TimeSpan> startT()
+        public List<string> startT()
         {
-            List<TimeSpan> list2 = new List<TimeSpan>();
+            List<string> list2 = new List<string>();
 
             using (var connection = GetConnection()) // You need to replace GetConnection() with your actual connection creation logic
             using (var command = new NpgsqlCommand())
@@ -139,16 +139,19 @@ namespace MVVM_App.Repositories
                     while (reader.Read())
                     {
                         // Add the value from the "Doctor_Name" column to the j list
-                        list2.Add(reader.GetTimeSpan(0)); // Assuming the column is of string type
+                        TimeSpan timeSpan = reader.GetTimeSpan(0);
+                        string hhmmFormat = $"{timeSpan.Hours:D2}:{timeSpan.Minutes:D2}";
+                        // Assuming the column is of string type
+                        list2.Add(hhmmFormat);
                     }
                 }
             }
             return list2;
         }
 
-        public List<TimeSpan> EndT()
+        public List<string> EndT()
         {
-            List<TimeSpan> list2 = new List<TimeSpan>();
+            List<string> list2 = new List<string>();
 
             using (var connection = GetConnection()) // You need to replace GetConnection() with your actual connection creation logic
             using (var command = new NpgsqlCommand())
@@ -162,7 +165,10 @@ namespace MVVM_App.Repositories
                     while (reader.Read())
                     {
                         // Add the value from the "Doctor_Name" column to the j list
-                        list2.Add(reader.GetTimeSpan(0)); // Assuming the column is of string type
+                        TimeSpan timeSpan = reader.GetTimeSpan(0);
+                        string hhmmFormat = $"{timeSpan.Hours:D2}:{timeSpan.Minutes:D2}";
+                        // Assuming the column is of string type
+                        list2.Add(hhmmFormat);// Assuming the column is of string type
                     }
                 }
             }
@@ -431,7 +437,7 @@ namespace MVVM_App.Repositories
                                 dc3 = dc3.AddHours(1);
                             }
 
-                        MessageBox.Show("Successfully Registered", "Saved", MessageBoxButton.OK, MessageBoxImage.Information);
+                       
                     }
                     else
                     {
@@ -472,11 +478,11 @@ namespace MVVM_App.Repositories
                             conn.Close();
                         }
                     }
-
+                  
 
                 }
             }
-
+            MessageBox.Show("Successfully Registered", "Saved", MessageBoxButton.OK, MessageBoxImage.Information);
 
         }
 

@@ -14,8 +14,8 @@ namespace MVVM_App.Repositories
 {
     public class BookRepo : RepositoryBase
     {
-       public List<TimeSpan> slotlist = new List<TimeSpan>();
-       public List<TimeSpan> slotlist2 = new List<TimeSpan>();
+        public List<string> slotlist = new List<string>();
+       public List<string> slotlist2 = new List<string>();
         public List<string> bookgetco()
         {
             List<string> list2 = new List<string>();
@@ -120,8 +120,14 @@ namespace MVVM_App.Repositories
                     while (reader.Read())
                     {
                         // Add the value from the "Doctor_Name" column to the j list
-                        slotlist.Add(reader.GetDateTime(0).TimeOfDay);
-                        slotlist2.Add(reader.GetDateTime(1).TimeOfDay);
+                        TimeSpan timeSpan1= reader.GetDateTime(0).TimeOfDay;
+                        TimeSpan timeSpan2= reader.GetDateTime(1).TimeOfDay;
+                      
+                        string hhmmFormat1 = $"{timeSpan1.Hours:D2}:{timeSpan1.Minutes:D2}";
+                        string hhmmFormat2 = $"{timeSpan2.Hours:D2}:{timeSpan2.Minutes:D2}";
+                        // Assuming the column is of string type
+                        slotlist.Add(hhmmFormat1);
+                        slotlist2.Add(hhmmFormat2); 
 
                         // Assuming the column is of string type
                     }

@@ -14,8 +14,10 @@ namespace MVVM_App.Models
         public int Consultant_Id { get; set; }
         public string DoctorName { get; set; }
         public string Consultant_Desc { get; set; }
-        public DateTime StartTime { get; set; }
-        public DateTime EndTime { get; set; }
-        public bool Isbuttonvisible { get; set; }   
+        public string StartTime { get; set; }
+        public string EndTime { get; set; }
+        public bool Isbuttonvisible { get; set; }
+        public TimeSpan timeSpan1 { get; set; }
+        public TimeSpan timeSpan2 { get; set; }
     }
 }

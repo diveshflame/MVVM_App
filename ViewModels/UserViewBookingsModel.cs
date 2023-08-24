@@ -114,8 +114,8 @@ namespace MVVM_App.ViewModels
             DataGridItem dataGridItems = new DataGridItem();
             dataGridItems.Booking_Id = BookingId;
             dataGridItems.Doctor_Id = DoctorId;
-            dataGridItems.StartTime = startTime; 
-            dataGridItems.EndTime = endTime;
+            dataGridItems.StartTime = startTime.ToString("{dd/MM/yyyy hh:mm}");
+            dataGridItems.EndTime = endTime.ToString("{dd/MM/yyyy hh:mm}");
 
          
             bool isvalid = adminbooking.DeleteUserBooking(BookingId, DoctorId,startTime,endTime);

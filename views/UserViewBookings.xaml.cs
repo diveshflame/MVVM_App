@@ -38,8 +38,8 @@ namespace MVVM_App.views
 
            // DataRowView row = UserBooking.SelectedItem as DataRowView;
             int BookingId = row.Booking_Id;
-            DateTime starttime = row.StartTime;
-            DateTime endtime = row.EndTime;
+            DateTime starttime =Convert.ToDateTime( row.StartTime);
+            DateTime endtime = Convert.ToDateTime(row.EndTime);
             int docid = row.Doctor_Id;
             add.DeleteAppointment(BookingId,docid,starttime,endtime);
            
