@@ -75,6 +75,9 @@ namespace MVVM_App.views
         {
             // Implement your logout logic here
             userDropdownPopup.IsOpen = false;
+            Window1 loginView = new Window1();
+            loginView.Show();
+            this.Close();
         }
     }
 } 
