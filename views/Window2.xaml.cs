@@ -56,7 +56,8 @@ namespace MVVM_App.views
 
         private void btnMinimize_Click(object sender, RoutedEventArgs e)
         {
-            this.WindowState |= WindowState.Minimized;
+            this.WindowState = WindowState.Minimized;
+            
         }
 
         private void UserProfileButton_Click(object sender, RoutedEventArgs e)

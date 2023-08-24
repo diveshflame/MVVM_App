@@ -24,7 +24,7 @@ namespace MVVM_App
             {
                 if (loginview.IsVisible == false && loginview.IsLoaded)
                 {
-                    var mainview = new userDashboard();
+                    var mainview = new Window2();
                     mainview.Show();
                     loginview.Close();
                 }

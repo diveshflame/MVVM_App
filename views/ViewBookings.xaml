@@ -12,7 +12,8 @@
     <UserControl.DataContext>
         <viewModel:ViewBookings/>
     </UserControl.DataContext>
-    <Grid Background="#eff2f7">
+    <Grid Background="#eff2f7" >
+        
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="Auto"/>
@@ -62,6 +63,7 @@
 
             </Style>
         </Grid.Resources>
+        
         <TextBlock Grid.Row="0" Grid.Column="1" FontSize="24" HorizontalAlignment="Center" Text="View Booking"></TextBlock>
         <StackPanel Grid.Row="1" Grid.Column="1" Orientation="Horizontal" >
             <RadioButton Content="View All Bookings" Command="{Binding ViewAdminBookings}"  Style="{StaticResource tabButton}"   BorderBrush="#784ff2"/>

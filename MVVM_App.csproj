@@ -7,12 +7,6 @@
     <UseWPF>true</UseWPF>
   </PropertyGroup>
 
-
-
-  <ItemGroup>
-    <Folder Include="Images\" />
-  </ItemGroup>
-
   <ItemGroup>
     <PackageReference Include="FontAwesome.Sharp" Version="6.3.0" />
     <PackageReference Include="FontAwesome.WPF" Version="4.7.0.9" />
@@ -26,10 +20,6 @@
     <Page Remove="Commands\**" />
     <Page Remove="ModelView\**" />
     <Page Remove="Model\**" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <None Remove="images\Logo.png" />
   </ItemGroup>
 
   <ItemGroup>

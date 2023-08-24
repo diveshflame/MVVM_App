@@ -202,7 +202,7 @@
                     </StackPanel>
                     <StackPanel Grid.Column="0">
                     </StackPanel>
-                    <Grid Grid.Row="1" Margin="0,10,0,0" Background="#281269" >
+                    <Grid Grid.Row="1" Margin="0,10,0,0" Background="Teal" >
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition/>
                             <ColumnDefinition/>
@@ -272,7 +272,7 @@
                                                     <DataTemplate>
                                                         <StackPanel Orientation="Horizontal">
 
-                                                            <Image Source="images\logout1.png" Width="16" Height="16" VerticalAlignment="Center"/>
+                                                            <Image Source="C:\Users\arjkr\source\repos\MVVM_App\images\logout1.png" Width="16" Height="16" VerticalAlignment="Center"/>
 
                                                             <TextBlock Text="Logout" VerticalAlignment="Center"/>
                                                         </StackPanel>
