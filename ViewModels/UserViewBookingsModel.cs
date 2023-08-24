@@ -95,12 +95,12 @@ namespace MVVM_App.ViewModels
             var dataGridItem = adminbooking.ViewUserBookings();
             foreach (var item in dataGridItem)
             {
-                DateTime starttime = item.StartTime;
-                var Differencedate = starttime - DateTime.Now;
-                if (Differencedate.Days < 2)
-                {
-                    item.Isbuttonvisible = false;
-                }
+                //DateTime starttime = item.StartTime;
+                //var Differencedate = starttime - DateTime.Now;
+                //if (Differencedate.Days < 2)
+                //{
+                //    item.Isbuttonvisible = false;
+                //}
                 UserDatagridItems.Add(item);
             }
             
