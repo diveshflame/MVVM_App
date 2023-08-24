@@ -266,7 +266,11 @@
        VerticalOffset="-35" HorizontalOffset="35">
                                     <Border Background="#333" BorderBrush="#555" BorderThickness="1" CornerRadius="4">
                                         <StackPanel Width="120">
-                                            <Button Content="Settings" HorizontalContentAlignment="Left" Style="{StaticResource DropdownItemStyle}" Click="SettingsButton_Click"/>
+											<Button Content="Settings" HorizontalContentAlignment="Left" Style="{StaticResource DropdownItemStyle}" Click="SettingsButton_Click">
+											<Button.ToolTip>
+												<ToolTip Content="Coming Soon!" ToolTipService.InitialShowDelay="0"/>
+											</Button.ToolTip>
+											</Button>
                                             <Button Content="Logout" HorizontalContentAlignment="Left" Style="{StaticResource DropdownItemStyle}" Click="LogoutButton_Click">
                                                 <Button.ContentTemplate>
                                                     <DataTemplate>
