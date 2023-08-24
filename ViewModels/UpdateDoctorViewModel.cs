@@ -8,25 +8,28 @@ using System.Threading.Tasks;
 
 namespace MVVM_App.ViewModels
 {
-    public class AddDoctorViewModel : ViewModelBase
+   public class UpdateDoctorViewModel : ViewModelBase
     {
-        public List<string> consuld { get; set; }
-        public IAddDocRepo repocall = new AddRepo();
-        public AddDoctorViewModel()
+       
+        public string  SelectedDocType { get; set; }
+        public List<string> DoctorNames { get; set; }
+        public List<string> Consult { get; set; }
+
+        public IAddDocRepo aa;
+        public UpdateDoctorViewModel()
         {
-            consuld = repocall.getco();
+            
         }
 
         public void Insert(string text, string v)
         {
 
             ConsultModel consultModel = new ConsultModel();
-            consultModel.docname=text;
+            consultModel.docname = text;
             consultModel.consulD = v;
             AddRepo addRepo = new AddRepo();
-            addRepo.addDoctor(text,v);
+            addRepo.addDoctor(text, v);
         }
 
-        
     }
 }

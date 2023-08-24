@@ -29,8 +29,8 @@
     </Window.Resources>
     <Window.Visibility>
         <Binding Path="IsViewVisible" Mode="TwoWay" Converter="{StaticResource Boolean}"/>
-    </Window.Visibility>      
-       
+    </Window.Visibility>
+
     <Window.Background>
         <ImageBrush ImageSource="https://img.freepik.com/free-vector/clean-medical-background_53876-116875.jpg?size=626" ></ImageBrush>
     </Window.Background>
@@ -107,8 +107,8 @@
 
                     <CustomControls:BindablePasswordBox Password ="{Binding Password,Mode=TwoWay ,UpdateSourceTrigger=PropertyChanged}">
                     </CustomControls:BindablePasswordBox>
-                    
-                
+
+
 
                     <!--Button for Submit-->
                     <Button x:Name="btnsubmit"  
@@ -165,6 +165,5 @@
     </Viewbox>
 
 
-   
-</Window>
 
+</Window>

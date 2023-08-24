@@ -33,9 +33,9 @@
     <SolidColorBrush x:Key="plainTextColor3" Color="#7376BD"/>
 
     <!--Panel Colors-->
-    <SolidColorBrush x:Key="panelColor" Color="#200F53"/>
-    <SolidColorBrush x:Key="panelOverColor" Color="#281269"/>
-    <SolidColorBrush x:Key="panelActiveColor" Color="#2B1372"/>
+    <SolidColorBrush x:Key="panelColor" Color="white"/>
+    <SolidColorBrush x:Key="panelOverColor" Color="white"/>
+    <SolidColorBrush x:Key="panelActiveColor" Color="white"/>
     <SolidColorBrush x:Key="panelColor1" Color="White"/>
 
     <!--Button Colors-->
