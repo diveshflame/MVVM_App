@@ -9,8 +9,8 @@ namespace MVVM_App.ViewModels
 {
     public class BookAppointmentViewModel: ViewModelBase
     {
-       public List<TimeSpan> slotlist =new List<TimeSpan>();
-       public List<TimeSpan> slotlist2 = new List<TimeSpan>();
+       public List<string> slotlist =new List<string>();
+       public List<string> slotlist2 = new List<string>();
         public List<string> Consult { get; set; }
 
         public List<string> Doctor { get; set; }

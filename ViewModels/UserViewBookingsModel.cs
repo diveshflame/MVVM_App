@@ -20,10 +20,10 @@ namespace MVVM_App.ViewModels
         private ObservableCollection<DataGridItem> userNewDatagridItems;
         private bool _isDataGridVisible = true;
         private bool _isDataGridVisible2 = true;
-        private bool _isbuttonvisible = true;
+        //private bool _isbuttonvisible = false;
         public bool IsDataGridVisible { get => _isDataGridVisible; set { _isDataGridVisible = value; OnPropertyChanged(nameof(IsDataGridVisible)); } }
 
-        public bool Isbuttonvisible { get => _isbuttonvisible; set { _isbuttonvisible = value; OnPropertyChanged(nameof(Isbuttonvisible));} }
+       // public bool Isbuttonvisible { get => _isbuttonvisible; set { _isbuttonvisible = value; OnPropertyChanged(nameof(Isbuttonvisible));} }
 
         public bool IsDataGridVisible2 { get => _isDataGridVisible2; set { _isDataGridVisible2 = value; OnPropertyChanged(nameof(IsDataGridVisible2));}
 }
@@ -90,14 +90,21 @@ namespace MVVM_App.ViewModels
         }
         public void LoadData()
         {
-            
+          
             UserDatagridItems = new ObservableCollection<DataGridItem>();
             var dataGridItem = adminbooking.ViewUserBookings();
             foreach (var item in dataGridItem)
             {
+                //DateTime starttime = item.StartTime;
+                //var Differencedate = starttime - DateTime.Now;
+                //if (Differencedate.Days < 2)
+                //{
+                //    item.Isbuttonvisible = false;
+                //}
                 UserDatagridItems.Add(item);
             }
-
+            
+          
         }
 
         public void DeleteAppointment(int BookingId, int DoctorId, DateTime startTime, DateTime endTime)
@@ -107,15 +114,10 @@ namespace MVVM_App.ViewModels
             DataGridItem dataGridItems = new DataGridItem();
             dataGridItems.Booking_Id = BookingId;
             dataGridItems.Doctor_Id = DoctorId;
-            dataGridItems.StartTime = startTime; 
-            dataGridItems.EndTime = endTime;
+            dataGridItems.StartTime = startTime.ToString("{dd/MM/yyyy hh:mm}");
+            dataGridItems.EndTime = endTime.ToString("{dd/MM/yyyy hh:mm}");
 
-            //var Differencedate = startTime - DateTime.Now;
-            //if (Differencedate.Days < 2)
-            //{
-            //    Isbuttonvisible = false;
-            //}
-
+         
             bool isvalid = adminbooking.DeleteUserBooking(BookingId, DoctorId,startTime,endTime);
             if(isvalid)
             {

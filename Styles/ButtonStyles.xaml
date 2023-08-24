@@ -84,8 +84,8 @@
         <Style.Triggers>
             <!--Button Style on hover-->
             <Trigger Property="IsMouseOver" Value="True">
-                <Setter Property="Background" Value="{StaticResource plainTextColor1}"/>
-                <Setter Property="Foreground" Value="{Binding Path=Tag, RelativeSource={RelativeSource AncestorType=Button}}"/>
+
+                <Setter Property="Foreground" Value="{StaticResource color4}"/>
 
             </Trigger>
 

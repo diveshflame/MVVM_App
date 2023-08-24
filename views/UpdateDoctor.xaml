@@ -4,13 +4,14 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:MVVM_App.views"
-                 
-        xmlns:fa="http://schemas.fontawesome.io/icons/"
-        xmlns:viewModel="clr-namespace:MVVM_App.ViewModels"
+             xmlns:fa="http://schemas.fontawesome.io/icons/"
+             xmlns:viewModel="clr-namespace:MVVM_App.ViewModels"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
-
-    <Border Background="White" CornerRadius="10" Margin="40 100 40 40" Padding="30" VerticalAlignment="Center">
+    <UserControl.DataContext>
+        <viewModel:UpdateDoctorViewModel/>
+    </UserControl.DataContext>
+    <Border Background="White" CornerRadius="10" Margin="40 100 40 40" Padding="30" VerticalAlignment="Top">
 
         <Grid>
 
@@ -35,17 +36,18 @@
 
             <StackPanel Grid.Row="3" Orientation="Horizontal" HorizontalAlignment="Left"  Margin="0,10,0,40">
 
-                <TextBlock x:Name="text1" Text="Select Consultation Type:" Width="200" VerticalAlignment="Center" FontSize="14" FontWeight="Bold" />
-                <ComboBox x:Name="ConsultType" Width="250" VerticalAlignment="Center" />
+                <TextBlock x:Name="text1" Text="Select Department :" Width="200" VerticalAlignment="Center" FontSize="14" FontWeight="Bold" />
+                <ComboBox x:Name="ConsultType" Width="250" VerticalAlignment="Center" ItemsSource="{Binding Consult}" SelectedItem="{Binding SelectedConsultationtype}"   />
             </StackPanel>
 
             <StackPanel Grid.Row="1" Orientation="Horizontal"  HorizontalAlignment="Left" Margin="0,10">
-                <TextBlock x:Name="text2" Text="Select Doctor Name" Width="200" VerticalAlignment="Center" FontSize="14" FontWeight="Bold"  />
-                <ComboBox x:Name="DoctorType" Width="250" VerticalAlignment="Center" SelectedItem="{Binding select}" />
+                <TextBlock x:Name="text2" Text="Select Doctor Name :" Width="200" VerticalAlignment="Center" FontSize="14" FontWeight="Bold"  />
+                <ComboBox x:Name="DoctorType" Width="250" VerticalAlignment="Center" ItemsSource="{Binding DoctorNames}" SelectedItem="{Binding SelectedDoctorName}"  />
             </StackPanel>
 
 
-            <Button x:Name="updatedoc"  Grid.Row="4" Content="Update Doctor" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="70,-30,0,-20" Padding="30 5" Width="120" Height="30" Background="#2B547E" Foreground="White" FontSize="16" FontWeight="Bold" BorderThickness="0" Click="UpdateDoctorButton" >
+            <Button x:Name="updatedoc"  Grid.Row="4" Content="Update Doctor" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="70,-30,0,-20" Padding="30 5" Width="120" Height="30" Background="CadetBlue" 
+                    FontSize="11" FontWeight="SemiBold" Foreground="White"  BorderThickness="0" Command="{Binding UpdateDoctor}">
                 <Button.Template>
                     <ControlTemplate TargetType="Button">
                         <Border Background="{TemplateBinding Background}" BorderThickness="{TemplateBinding BorderThickness}" BorderBrush="{TemplateBinding BorderBrush}" CornerRadius="5">

@@ -95,6 +95,12 @@ namespace MVVM_App.views
                 viewModel.Add(selectedDep, selectedDate, doc, date1, date2);  //To insert into the Database
 
             }
+            Doctor.SelectedItem = null;
+            ConsultType.SelectedItem = null;
+            Datepicker.SelectedDate = null;
+            Fromtime.SelectedItem = null;   
+            Endtime.SelectedItem = null;
+
         }
 
         public bool isValid()

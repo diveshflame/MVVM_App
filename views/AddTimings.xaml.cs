@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -32,7 +33,10 @@ namespace MVVM_App.views
         private void doctorType1_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             AddTimingsViewModel selectDoc = new AddTimingsViewModel();
-            consultType = selectDoc.selectDoc(doctorType1.SelectedItem.ToString());
+            if (doctorType1.SelectedItem != null)
+            {
+                consultType = selectDoc.selectDoc(doctorType1.SelectedItem.ToString());
+            }
             ConsultType1.ItemsSource = consultType; 
         }
 
@@ -70,6 +74,8 @@ namespace MVVM_App.views
 
             }
         }
+
+    
         private void btn1_Click(object sender, RoutedEventArgs e)
         {
             int Temp2 = 0;//variables to store checker status
@@ -89,7 +95,7 @@ namespace MVVM_App.views
             if (Fromtime1.SelectedItem != null && Endtime1.SelectedItem != null)
             {
                 FromTime = Fromtime1.SelectedItem.ToString();
-              EndTime= Endtime1.SelectedItem.ToString();
+                EndTime= Endtime1.SelectedItem.ToString();
             }
             AddTimingsViewModel selectC = new AddTimingsViewModel();
             if (isValid())
@@ -123,6 +129,13 @@ namespace MVVM_App.views
                 {
                     selectC.check(date1, date2, doctorType1.SelectedItem.ToString(), startDate, endDate, FromTime, EndTime, Temp2);
                 }
+                doctorType1.SelectedItem = null;
+                ConsultType1.SelectedItem = null;
+                Datepicker1.SelectedDate = null;
+                Datepicker2.SelectedDate = null;    
+                Fromtime1.SelectedItem = null;
+                Endtime1.SelectedItem = null;
+
                 
             }
         }

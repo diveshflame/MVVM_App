@@ -31,7 +31,6 @@
         <DataTemplate DataType="{x:Type viewModel:BookAppointmentViewModel}">
             <local:BookAppointment/>
         </DataTemplate>
-
         <DataTemplate DataType="{x:Type viewModel:UserViewBookingsModel}">
             <local:UserViewBookings/>
         </DataTemplate>
@@ -136,13 +135,12 @@
         <RadioButton Style="{StaticResource menuButton}"
                                  Tag="{StaticResource primaryBackColor1}"
                                  IsChecked="True"
-                                  Command="{Binding ShowBookApp}">
-
-        <StackPanel Orientation="Horizontal">
-            <fa:FontAwesome Icon="FileText" Margin="10,2,0,0"/>
-            <TextBlock Text="Book Appointments" Margin="10,0,0,0"/>
-        </StackPanel>
-</RadioButton>
+                                  Command="{Binding ShowBookApp}" >
+                    <StackPanel Orientation="Horizontal">
+                        <fa:FontAwesome Icon="FileText" Margin="10,2,0,0"/>
+                        <TextBlock Text="Book Appointments" Margin="10,0,0,0"/>
+                    </StackPanel>
+                </RadioButton>
 
         <RadioButton Style="{StaticResource menuButton}"
                                  Tag="{StaticResource primaryBackColor1}"
@@ -266,13 +264,19 @@
        VerticalOffset="-35" HorizontalOffset="35">
                                     <Border Background="#333" BorderBrush="#555" BorderThickness="1" CornerRadius="4">
                                         <StackPanel Width="120">
-                                            <Button Content="Settings" HorizontalContentAlignment="Left" Style="{StaticResource DropdownItemStyle}" Click="SettingsButton_Click"/>
+											<Button Content="Settings" HorizontalContentAlignment="Left" Style="{StaticResource DropdownItemStyle}" Click="SettingsButton_Click">
+											<Button.ToolTip>
+												<ToolTip Content="Coming Soon!" ToolTipService.InitialShowDelay="0"/>
+											</Button.ToolTip>
+											</Button>
                                             <Button Content="Logout" HorizontalContentAlignment="Left" Style="{StaticResource DropdownItemStyle}" Click="LogoutButton_Click">
                                                 <Button.ContentTemplate>
                                                     <DataTemplate>
                                                         <StackPanel Orientation="Horizontal">
 
-                                                            <Image Source="C:\Users\divsh\source\repos\MVVM_Main_App\Images\logout1.pngg" Width="16" Height="16" VerticalAlignment="Center"/>
+
+                                                            <Image Source="C:\Users\ashal\source\repos\MVVM_App\images\logout1.png" Width="16" Height="16" VerticalAlignment="Center"/>
+
 
                                                             <TextBlock Text="Logout" VerticalAlignment="Center"/>
                                                         </StackPanel>

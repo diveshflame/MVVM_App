@@ -35,8 +35,8 @@ namespace MVVM_App.Repositories
                         {
                             Name = reader.GetString("NAME"),
                             DoctorName = reader.GetString("DOCTOR_NAME"),
-                            StartTime = reader.GetDateTime("STARTTIME"),
-                            EndTime = reader.GetDateTime("ENDTIME"),
+                            StartTime = reader.GetDateTime("STARTTIME").ToString("dd/MM/yyyy HH:mm"),
+                            EndTime = reader.GetDateTime("ENDTIME").ToString("dd/MM/yyyy HH:mm"),
                             Consultant_Desc = reader.GetString("CONSULTANT_DESC"),
                         };
                         NewList.Add(item);
@@ -65,8 +65,8 @@ namespace MVVM_App.Repositories
                         {
                             Name = reader.GetString("NAME"),
                             DoctorName = reader.GetString("DOCTOR_NAME"),
-                            StartTime = reader.GetDateTime("STARTTIME"),
-                            EndTime = reader.GetDateTime("ENDTIME"),
+                            StartTime = reader.GetDateTime("STARTTIME").ToString("dd/MM/yyyy HH:mm"),
+                            EndTime = reader.GetDateTime("ENDTIME").ToString("dd/MM/yyyy HH:mm"),
                             Consultant_Desc = reader.GetString("CONSULTANT_DESC"),
                         };
                         NewList.Add(item);
@@ -96,8 +96,8 @@ namespace MVVM_App.Repositories
                             
                             Name = reader.GetString("NAME"),
                             DoctorName = reader.GetString("DOCTOR_NAME"),
-                            StartTime = reader.GetDateTime("STARTTIME"),
-                            EndTime = reader.GetDateTime("ENDTIME"),
+                            StartTime = reader.GetDateTime("STARTTIME").ToString("dd/MM/yyyy HH:mm"),
+                            EndTime = reader.GetDateTime("ENDTIME").ToString("dd/MM/yyyy HH:mm"),
                             Consultant_Desc = reader.GetString("CONSULTANT_DESC"),
                         };
                         NewList.Add(item);
@@ -139,8 +139,8 @@ namespace MVVM_App.Repositories
                             Booking_Id = reader.GetInt32("BOOKING_ID"),
                             Doctor_Id=reader.GetInt32("DOCTOR_ID"),
                             DoctorName = reader.GetString("DOCTOR_NAME"),
-                            StartTime = reader.GetDateTime("STARTTIME"),
-                            EndTime = reader.GetDateTime("ENDTIME"),
+                            StartTime = reader.GetDateTime("STARTTIME").ToString("dd/MM/yyyy HH:mm"),
+                            EndTime = reader.GetDateTime("ENDTIME").ToString("dd/MM/yyyy HH:mm"),
                             Consultant_Desc = reader.GetString("CONSULTANT_DESC"),
                         };
                         NewList.Add(item);
@@ -181,8 +181,8 @@ namespace MVVM_App.Repositories
                             Booking_Id = reader.GetInt32("BOOKING_ID"),
                             Doctor_Id = reader.GetInt32("DOCTOR_ID"),
                             DoctorName = reader.GetString("DOCTOR_NAME"),
-                            StartTime = reader.GetDateTime("STARTTIME"),
-                            EndTime = reader.GetDateTime("ENDTIME"),
+                            StartTime = reader.GetDateTime("STARTTIME").ToString("dd/MM/yyyy HH:mm"),
+                            EndTime = reader.GetDateTime("ENDTIME").ToString("dd/MM/yyyy HH:mm"),
                             Consultant_Desc = reader.GetString("CONSULTANT_DESC"),
                         };
                         NewList.Add(item);
@@ -223,8 +223,8 @@ namespace MVVM_App.Repositories
                             Booking_Id = reader.GetInt32("BOOKING_ID"),
                             Doctor_Id = reader.GetInt32("DOCTOR_ID"),
                             DoctorName = reader.GetString("DOCTOR_NAME"),
-                            StartTime = reader.GetDateTime("STARTTIME"),
-                            EndTime = reader.GetDateTime("ENDTIME"),
+                            StartTime = reader.GetDateTime("STARTTIME").ToString("dd/MM/yyyy HH:mm"),
+                            EndTime = reader.GetDateTime("ENDTIME").ToString("dd/MM/yyyy HH:mm"),
                             Consultant_Desc = reader.GetString("CONSULTANT_DESC"),
                         };
                         NewList.Add(item);
