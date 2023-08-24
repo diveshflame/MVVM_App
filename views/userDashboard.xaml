@@ -30,7 +30,7 @@
 
         <DataTemplate DataType="{x:Type viewModel:AddDoctorViewModel}">
             <local:AddDoctor/>
-        </DataTemplate>-->
+        </DataTemplate>
         <DataTemplate DataType="{x:Type viewModel:UserViewBookingsModel}">
             <local:UserViewBookings/>
         </DataTemplate>
