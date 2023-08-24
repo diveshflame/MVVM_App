@@ -19,7 +19,6 @@ namespace MVVM_App.Models
         public List<DataGridItem> ViewUsersTodayBooking();
         public List<DataGridItem> ViewUsersHistory();
 
-        public void Delete();
         bool DeleteUserBooking(int bookingId, int doctorId, DateTime startTime, DateTime endTime);
     }
 }
