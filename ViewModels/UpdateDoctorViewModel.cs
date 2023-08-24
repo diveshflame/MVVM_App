@@ -46,6 +46,8 @@ namespace MVVM_App.ViewModels
             if (string.IsNullOrWhiteSpace(SelectedConsultationtype) || string.IsNullOrWhiteSpace(SelectedDoctorName))
             {
                 MessageBox.Show("Please Select a Valid Value", "Failed", MessageBoxButton.OK, MessageBoxImage.Error);
+                SelectedConsultationtype = null;
+                SelectedDoctorName = null;
             }
             else
             {
@@ -54,8 +56,8 @@ namespace MVVM_App.ViewModels
                 bool IsValid = addDocRepo.UpdateDoc(getDoctorId, getConsultantId);
                 if (IsValid)
                 {
-                    doctorNames.Clear();
-                    consult.Clear();
+                    SelectedConsultationtype = null;
+                    SelectedDoctorName = null;
                 }
             }
         }

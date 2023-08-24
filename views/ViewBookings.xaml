@@ -12,80 +12,84 @@
     <UserControl.DataContext>
         <viewModel:ViewBookings/>
     </UserControl.DataContext>
-    <Grid Background="#eff2f7" >
-        
-        <Grid.RowDefinitions>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="10"/>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition />
-        </Grid.RowDefinitions>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="80"/>
-            <ColumnDefinition Width="Auto"/>
-        </Grid.ColumnDefinitions>
-        <Grid.Resources>
-            <Style x:Key="tabButton" TargetType="RadioButton">
-                <Setter Property="Background" Value="Transparent"/>
-                <Setter Property="Foreground" Value="Black"/>
-                <Setter Property="BorderBrush" Value="Transparent"/>
-                <Setter Property="Margin" Value="0,20,0,0"/>
-                <Setter Property="Width" Value="120"/>
-                <Setter Property="Height" Value="45"/>
-                <Setter Property="FontWeight" Value="SemiBold"/>
-                <Setter Property="Padding" Value="10,0,0,0"/>
-                <Setter Property="Template">
-                    <Setter.Value>
-                        <ControlTemplate TargetType="RadioButton">
-                            <Border BorderThickness="0 0 0 1" BorderBrush="#784ff2">
-                                <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"></ContentPresenter>
-                            </Border>
-                        </ControlTemplate>
-                    </Setter.Value>
-                </Setter>
-                <Style.Triggers>
-                    <Trigger Property="IsMouseOver" Value="True">
-                        <Setter Property="Foreground" Value="#784ff2"/>
-                    </Trigger>
-                    <Trigger Property="IsPressed" Value="True">
-                        <Setter Property="Background" Value="DarkBlue"/>
-                        <Setter Property="Foreground" Value="White"/>
-                    </Trigger>
-                    <Trigger Property="IsChecked" Value="True">
-                        <Setter Property="Background" Value="DarkBlue"/>
-                        <Setter Property="Foreground" Value="#784ff2"/>
-                    </Trigger>
-                </Style.Triggers>
+    <Border Background="White"
+                CornerRadius="10"
+                Width="800"
+                Padding="2" VerticalAlignment="Center">
+        <Grid Background="White"  Height="400" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="-40,30,0,0" >
+
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="10"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition />
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="80"/>
+                <ColumnDefinition Width="Auto"/>
+            </Grid.ColumnDefinitions>
+            <Grid.Resources>
+                <Style x:Key="tabButton" TargetType="RadioButton">
+                    <Setter Property="Background" Value="Transparent"/>
+                    <Setter Property="Foreground" Value="Black"/>
+                    <Setter Property="BorderBrush" Value="Transparent"/>
+                    <Setter Property="Margin" Value="0,20,0,0"/>
+                    <Setter Property="Width" Value="120"/>
+                    <Setter Property="Height" Value="45"/>
+                    <Setter Property="FontWeight" Value="SemiBold"/>
+                    <Setter Property="Padding" Value="10,0,0,0"/>
+                    <Setter Property="Template">
+                        <Setter.Value>
+                            <ControlTemplate TargetType="RadioButton">
+                                <Border BorderThickness="0 0 0 1" BorderBrush="#784ff2">
+                                    <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"></ContentPresenter>
+                                </Border>
+                            </ControlTemplate>
+                        </Setter.Value>
+                    </Setter>
+                    <Style.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter Property="Foreground" Value="#784ff2"/>
+                        </Trigger>
+                        <Trigger Property="IsPressed" Value="True">
+                            <Setter Property="Background" Value="DarkBlue"/>
+                            <Setter Property="Foreground" Value="White"/>
+                        </Trigger>
+                        <Trigger Property="IsChecked" Value="True">
+                            <Setter Property="Background" Value="DarkBlue"/>
+                            <Setter Property="Foreground" Value="#784ff2"/>
+                        </Trigger>
+                    </Style.Triggers>
 
 
-            </Style>
-        </Grid.Resources>
-        
-        <TextBlock Grid.Row="0" Grid.Column="1" FontSize="24" HorizontalAlignment="Center" Text="View Booking"></TextBlock>
-        <StackPanel Grid.Row="1" Grid.Column="1" Orientation="Horizontal" >
-            <RadioButton Content="View All Bookings" Command="{Binding ViewAdminBookings}"  Style="{StaticResource tabButton}"   BorderBrush="#784ff2"/>
-            <RadioButton Content="Today Bookings" Style="{StaticResource tabButton}" Command="{Binding ViewTodayBooking}"/>
-            <RadioButton Content="Booking History" Style="{StaticResource tabButton}" Command="{Binding ViewBookingHistory}" />
-        </StackPanel>
-        
-        <!--Data grid for table-->
-        
-        <DataGrid Grid.Row="3" Grid.Column="1" ItemsSource="{Binding DataGridItems}" AutoGenerateColumns="False" GridLinesVisibility="None" BorderBrush="Transparent"
+                </Style>
+            </Grid.Resources>
+
+            <StackPanel Grid.Row="1" Grid.Column="1" Orientation="Horizontal" Margin="0,0,0,30" HorizontalAlignment="Center">
+                <RadioButton Content="View All Bookings" Command="{Binding ViewAdminBookings}"  Style="{StaticResource tabButton}"   BorderBrush="#784ff2"/>
+                <RadioButton Content="Today Bookings" Style="{StaticResource tabButton}" Command="{Binding ViewTodayBooking}"/>
+                <RadioButton Content="Booking History" Style="{StaticResource tabButton}" Command="{Binding ViewBookingHistory}" />
+            </StackPanel>
+
+            <!--Data grid for table-->
+
+            <DataGrid Grid.Row="3" Grid.Column="1" ItemsSource="{Binding DataGridItems}" AutoGenerateColumns="False" GridLinesVisibility="None" BorderBrush="Transparent"
                    HeadersVisibility="Column" CanUserResizeRows="False" 
-                      ColumnWidth="100" Background="White"  
+                      ColumnWidth="130" Background="White"  
                       IsReadOnly="True" HorizontalAlignment="Center"
-                      CanUserReorderColumns="False" >
-            <DataGrid.Columns>
-                <DataGridTextColumn Binding="{Binding Name, UpdateSourceTrigger=PropertyChanged}" Header="User Name"/>
-                <DataGridTextColumn Binding="{Binding DoctorName , UpdateSourceTrigger=PropertyChanged}" Header="Doctor Name"/>
-                <DataGridTextColumn Binding="{Binding Consultant_Desc , UpdateSourceTrigger=PropertyChanged}" Header="Consultant Type"/>
-                <DataGridTextColumn Binding="{Binding StartTime , UpdateSourceTrigger=PropertyChanged}" Header="Start Time"/>
-                <DataGridTextColumn Binding="{Binding EndTime , UpdateSourceTrigger=PropertyChanged}" Header="End Time"/>
-            </DataGrid.Columns>
-        </DataGrid>
+                      CanUserReorderColumns="False">
+                <DataGrid.Columns>
+                    <DataGridTextColumn Binding="{Binding Name, UpdateSourceTrigger=PropertyChanged}" Header="User Name"/>
+                    <DataGridTextColumn Binding="{Binding DoctorName , UpdateSourceTrigger=PropertyChanged}" Header="Doctor Name"/>
+                    <DataGridTextColumn Binding="{Binding Consultant_Desc , UpdateSourceTrigger=PropertyChanged}" Header="Department"/>
+                    <DataGridTextColumn Binding="{Binding StartTime , UpdateSourceTrigger=PropertyChanged}" Header="Start Time"/>
+                    <DataGridTextColumn Binding="{Binding EndTime , UpdateSourceTrigger=PropertyChanged}" Header="End Time"/>
+                </DataGrid.Columns>
+            </DataGrid>
 
-    </Grid>
+        </Grid>
+    </Border>
 </UserControl>

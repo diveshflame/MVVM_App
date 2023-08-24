@@ -19,8 +19,7 @@
 
     <Border Background="White"
                 CornerRadius="10"
-             Width="800"
-                
+                Width="800"
                 Padding="2" VerticalAlignment="Center">
 
         <Grid Background="white" Height="400" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="-40,30,0,0">
