@@ -90,14 +90,21 @@ namespace MVVM_App.ViewModels
         }
         public void LoadData()
         {
-            
+          
             UserDatagridItems = new ObservableCollection<DataGridItem>();
             var dataGridItem = adminbooking.ViewUserBookings();
             foreach (var item in dataGridItem)
             {
+                //DateTime starttime = item.StartTime;
+                //var Differencedate = starttime - DateTime.Now;
+                //if (Differencedate.Days < 2)
+                //{
+                //    item.Isbuttonvisible = false;
+                //}
                 UserDatagridItems.Add(item);
             }
-
+            
+          
         }
 
         public void DeleteAppointment(int BookingId, int DoctorId, DateTime startTime, DateTime endTime)
@@ -110,12 +117,7 @@ namespace MVVM_App.ViewModels
             dataGridItems.StartTime = startTime; 
             dataGridItems.EndTime = endTime;
 
-            //var Differencedate = startTime - DateTime.Now;
-            //if (Differencedate.Days < 2)
-            //{
-            //    Isbuttonvisible = false;
-            //}
-
+         
             bool isvalid = adminbooking.DeleteUserBooking(BookingId, DoctorId,startTime,endTime);
             if(isvalid)
             {
