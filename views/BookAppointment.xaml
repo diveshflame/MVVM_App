@@ -24,8 +24,8 @@
 
             <Border Background="White"
                 CornerRadius="10"
-                Margin="40 140 40 40"
-                Width="900"
+                Margin="40 140 0 40"
+                Width="600"
                 Padding="50" VerticalAlignment="Center">
 
                 <Grid>
