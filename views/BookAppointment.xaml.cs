@@ -1,4 +1,5 @@
-﻿using MVVM_App.ViewModels;
+﻿using Microsoft.Identity.Client;
+using MVVM_App.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -27,7 +28,7 @@ namespace MVVM_App.views
             InitializeComponent();
         }
 
-        private void Consul_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        private void Consul_SelectionChanged(object sender, SelectionChangedEventArgs e) //changing Doctor name with dept
         {
             string s="";
             if (ConsultType.SelectedItem != null)
@@ -41,7 +42,7 @@ namespace MVVM_App.views
             Datepicker.SelectedDate = null;
         }
 
-        private void Doctor_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        private void Date_SelectionChanged(object sender, SelectionChangedEventArgs e) //Setting the From time and To time
         {
             Fromtime.ItemsSource = null;
             Endtime.ItemsSource = null; 
@@ -59,7 +60,7 @@ namespace MVVM_App.views
             
         }
 
-        private void btn1_Click(object sender, RoutedEventArgs e)
+        private void btn1_Click(object sender, RoutedEventArgs e) 
         {
             string selectedDep="";
             string doc = "";
@@ -70,28 +71,28 @@ namespace MVVM_App.views
                 doc = Doctor.SelectedItem.ToString();
                 selectedDate = DateTime.Parse(Datepicker.SelectedDate.Value.ToString("dd/MM/yyyy"));
             }
-            DateTime d1 = DateTime.Now;
-            DateTime d2 = DateTime.Now;
+            DateTime date1 = DateTime.Now;
+            DateTime date2 = DateTime.Now;
             if (Fromtime.SelectedItem != null)
             {
                 string s = Fromtime.SelectedItem.ToString();
-                DateTime dt;
-                DateTime.TryParse(s, out dt);
-                string Time = dt.ToString("HH:mm:ss");
-                d1 = DateTime.Parse(Datepicker.SelectedDate.Value.ToString("dd/MM/yyyy ") + Time);
+                DateTime dateTemp;
+                DateTime.TryParse(s, out dateTemp);
+                string Time = dateTemp.ToString("HH:mm:ss");
+                date1 = DateTime.Parse(Datepicker.SelectedDate.Value.ToString("dd/MM/yyyy ") + Time); //Date with selected From time
             }
             if (Endtime.SelectedItem != null)
             {
                 string s = Endtime.SelectedItem.ToString();
-                DateTime dt1;
-                DateTime.TryParse(s, out dt1);
-                string Time = dt1.ToString("HH:mm:ss");
-                d2 = DateTime.Parse(Datepicker.SelectedDate.Value.ToString("dd/MM/yyyy ") + Time);
+                DateTime dateTemp2;
+                DateTime.TryParse(s, out dateTemp2);
+                string Time = dateTemp2.ToString("HH:mm:ss");
+                date2 = DateTime.Parse(Datepicker.SelectedDate.Value.ToString("dd/MM/yyyy ") + Time); //Date with selected To Time
             }
 
             if (isValid())
             {
-                viewModel.Add(selectedDep, selectedDate, doc, d1, d2);
+                viewModel.Add(selectedDep, selectedDate, doc, date1, date2);  //To insert into the Database
 
             }
         }
@@ -137,6 +138,15 @@ namespace MVVM_App.views
 
         }
 
-
+        private void Doctor_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            string s=Doctor.SelectedItem.ToString(); 
+            
+            DateTime? Blackout_Date=viewModel.Blackout(s);
+            if (Blackout_Date.HasValue)
+            {
+                Datepicker.BlackoutDates.Add(new CalendarDateRange(Blackout_Date.Value));
+            }
+        }
     }
 }

@@ -13,5 +13,6 @@ namespace MVVM_App.Models
         public string docname { get; set;}  
 
         public string consulD { get; set;}
+        public string docId { get; set;}    
     }
 }

@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
+using System.Windows.Controls;
 using static System.Net.Mime.MediaTypeNames;
 
 namespace MVVM_App.Repositories
@@ -231,6 +232,62 @@ namespace MVVM_App.Repositories
 
             }
 
+        }
+
+        public DateTime? black(string? s)
+        {
+
+            int b = 0;
+            using (var connection = GetConnection()) // You need to replace GetConnection() with your actual connection creation logic
+            using (var command = new NpgsqlCommand())
+            {
+                connection.Open();
+                command.Connection = connection;
+                command.CommandText = "SELECT doctor_Id from doctor_table where @d=Doctor_Name";
+                command.Parameters.Add(new NpgsqlParameter("@d", s));
+                using (NpgsqlDataReader reader = command.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        // Add the value from the "Doctor_Name" column to the j list
+                        b = reader.GetInt32(0);
+
+                        // Assuming the column is of string type
+                    }
+                }
+            }
+
+            List<DateTime> slotlist = new List<DateTime>();
+            using (var connection = GetConnection()) // You need to replace GetConnection() with your actual connection creation logic
+            using (var command = new NpgsqlCommand())
+            {
+                connection.Open();
+                command.Connection = connection;
+                command.CommandText = "SELECT StartTime FROM Booking_Table where @doctorid=Doctor_Id AND Deleted_TimeStamp is NULL";
+                command.Parameters.Add(new NpgsqlParameter("@doctorid", b));
+                using (NpgsqlDataReader reader = command.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        // Add the value from the "Doctor_Name" column to the j list
+                        slotlist.Add(reader.GetDateTime(0));
+
+                        // Assuming the column is of string type
+                    }
+                }
+            }
+            slotlist.Sort();
+            DateTime? date1 = null;
+            foreach (DateTime dat in slotlist)
+            {
+                int occurrences = slotlist.Count(dt => dt.Date == dat.Date);
+                if (occurrences >= 8)
+                {
+                    date1=dat;
+
+                }
+            }
+            return date1;
         }
     }
 }

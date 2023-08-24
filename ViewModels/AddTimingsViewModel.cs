@@ -31,7 +31,7 @@ namespace MVVM_App.ViewModels
 
 
         }
-        public List<string> selectdoc(string text)
+        public List<string> selectDoc(string text)
         {
             AddRepo addRepo = new AddRepo();
 
