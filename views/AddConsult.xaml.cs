@@ -36,6 +36,7 @@ namespace MVVM_App.views
             }
             AddConsultViewModel add= new AddConsultViewModel();
             add.Insert(addConsultant.Text);
+            addConsultant.Text = null;
         }
         private void TextBox_Consultation(object sender, TextCompositionEventArgs e)
         {
