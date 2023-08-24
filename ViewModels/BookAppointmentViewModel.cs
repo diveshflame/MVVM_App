@@ -46,5 +46,11 @@ namespace MVVM_App.ViewModels
         {
             bookRepo.AddBook(selectedDep, selectedDate, doc, d1, d2);
         }
+
+        public DateTime? Blackout(string? s)
+        {
+            DateTime? dt = bookRepo.black(s);
+            return dt;
+        }
     }
 }

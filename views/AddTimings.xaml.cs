@@ -24,15 +24,15 @@ namespace MVVM_App.views
         public AddTimings()
         {
             InitializeComponent();
-            DisableWeekends();
+            DisableWeekends();  //Greying out Past Dates and weekends
             DisablePastDates();
            
         }
         public List<string> consultType { get; set; }
         private void doctorType1_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            AddTimingsViewModel selectD = new AddTimingsViewModel();
-            consultType = selectD.selectdoc(doctorType1.SelectedItem.ToString());
+            AddTimingsViewModel selectDoc = new AddTimingsViewModel();
+            consultType = selectDoc.selectDoc(doctorType1.SelectedItem.ToString());
             ConsultType1.ItemsSource = consultType; 
         }
 
@@ -72,15 +72,15 @@ namespace MVVM_App.views
         }
         private void btn1_Click(object sender, RoutedEventArgs e)
         {
-            int T = 0;
-            int f = 0;
-            DateTime d12 = DateTime.Now;
-            DateTime dat1 = DateTime.Now;
-            DateTime dat2 = DateTime.Now;
+            int Temp2 = 0;//variables to store checker status
+            int Temp = 0;
+           
+            DateTime date1 = DateTime.Now;
+            DateTime date2 = DateTime.Now;
             DateTime startDate=DateTime.Now;
              DateTime endDate=DateTime.Now; 
-            string s1="";
-            string s2="";
+            string FromTime="";
+            string EndTime="";
             if (Datepicker1.SelectedDate != null && Datepicker2.SelectedDate != null)
             {
                 startDate = Datepicker1.SelectedDate.Value;
@@ -88,8 +88,8 @@ namespace MVVM_App.views
             }
             if (Fromtime1.SelectedItem != null && Endtime1.SelectedItem != null)
             {
-               s1 = Fromtime1.SelectedItem.ToString();
-               s2 = Endtime1.SelectedItem.ToString();
+                FromTime = Fromtime1.SelectedItem.ToString();
+              EndTime= Endtime1.SelectedItem.ToString();
             }
             AddTimingsViewModel selectC = new AddTimingsViewModel();
             if (isValid())
@@ -97,31 +97,31 @@ namespace MVVM_App.views
                 if (Fromtime1.SelectedItem != null)
                 {
                     string s = Fromtime1.SelectedItem.ToString();
-                    DateTime dt;
-                    DateTime.TryParse(s, out dt);
-                    string Time = dt.ToString("HH:mm");
+                    DateTime DateTime1;
+                    DateTime.TryParse(s, out DateTime1);
+                    string Time = DateTime1.ToString("HH:mm");
                     string datestring = Datepicker1.SelectedDate.Value.ToString("yyyy/MM/dd");
                     DateTime parsedDate = DateTime.ParseExact(datestring, "yyyy/MM/dd", null);
-                    dat1 = DateTime.Parse(parsedDate.ToString("yyyy/MM/dd ") + Time);
+                    date1 = DateTime.Parse(parsedDate.ToString("yyyy/MM/dd ") + Time);
                 }
                 if (Endtime1.SelectedItem != null)
                 {
                     string s = Endtime1.SelectedItem.ToString();
-                    DateTime dt1;
-                    DateTime.TryParse(s, out dt1);
-                    string Time = dt1.ToString("HH:mm");
-                    dat2 = DateTime.Parse(Datepicker1.SelectedDate.Value.ToString("yyyy/MM/dd ") + Time);
+                    DateTime DateTime2;
+                    DateTime.TryParse(s, out DateTime2);
+                    string Time = DateTime2.ToString("HH:mm");
+                    date2 = DateTime.Parse(Datepicker1.SelectedDate.Value.ToString("yyyy/MM/dd ") + Time);
                 }
 
-             f= selectC.Selectcon(dat1, dat2, doctorType1.SelectedItem.ToString(), startDate, endDate);
+             Temp= selectC.Selectcon(date1, date2, doctorType1.SelectedItem.ToString(), startDate, endDate);
 
                 if (checker1.IsChecked == false)
                 {
-                    T = 1;
+                    Temp2 = 1;
                 }
-                if (f == 0)
+                if (Temp == 0)
                 {
-                    selectC.check(dat1, dat2, doctorType1.SelectedItem.ToString(), startDate, endDate, s1, s2, T);
+                    selectC.check(date1, date2, doctorType1.SelectedItem.ToString(), startDate, endDate, FromTime, EndTime, Temp2);
                 }
                 
             }

@@ -16,7 +16,7 @@
 
     <Window.Resources>
 
-        <!--<DataTemplate DataType="{x:Type viewModel:AddTimingsViewModel}">
+        <DataTemplate DataType="{x:Type viewModel:AddTimingsViewModel}">
             <local:AddTimings/>
         </DataTemplate>
 
@@ -33,7 +33,7 @@
         </DataTemplate>
         <DataTemplate DataType="{x:Type viewModel:ViewBookings}">
             <local:ViewBookings/>
-        </DataTemplate>-->
+        </DataTemplate>
 
         <Style x:Key="DropdownItemStyle" TargetType="Button">
             <Setter Property="Padding" Value="10"/>
@@ -118,7 +118,7 @@
                                 Height="35"
                                 Margin="15,25,0,40">
 
-                    <Image Source="\images\logo.png" Height="30"/>
+                    <Image Source="C:\Users\arjkr\source\repos\MVVM_App\images\Logo.png" Height="30"/>
                     <TextBlock Text="We Care"
                                    Foreground="{StaticResource titleColor2}"
                                    FontSize="20"
@@ -128,7 +128,7 @@
                                    Margin="10,0,0,0"/>
                 </StackPanel>
                 <RadioButton Style="{StaticResource menuButton}"
-                                 Tag="{StaticResource color2}"
+                                 Tag="{StaticResource primaryBackColor1}"
                                  Command="{Binding ShowBookings}">
                     <StackPanel Orientation="Horizontal">
                         <fa:FontAwesome Icon="Book" Margin="10,2,0,0" />
@@ -146,7 +146,7 @@
                 </RadioButton>
                 
                 <RadioButton Style="{StaticResource menuButton}"
-                                 Tag="{StaticResource primaryBackColor1}"
+                                 Tag="{StaticResource primaryBackColor2}"
                                  Command="{Binding ShowAddDoctorCommand}">
                     <StackPanel Orientation="Horizontal">
                         <fa:FontAwesome Icon="User"  Margin="15,2,0,0" />
@@ -154,7 +154,7 @@
                     </StackPanel>
                 </RadioButton>
                 <RadioButton Style="{StaticResource menuButton}"
-                                 Tag="{StaticResource primaryBackColor1}"
+                                 Tag="{StaticResource primaryBackColor2}"
                                  Command="{Binding ShowUpdateDoctorCommand}">
                     <StackPanel Orientation="Horizontal">
                         <fa:FontAwesome Icon="User"  Margin="15,2,0,0" />
@@ -162,7 +162,7 @@
                     </StackPanel>
                 </RadioButton>
                 <RadioButton Style="{StaticResource menuButton}"
-                                 Tag="{StaticResource primaryBackColor1}"
+                                 Tag="{StaticResource primaryBackColor2}"
                                  Command="{Binding ShowAddConsultCommand}">
                     <StackPanel Orientation="Horizontal">
                         <fa:FontAwesome Icon="User"  Margin="15,2,0,0" />
@@ -217,7 +217,7 @@
                     </StackPanel>
                     <StackPanel Grid.Column="0">
             </StackPanel>
-                    <Grid Grid.Row="1" Margin="0,10,0,0" Background="#281269" >
+                    <Grid Grid.Row="1" Margin="0,10,0,0" Background="#009688" >
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition/>
                             <ColumnDefinition/>
@@ -287,7 +287,7 @@
                                                     <DataTemplate>
                                                         <StackPanel Orientation="Horizontal">
 
-                                                            <Image Source="images\logout1.png" Width="16" Height="16" VerticalAlignment="Center"/>
+                                                            <Image Source="C:\Users\arjkr\source\repos\MVVM_App\images\logout1.png" Width="16" Height="16" VerticalAlignment="Center"/>
 
                                                             <TextBlock Text="Logout" VerticalAlignment="Center"/>
                                                         </StackPanel>

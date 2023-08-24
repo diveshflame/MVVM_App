@@ -3,10 +3,10 @@
 
 
         <!--Background Colors-->
-        <Color x:Key="primaryBackColor1">#0A003A</Color>
-        <Color x:Key="primaryBackColor2">#1C0E49</Color>
-        <Color x:Key="secondaryBackColor1">#24105F</Color>
-        <Color x:Key="secondaryBackColor2">#210F55</Color>
+    <Color x:Key="primaryBackColor1">#F5F5F5</Color>
+    <Color x:Key="primaryBackColor2">#E0E0E0</Color>
+    <Color x:Key="secondaryBackColor1">#009688</Color>
+    <Color x:Key="secondaryBackColor2">#26A69A</Color>
 
         <!--Window Border Colors-->
         <Color x:Key="winBorderColor1">#6D2FFF</Color>
@@ -26,17 +26,17 @@
         <SolidColorBrush x:Key="color10" Color="#FBA1AA"/>
 
         <!--Font Colors-->
-        <SolidColorBrush x:Key="titleColor1" Color="#E0E1F1"/>
-        <SolidColorBrush x:Key="titleColor2" Color="#D5CFF5"/>
-        <SolidColorBrush x:Key="titleColor3" Color="#BCBEE0"/>
-        <SolidColorBrush x:Key="plainTextColor1" Color="#9497CD"/>
-        <SolidColorBrush x:Key="plainTextColor2" Color="#7C80C2"/>
-        <SolidColorBrush x:Key="plainTextColor3" Color="#7376BD"/>
+    <SolidColorBrush x:Key="titleColor1" Color="#B0BEC5"/>
+        <SolidColorBrush x:Key="titleColor2" Color="White"/>
+        <SolidColorBrush x:Key="titleColor3" Color="white"/>
+        <SolidColorBrush x:Key="plainTextColor1" Color="#ffff"/>
+        <SolidColorBrush x:Key="plainTextColor2" Color="#ffff"/>
+        <SolidColorBrush x:Key="plainTextColor3" Color="#ffff"/>
 
         <!--Panel Colors-->
-        <SolidColorBrush x:Key="panelColor" Color="#200F53"/>
-        <SolidColorBrush x:Key="panelOverColor" Color="#281269"/>
-        <SolidColorBrush x:Key="panelActiveColor" Color="#2B1372"/>
+        <SolidColorBrush x:Key="panelColor" Color="White"/>
+    <SolidColorBrush x:Key="panelOverColor" Color="#00897B"/>
+    <SolidColorBrush x:Key="panelActiveColor" Color="#009688"/>
 
         <!--Button Colors-->
         <!--TextBox Colors-->
