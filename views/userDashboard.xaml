@@ -252,7 +252,7 @@
                                      StrokeThickness="2"
                                      >
                                                 <Ellipse.Fill>
-                                                    <ImageBrush ImageSource="C:\Users\divsh\source\repos\MVVM_Main_App\Images\BoyIcon.png"/>
+                                                    <ImageBrush ImageSource="C:\Users\ashal\source\repos\MVVM_App\images\arjun12 (4).png"/>
                                                 </Ellipse.Fill>
                                             </Ellipse>
                                         </DataTemplate>

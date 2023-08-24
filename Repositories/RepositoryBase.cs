@@ -14,7 +14,7 @@ namespace MVVM_App.Repositories
         public RepositoryBase()
         {
 
-            con = @"Server=localhost;Port=5432;User Id=postgres;Password=pass;Database=postgres";
+            con = @"Server=localhost;Port=5432;User Id=postgres;Password=Ashritha@2000;Database=WeCareDB;";
         }
       protected NpgsqlConnection GetConnection()
         {

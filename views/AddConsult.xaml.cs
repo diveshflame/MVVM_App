@@ -31,7 +31,7 @@ namespace MVVM_App.views
         {
             if (string.IsNullOrWhiteSpace(addConsultant.Text))
             {
-                MessageBox.Show("Please enter Valid Consultation Type!!", "Error Message");
+                MessageBox.Show("Please enter a Valid Department Type!!", "Error Message");
                 return;
             }
             AddConsultViewModel add= new AddConsultViewModel();
