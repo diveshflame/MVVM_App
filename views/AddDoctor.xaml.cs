@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -29,8 +30,41 @@ namespace MVVM_App.views
 
         private void btn1_Click(object sender, RoutedEventArgs e)
         {
-            AddDoctorViewModel add = new AddDoctorViewModel();
-            add.Insert(Doctor.Text,ConsultType.SelectedItem.ToString());
+            if (isValid())
+            {
+                AddDoctorViewModel add = new AddDoctorViewModel();
+                add.Insert(Doctor.Text, ConsultType.SelectedItem.ToString());
+            }
+        }
+        public bool isValid()
+        {
+
+            /* if (timeslot.SelectedItem.ToString() == string.Empty)
+             {
+                 MessageBox.Show("Timeslot is required", "Failed", MessageBoxButton.OK, MessageBoxImage.Error);
+                 return false;
+             }*/
+            int b = 0;
+            string expression = "^(?!^\\.)(?!.*\\d)[a-zA-Z.]*$";
+            Regex NamePattern = new Regex(expression);
+            if (NamePattern.IsMatch(Doctor.Text))
+            {
+                b = 1;
+            }
+            if (Doctor.Text == string.Empty || b == 0)
+            {
+                MessageBox.Show("Please Enter a valid Doctor Name", "Failed", MessageBoxButton.OK, MessageBoxImage.Error);
+                return false;
+            }
+
+            if (ConsultType.SelectedItem == null)
+            {
+                MessageBox.Show("Consult Type is required", "Failed", MessageBoxButton.OK, MessageBoxImage.Error);
+                return false;
+            }
+
+            return true;
+
         }
     }
 }
