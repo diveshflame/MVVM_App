@@ -3,6 +3,7 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:fa="http://schemas.fontawesome.io/icons/"
         xmlns:local="clr-namespace:MVVM_App.views"
         xmlns:viewModels="clr-namespace:MVVM_App.ViewModels"
         xmlns:CustomControls="clr-namespace:MVVM_App.CustomControls"
@@ -86,16 +87,56 @@
 
                 <TextBlock  Grid.Row="9" Grid.Column="0" Text="Confirm Password:" />
                 <TextBox Name="confirmTxtbox"  Grid.Row="9" Grid.Column="2" Text="{Binding UserDetails.ConfirmPassword, UpdateSourceTrigger=PropertyChanged}" Margin="20,3,15,20"  />
-                
-                <Button  Grid.Row="9" Grid.Column="2" Content="M" Height="20" Width="20" HorizontalAlignment="Right" Click="MaskButton_Click" Margin="0 0 0 0"/>
-                
+
+                <Button Grid.Row="9" Grid.Column="2"
+                         FontSize="14" Click="MaskButton_Click" 
+                        Style="{StaticResource iconButton2}" Margin="350,3,10,23"
+                                   >
+                    <fa:FontAwesome Icon="Eye" 
+                                     RenderTransformOrigin="-0.367,0.659" />
+                </Button>
+
+
                 <Label Grid.Row="9" Grid.Column="1" Content=":" Foreground="Black" />
 
-                <Button   Grid.Column="2" Grid.Row="10" Grid.RowSpan="3" Width="80" Height="23" FontSize="14" 
+
+
+                <!--Submit Button-->
+                <Button   Grid.Column="2" Grid.Row="10" Grid.RowSpan="3" Width="80" 
+                          Height="23" FontSize="14" 
                             FontWeight="SemiBold" 
                             BorderBrush="Black"
                             BorderThickness="1" Foreground="White" 
                          Content="Submit" Command="{Binding RegisterCommand}" HorizontalAlignment="Center">
+                    <Button.Style>
+                        <Style TargetType="Button">
+                            <Setter Property="Background" Value="DarkCyan"/>
+                            <Style.Triggers>
+                                <Trigger Property="IsMouseOver" Value="True">
+                                    <Setter Property="Background" Value="DarkGreen"/>
+                                </Trigger>
+                            </Style.Triggers>
+                        </Style>
+                    </Button.Style>
+
+                    <Button.Template>
+                        <ControlTemplate TargetType="Button">
+                            <Border Background="{TemplateBinding Background}" 
+                                        BorderThickness="{TemplateBinding BorderThickness}" 
+                                        BorderBrush="{TemplateBinding BorderBrush}"
+                                        CornerRadius="5">
+                                <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                            </Border>
+                        </ControlTemplate>
+                    </Button.Template>
+                </Button>
+
+                <!--Button to go back-->
+                <Button   Grid.Column="2" Grid.Row="10" Width="80" Height="23" FontSize="14" 
+                            FontWeight="SemiBold" 
+                            BorderBrush="Black" Click="Button_Click"
+                            BorderThickness="1" Foreground="White" 
+                         Content="Login Page" HorizontalAlignment="Left" Margin="269,12,0,10" RenderTransformOrigin="1.037,-0.02">
                     <Button.Style>
                         <Style TargetType="Button">
                             <Setter Property="Background" Value="DarkCyan"/>
