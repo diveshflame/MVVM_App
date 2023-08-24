@@ -22,12 +22,39 @@ namespace MVVM_App.views
     public partial class RegistrationPage : Window
     {
         private SecureString enteredPassword = new SecureString();
+        private bool isMasked = false;
+        private string originalText;
 
         public RegistrationPage()
         {
             InitializeComponent();
         }
 
+        private void MaskButton_Click(object sender, RoutedEventArgs e)
+        {
+            if (!isMasked)
+            {
+                originalText = confirmTxtbox.Text;
+                confirmTxtbox.Text = MaskText(confirmTxtbox.Text);
+            }
+            else
+            {
+                confirmTxtbox.Text = originalText;
+            }
 
+            isMasked = !isMasked;
+        }
+        private string MaskText(string input)
+        {
+            // Replace each character with an asterisk
+            return new string('*', input.Length);
+        }
+
+        private string UnmaskText(string input)
+        {
+            // Simply return the input
+            return input.Replace("*", "");
+        }
     }
+
 }

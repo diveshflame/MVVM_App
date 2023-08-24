@@ -149,7 +149,7 @@
 
                     <TextBlock  Margin="0,10,0,0"  VerticalAlignment="Center" HorizontalAlignment="Center">
                     <Hyperlink NavigateUri=""  >
-                        <Run Text="Forgot Password?" FontSize="15"/>
+                        <Run MouseDown="Run_MouseDown"  Text="Forgot Password?" FontSize="15"/>
                     </Hyperlink>
                     </TextBlock>
 

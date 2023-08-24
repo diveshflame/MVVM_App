@@ -23,6 +23,9 @@ namespace MVVM_App.Models
         private string _password;
         private string _confirmPassword;
 
+        private string _changeUsername;
+        private string _changePassword;
+
         protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
@@ -33,7 +36,7 @@ namespace MVVM_App.Models
         {
             get { return _username; }
             set { _username = value;
-                OnPropertyChanged();
+                OnPropertyChanged(nameof(Username));
             }
             
 
@@ -106,7 +109,8 @@ namespace MVVM_App.Models
             }
         }
 
-
+        public string ChangeUsername { get { return _changeUsername; } set { _changeUsername = value; OnPropertyChanged(); } }
+        public string ChangePassword { get { return _changePassword; } set { _changePassword = value; OnPropertyChanged(); } }
     }
 }
 

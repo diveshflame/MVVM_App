@@ -29,6 +29,20 @@ namespace MVVM_App
                     loginview.Close();
                 }
             };
+
+
+            var registerView = new RegistrationPage();
+            registerView.Show();
+
+            registerView.IsVisibleChanged += (s, ev) =>
+            {
+                if (registerView.IsVisible == false)
+                {
+                    var mainview = new Window1();
+                    mainview.Show();
+                    registerView.Close();
+                }
+            };
         }
 
     }

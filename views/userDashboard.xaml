@@ -254,7 +254,7 @@
                                      StrokeThickness="2"
                                      >
                                                 <Ellipse.Fill>
-                                                    <ImageBrush ImageSource="C:\Users\arjkr\source\repos\MVVM_App\images\arjun12 (4).png"/>
+                                                    <ImageBrush ImageSource="C:\Users\divsh\source\repos\MVVM_Main_App\Images\BoyIcon.png"/>
                                                 </Ellipse.Fill>
                                             </Ellipse>
                                         </DataTemplate>
@@ -272,7 +272,7 @@
                                                     <DataTemplate>
                                                         <StackPanel Orientation="Horizontal">
 
-                                                            <Image Source="C:\Users\arjkr\source\repos\MVVM_App\images\logout1.png" Width="16" Height="16" VerticalAlignment="Center"/>
+                                                            <Image Source="C:\Users\divsh\source\repos\MVVM_Main_App\Images\logout1.pngg" Width="16" Height="16" VerticalAlignment="Center"/>
 
                                                             <TextBlock Text="Logout" VerticalAlignment="Center"/>
                                                         </StackPanel>

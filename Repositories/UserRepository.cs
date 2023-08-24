@@ -30,7 +30,7 @@ namespace MVVM_App.Repositories
                     int count = 0;
                     command.Parameters.AddWithValue("@UserName", credential.UserName);
                     command.Parameters.AddWithValue("@Password", credential.Password);
-                    // int count = Convert.ToInt32(command.ExecuteScalar());
+
                     using (command)
                     {
                         using (NpgsqlDataReader reader = command.ExecuteReader())
@@ -61,6 +61,8 @@ namespace MVVM_App.Repositories
             using (var connection = GetConnection())
                 using(var command = new NpgsqlCommand())
             {
+                var command2 = new NpgsqlCommand(); 
+                command2.Connection = connection;
                 connection.Open();
                 command.Connection = connection;
                 command.CommandText = "select * from userdetails where username=@username and password=@password and super_user=0";
@@ -68,6 +70,15 @@ namespace MVVM_App.Repositories
                 command.Parameters.Add("@password", NpgsqlDbType.Varchar).Value = credential.Password;
 
                 validUser = command.ExecuteScalar() == null ? false : true;
+
+                //Setting Active session of user to 1 (True)
+                if (validUser)
+                {
+                    command.CommandText = "update userdetails SET active_session = 1 where username=@username AND password=@password";
+                    command2.CommandText= "update userDetails SET Active_session = 0";
+                    command2.ExecuteNonQuery();
+                    command.ExecuteNonQuery();
+                }
             }
             return validUser;
         }

@@ -10,15 +10,22 @@ using Npgsql;
 using MVVM_App.Models;
 using System.Windows;
 using MVVM_App.views;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.ListView;
+using System.Text.RegularExpressions;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.StartPanel;
+using System.Security.Principal;
+using System.Threading;
 
 namespace MVVM_App.ViewModels
 {
-    public class RegistrationViewModel : BaseViewModel, INotifyDataErrorInfo
+    public class RegistrationViewModel : BaseViewModel/*, INotifyDataErrorInfo*/
     {
         private UserDetails _userDetails;
         private Dictionary<string, List<string>> _validationErrors;
+        private bool _isViewVisible = true;
 
         public bool HasErrors => _validationErrors.Values.Any(list => list != null && list.Count > 0);
+        public bool IsViewVisible { get => _isViewVisible; set { _isViewVisible = value; OnPropertyChanged(nameof(IsViewVisible)); } }
 
 
         public UserDetails UserDetails
@@ -34,16 +41,20 @@ namespace MVVM_App.ViewModels
         public ICommand RegisterCommand { get; private set; }
         public IEnumerable<string> Genders { get; } = new List<string> { "Male", "Female", "Other" };
 
+        
+
         public event EventHandler<DataErrorsChangedEventArgs> ErrorsChanged;
+       
+
         private void RaiseErrorsChanged(string propertyName) => ErrorsChanged?.Invoke(this, new DataErrorsChangedEventArgs(propertyName));
 
 
         public RegistrationViewModel()
         {
             UserDetails = new UserDetails();
-            RegisterCommand = new RelayCommand(Register, CanRegister);
+            RegisterCommand = new RelayCommand(Validations, CanRegister);
             _validationErrors = new Dictionary<string, List<string>>();
-            UserDetails.PropertyChanged += ValidateProperty;
+            //UserDetails.PropertyChanged += ValidateProperty;
         }
 
         private bool CanRegister()
@@ -81,8 +92,15 @@ namespace MVVM_App.ViewModels
                             cmd.Parameters.AddWithValue("password", UserDetails.Password);
 
                             cmd.ExecuteNonQuery();
+
+                            Thread.CurrentPrincipal = new GenericPrincipal(
+                   new GenericIdentity(UserDetails.Username), null);
+
                             Window1 loadLogin = new Window1();
-                            loadLogin.Show();  
+                            loadLogin.Show();
+
+                            IsViewVisible = false;
+
                         }
                     }
                     
@@ -96,36 +114,135 @@ namespace MVVM_App.ViewModels
             }
         }
 
-        private void ValidateProperty(object sender, PropertyChangedEventArgs e)
+        //private void ValidateProperty(object sender, PropertyChangedEventArgs e)
+        //{
+        //    if (_validationErrors.ContainsKey(e.PropertyName))
+        //    {
+        //        _validationErrors.Remove(e.PropertyName);
+        //        RaiseErrorsChanged(e.PropertyName);
+        //    }
+
+        //    var context = new ValidationContext(UserDetails) { MemberName = e.PropertyName };
+        //    var validationResults = new List<ValidationResult>();
+        //    Validator.TryValidateProperty(UserDetails.GetType().GetProperty(e.PropertyName).GetValue(UserDetails), context, validationResults);
+
+        //    if (validationResults.Count > 0)
+        //    {
+        //        _validationErrors.Add(e.PropertyName, new List<string>());
+        //        foreach (var validationResult in validationResults)
+        //        {
+        //            _validationErrors[e.PropertyName].Add(validationResult.ErrorMessage);
+        //        }
+        //        RaiseErrorsChanged(e.PropertyName);
+        //    }
+        //}
+
+        //public System.Collections.IEnumerable GetErrors(string propertyName)
+        //{
+        //    if (string.IsNullOrEmpty(propertyName) || !_validationErrors.ContainsKey(propertyName))
+        //    {
+        //        return null;
+        //    }
+        //    return _validationErrors[propertyName];
+        //}
+
+        private void Validations()
         {
-            if (_validationErrors.ContainsKey(e.PropertyName))
-            {
-                _validationErrors.Remove(e.PropertyName);
-                RaiseErrorsChanged(e.PropertyName);
-            }
+            string phoneNumber = UserDetails.PhoneNumber;
+            string email = UserDetails.Email;
+            string pass = UserDetails.Password;
+            string phoneFormat = "^[6789]\\d{9}$"; //Phone number Regex
+            string emailFormat = @"^[^@\s]+@[^@\s]+\.[^@\s]+$"; //Email regex
+            Regex phonePattern = new Regex(phoneFormat);
+            Regex emailPattern = new Regex(emailFormat);
+            Regex password = new Regex(@"^(?=.*\d)(?=.*[A-Z])(?=.*[a-z])(?=.*[^\w\d\s:])([^\s]){8,16}$"); //password regex
 
-            var context = new ValidationContext(UserDetails) { MemberName = e.PropertyName };
-            var validationResults = new List<ValidationResult>();
-            Validator.TryValidateProperty(UserDetails.GetType().GetProperty(e.PropertyName).GetValue(UserDetails), context, validationResults);
-
-            if (validationResults.Count > 0)
+            if (UserDetails.Username != null)
             {
-                _validationErrors.Add(e.PropertyName, new List<string>());
-                foreach (var validationResult in validationResults)
+                if (UserDetails.FullName != null)
                 {
-                    _validationErrors[e.PropertyName].Add(validationResult.ErrorMessage);
-                }
-                RaiseErrorsChanged(e.PropertyName);
-            }
-        }
+                    if (UserDetails.Gender != null)
+                    {
+                        if (UserDetails.PhoneNumber != null)
+                        {
+                            if (UserDetails.Email != null)
+                            {
+                                if (emailPattern.IsMatch(email))
+                                {
+                                    if (phonePattern.IsMatch(phoneNumber))
+                                    {
+                                        if (UserDetails.Password != null)
+                                        {
+                                            if (UserDetails.ConfirmPassword != null)
+                                            {
+                                                if (password.IsMatch(pass))
+                                                {
+                                                    if (UserDetails.Password != string.Empty)
+                                                    {
+                                                        if (UserDetails.Password == UserDetails.ConfirmPassword)
+                                                        {
+                                                            Register();      // Call to Insert User Data into Database
+                                                        }
+                                                        else
+                                                        {
+                                                            MessageBox.Show("Passwords dont match");
+                                                        }
+                                                    }
+                                                    else
+                                                    {
+                                                        MessageBox.Show("Password Cannot be Empty");
+                                                    }
+                                                }
+                                                else
+                                                {
+                                                    MessageBox.Show("Password should have 1 Uppercase/1 Special character/1 digit/7 characters");
+                                                }
+                                            }
+                                            else
+                                            {
+                                                MessageBox.Show("Enter confirm password");
+                                            }
+                                        }
+                                        else
+                                        {
+                                            MessageBox.Show("Enter Password");
+                                        }
+                                    }
 
-        public System.Collections.IEnumerable GetErrors(string propertyName)
-        {
-            if (string.IsNullOrEmpty(propertyName) || !_validationErrors.ContainsKey(propertyName))
-            {
-                return null;
+                                    else
+                                    {
+                                        MessageBox.Show("Invalid Phone Number");
+                                    }
+                                }
+                                else
+                                {
+                                    MessageBox.Show("Invalid Email Adress");
+                                }
+
+                            }
+                            else
+                            {
+                                MessageBox.Show("Enter Email Adress");
+                            }
+                        }
+                        else
+                        {
+                            MessageBox.Show("Enter Phone Number");
+                        }
+                    }
+                    else
+                    {
+                        MessageBox.Show("Enter Your Gender");
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("Enter Full Name");
+                }               
             }
-            return _validationErrors[propertyName];
+            else { MessageBox.Show("Please enter your name"); }
         }
     }
+    
 }
+
