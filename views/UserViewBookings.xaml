@@ -93,7 +93,7 @@
                         <DataTemplate x:Name="Delete_Appnt">
                             <Button Click="Deleteappoitment" Command="{Binding DataContext.ViewUserBookings, RelativeSource={RelativeSource AncestorType={x:Type DataGrid}}}"
                                 CommandParameter="{Binding}" Width="90" Height="30" Opacity="0.8" Background="Transparent" BorderBrush="Transparent" Cursor="Hand"  
-                                    Visibility="{Binding Isbuttonvisible, Converter={StaticResource BooleanToVisibilityConverter}}" >
+                                   >
                                 <fa:ImageAwesome Icon="TrashOutline" Foreground="red" Width="90" Height="25" ></fa:ImageAwesome>
                             </Button>
                         </DataTemplate>

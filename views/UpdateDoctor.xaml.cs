@@ -1,6 +1,8 @@
-﻿using System;
+﻿using MVVM_App.ViewModels;
+using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Numerics;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -25,9 +27,7 @@ namespace MVVM_App.views
             InitializeComponent();
         }
 
-        private void UpdateDoctorButton(object sender, RoutedEventArgs e)
-        {
+       
 
-        }
     }
 }

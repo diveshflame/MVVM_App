@@ -16,5 +16,6 @@ namespace MVVM_App.Models
         public string Consultant_Desc { get; set; }
         public DateTime StartTime { get; set; }
         public DateTime EndTime { get; set; }
+        public bool Isbuttonvisible { get; set; }   
     }
 }
