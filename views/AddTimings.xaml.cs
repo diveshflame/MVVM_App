@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -70,6 +71,8 @@ namespace MVVM_App.views
 
             }
         }
+
+    
         private void btn1_Click(object sender, RoutedEventArgs e)
         {
             int Temp2 = 0;//variables to store checker status
@@ -89,7 +92,7 @@ namespace MVVM_App.views
             if (Fromtime1.SelectedItem != null && Endtime1.SelectedItem != null)
             {
                 FromTime = Fromtime1.SelectedItem.ToString();
-              EndTime= Endtime1.SelectedItem.ToString();
+                EndTime= Endtime1.SelectedItem.ToString();
             }
             AddTimingsViewModel selectC = new AddTimingsViewModel();
             if (isValid())

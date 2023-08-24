@@ -19,8 +19,8 @@ namespace MVVM_App.ViewModels
         int a = 0;
         public List<string> DoctorNames { get; set; }
         public List<string> Consult { get; set; }
-        public List<TimeSpan> StartTime { get; set; }
-        public List<TimeSpan> EndTime { get; set; }
+        public List<string> StartTime { get; set; }
+        public List<string> EndTime { get; set; }
         public AddTimingsViewModel()
         {
             DoctorNames = repocall.get();
