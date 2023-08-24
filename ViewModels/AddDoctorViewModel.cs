@@ -27,6 +27,7 @@ namespace MVVM_App.ViewModels
             addRepo.addDoctor(text,v);
         }
 
+
         
     }
 }

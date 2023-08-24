@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -28,8 +29,21 @@ namespace MVVM_App.views
 
         private void btn1_Click(object sender, RoutedEventArgs e)
         {
+            if (string.IsNullOrWhiteSpace(addConsultant.Text))
+            {
+                MessageBox.Show("Please enter Valid Consultation Type!!", "Error Message");
+            }
             AddConsultViewModel add= new AddConsultViewModel();
             add.Insert(addConsultant.Text);
+        }
+        private void TextBox_Consultation(object sender, TextCompositionEventArgs e)
+        {
+            Regex regex = new Regex("[^a-zA-Z]+");
+            // If the input contains characters other than letters, block it.
+            if (regex.IsMatch(e.Text))
+            {
+                e.Handled = true;
+            }
         }
 
     }

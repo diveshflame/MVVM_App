@@ -27,7 +27,7 @@
 					</Grid.ColumnDefinitions>
 					<StackPanel Grid.Row="0" Orientation="Horizontal" HorizontalAlignment="Left"  Margin="0,10">
 						<TextBlock x:Name="text1" Text="Enter New Consultation Type:" Width="200" VerticalAlignment="Center" FontSize="14" FontWeight="SemiBold" />
-						<TextBox x:Name="addConsultant" Margin="10,0" Width="200" Height="20" VerticalAlignment="Center"></TextBox>
+                        <TextBox x:Name="addConsultant" Margin="10,0" Width="200" Height="20" PreviewTextInput="TextBox_Consultation" VerticalAlignment="Center"></TextBox>
 					</StackPanel>
 
 					<Button x:Name="btn1"
