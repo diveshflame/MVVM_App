@@ -16,7 +16,7 @@
 
     <Window.Resources>
 
-        <!--<DataTemplate DataType="{x:Type viewModel:AddTimingsViewModel}">
+        <DataTemplate DataType="{x:Type viewModel:AddTimingsViewModel}">
             <local:AddTimings/>
         </DataTemplate>
 
@@ -33,7 +33,7 @@
         </DataTemplate>
         <DataTemplate DataType="{x:Type viewModel:ViewBookings}">
             <local:ViewBookings/>
-        </DataTemplate>-->
+        </DataTemplate>
 
         <Style x:Key="DropdownItemStyle" TargetType="Button">
             <Setter Property="Padding" Value="10"/>

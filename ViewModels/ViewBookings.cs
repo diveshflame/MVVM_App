@@ -34,8 +34,7 @@ namespace MVVM_App.ViewModels
             ViewAdminBookings = new ViewModelCommand(ExecuteViewAdminBookings);
             ViewBookingHistory = new ViewModelCommand(ExecuteViewBookingHistory);
             ViewTodayBooking = new ViewModelCommand(ExecuteViewTodayBooking);
-            //DataGridItems = new ObservableCollection<DataGridItem>();
-            //   LoadData();
+             LoadData();
         }
 
         private void ExecuteViewTodayBooking(object obj)

@@ -15,7 +15,8 @@ namespace MVVM_App.Models
         public List<TimeSpan> EndT();
 
         public List<string> getco();
-
-        public List<string> UpdateDoc();
+        public bool UpdateDoc(int Doc_id, int Consult_id);
+        int GetDoctorId(string selectedDoctorName);
+        int GetConsultantId(string selectedConsultationtype);
     }
 }

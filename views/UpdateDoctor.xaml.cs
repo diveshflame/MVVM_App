@@ -27,10 +27,7 @@ namespace MVVM_App.views
             InitializeComponent();
         }
 
-        private void UpdateDoctorButton(object sender, RoutedEventArgs e)
-        {
-            UpdateDoctorViewModel add = new UpdateDoctorViewModel();
-            //add.updatedoc(Doctor.Text, ConsultType.SelectedItem.ToString());
-        }
+       
+
     }
 }

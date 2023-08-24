@@ -1,4 +1,5 @@
-﻿using MVVM_App.Models;
+﻿using Microsoft.Identity.Client;
+using MVVM_App.Models;
 using MVVM_App.Repositories;
 using MVVM_App.ViewModels;
 using System;
@@ -7,90 +8,61 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 using System.Windows.Input;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.StartPanel;
 
 namespace MVVM_App.ViewModels
 {
    public class UpdateDoctorViewModel : ViewModelBase
     {
-
-        //public string  SelectedDocType { get; set; }
+        //Fileds
         private List<string> doctorNames;
         private List<string> consult;
+        private string selectedDoctorName;
+        private string selectedConsultationtype;
         public List<string> DoctorNames { get => doctorNames; set { doctorNames = value; OnPropertyChanged(nameof(DoctorNames)); } }
 
         public List<string> Consult { get => consult; set { consult = value; OnPropertyChanged(nameof(Consult)); } }
 
+        public string SelectedDoctorName { get => selectedDoctorName; set { selectedDoctorName = value; OnPropertyChanged(nameof(SelectedDoctorName)); } }
+        public string SelectedConsultationtype { get => selectedConsultationtype; set { selectedConsultationtype = value; OnPropertyChanged(nameof(SelectedConsultationtype)); } }
+
         //Commands
-        public ICommand UpdateDoctor;
+        public ICommand UpdateDoctor { get; }
         public IAddDocRepo addDocRepo;
+
         //Constructor
         public UpdateDoctorViewModel()
         {
-            //addDocRepo = new ();
-            //    ViewUserBookings = new ViewModelCommand(ExecuteViewUserBookings);
+            addDocRepo = new AddRepo();
+            consult = addDocRepo.getco();
+            doctorNames = addDocRepo.get();
+            UpdateDoctor = new ViewModelCommand(ExecuteUpdateDoctor);
         }
 
-        public void updatedoc(string text, string v)
+        private void ExecuteUpdateDoctor(object obj)
         {
-
-            ConsultModel consultModel = new ConsultModel();
-            consultModel.docname = text;
-            consultModel.consulD = v;
-            AddRepo addRepo = new AddRepo();
-            addRepo.addDoctor(text, v);
+            if (string.IsNullOrWhiteSpace(SelectedConsultationtype) || string.IsNullOrWhiteSpace(SelectedDoctorName))
+            {
+                MessageBox.Show("Please Select a Valid Value", "Failed", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+            else
+            {
+                int getDoctorId = addDocRepo.GetDoctorId(SelectedDoctorName);
+                int getConsultantId = addDocRepo.GetConsultantId(SelectedConsultationtype);
+                bool IsValid = addDocRepo.UpdateDoc(getDoctorId, getConsultantId);
+                if (IsValid)
+                {
+                    doctorNames.Clear();
+                    consult.Clear();
+                }
+            }
         }
-
     }
 }
 
 
-//public IAddDocRepo repocall = new AddRepo();
-//public AddDoctorViewModel()
-//{
-//    consuld = repocall.getco();
-//}
-
-//public void Insert(string text, string v)
-//{
-
-//    ConsultModel consultModel = new ConsultModel();
-//    consultModel.docname = text;
-//    consultModel.consulD = v;
-//    AddRepo addRepo = new AddRepo();
-//    addRepo.addDoctor(text, v);
-//}
-
-
-//public ICommand DeleteUserBookings { get; }
-
-//private IAdminBooking adminbooking;
 
 
 
-////constructor
-//public UserViewBookingsModel()
-//{
-//    adminbooking = new DataGridRepository();
-//    ViewUserBookings = new ViewModelCommand(ExecuteViewUserBookings);
-//    ViewUserTodayBooking = new ViewModelCommand(ExecuteViewUserTodayBooking);
-//    ViewUserBookingHistory = new ViewModelCommand(ExecuteViewUserBookingHistory);
-//    IsDataGridVisible = true;
-//    IsDataGridVisible2 = false;
-//    LoadData();
-//}
-
-
-
-//private void ExecuteViewUserBookingHistory(object obj)
-//{
-//    IsDataGridVisible = false;
-//    IsDataGridVisible2 = true;
-//    UserViewBookingsModel view = new UserViewBookingsModel();
-//    UserNewDatagridItems = new ObservableCollection<DataGridItem>();
-//    var dataGridItem = adminbooking.ViewUsersHistory();
-//    foreach (var item in dataGridItem)
-//    {
-//        UserNewDatagridItems.Add(item);
-//    }
-//}
