@@ -80,7 +80,7 @@ namespace MVVM_App.ViewModels
         private void ExecuteAddConsultView(object obj)
         {
             CurrentChildView = new AddConsultViewModel();
-            Caption = "Add Consult";
+            Caption = "Add Department";
         }
 
         private void ExecuteUpdateDoctorView(object obj)
@@ -93,7 +93,7 @@ namespace MVVM_App.ViewModels
         private void ExecuteAddTimingsView(object obj)
         {
             CurrentChildView = new AddTimingsViewModel();
-            Caption = "Add Doctor";
+            Caption = "Update Timings";
          
         }
 
