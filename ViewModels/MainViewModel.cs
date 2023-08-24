@@ -59,7 +59,7 @@ namespace MVVM_App.ViewModels
       
             ShowBookings = new ViewModelCommand(ExecuteShowBookings);
 
-            LoadCurrentUserData();
+            //LoadCurrentUserData();
         
         }
 
@@ -97,18 +97,16 @@ namespace MVVM_App.ViewModels
          
         }
 
-        private void LoadCurrentUserData()
-        {
-            var user = _userRepository.GetByUsername(Thread.CurrentPrincipal.Identity.Name);
-            if (user != null) 
-            {
+        //private void LoadCurrentUserData()
+        //{
+        //    var user = _userRepository.GetByUsername(Thread.CurrentPrincipal.Identity.Name);
+        //    if (user != null) 
+        //    {
 
-                UserAccount.Username = user.UserName;
-                UserAccount.DisplayName = $"Welcome {user.UserName};)";
-                     UserAccount.Profilepic = null;       
-            }
-           
-
-        }
+        //        UserAccount.Username = user.UserName;
+        //        UserAccount.DisplayName = $"Welcome {user.UserName};)";
+        //             UserAccount.Profilepic = null;       
+        //    }
+        //}
     }
 }

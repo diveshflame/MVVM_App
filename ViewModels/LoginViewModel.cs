@@ -11,6 +11,7 @@ using MVVM_App.ViewModels;
 using MVVM_App.Repositories;
 using MVVM_App.Models;
 using System.Security.Principal;
+using MVVM_App.views;
 
 namespace MVVM_App.ViewModels
 {
@@ -43,7 +44,7 @@ namespace MVVM_App.ViewModels
         }
 
         private void ExecuteRecoverPasswordCommand(string username,string email)
-        {
+        { 
             throw new NotImplementedException();
         }
 
@@ -67,6 +68,8 @@ namespace MVVM_App.ViewModels
             {
                 Thread.CurrentPrincipal = new GenericPrincipal(
                     new GenericIdentity(UserName), null);
+                userDashboard loginView= new userDashboard();
+                loginView.Show();
                 IsViewVisible = false;   
 
             }
@@ -74,6 +77,24 @@ namespace MVVM_App.ViewModels
             {
                 Errormessage = "Invalid Username or Password";
             }
+
+                var isSuperUser = userRepository.IsUserSuperUser(new NetworkCredential(UserName, Password));
+
+                if (isSuperUser)
+                {
+                    // Navigate to the admin page
+                    Window2 adminview = new Window2();
+                    adminview.Show();
+                IsViewVisible = false;
+            }
+                else
+                {
+                // Navigate to the user page
+                Errormessage = "Invalid Username";
+            }
+                
+
+
         }
     }
 }

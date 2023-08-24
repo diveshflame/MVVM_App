@@ -22,7 +22,7 @@ namespace MVVM_App
 
             loginview.IsVisibleChanged += (s, ev) =>
             {
-                if (loginview.IsVisible == false && loginview.IsLoaded)
+                if (loginview.IsVisible == false )
                 {
                     var mainview = new Window2();
                     mainview.Show();

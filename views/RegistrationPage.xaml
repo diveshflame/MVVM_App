@@ -1,0 +1,54 @@
+﻿<Window x:Class="MVVM_App.views.RegistrationPage"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:MVVM_App.views"
+        xmlns:viewModels="clr-namespace:MVVM_App.ViewModels"
+        xmlns:cc="clr-namespace:MVVM_App.CustomControls"
+        mc:Ignorable="d"
+        Title="Registration Page" Height="400" Width="600">
+    <Window.DataContext>
+        <viewModels:RegistrationViewModel/>
+    </Window.DataContext>
+
+    <Grid>
+        
+        <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center" Width="400">
+            <TextBlock Text="Registration Form" FontSize="20" FontWeight="Bold" Margin="0 0 0 20"/>
+
+            <TextBlock Text="Username:"/>
+            <TextBox Text="{Binding UserDetails.Username, UpdateSourceTrigger=PropertyChanged}" Margin="0 0 0 10"/>
+            <TextBlock Text="{Binding UserDetails.UsernameValidationMessage}" Foreground="Red"/>
+
+            <TextBlock Text="Full Name:"/>
+            <TextBox Text="{Binding UserDetails.FullName, UpdateSourceTrigger=PropertyChanged}" Margin="0 0 0 10"/>
+            <TextBlock Text="{Binding UserDetails.FullNameValidationMessage}" Foreground="Red"/>
+
+            <TextBlock Text="Age:"/>
+            <TextBox Text="{Binding UserDetails.Age, UpdateSourceTrigger=PropertyChanged}" Margin="0 0 0 10"/>
+            <TextBlock Text="{Binding UserDetails.AgeValidationMessage}" Foreground="Red"/>
+
+            <TextBlock Text="Gender:"/>
+            <ComboBox ItemsSource="{Binding Genders}" SelectedItem="{Binding UserDetails.Gender}" Margin="0 0 0 10"/>
+            <TextBlock Text="{Binding UserDetails.GenderValidationMessage}" Foreground="Red"/>
+
+            <TextBlock Text="Email:"/>
+            <TextBox Text="{Binding UserDetails.Email, UpdateSourceTrigger=PropertyChanged}" Margin="0 0 0 10"/>
+            <TextBlock Text="{Binding UserDetails.EmailValidationMessage}" Foreground="Red"/>
+
+            <TextBlock Text="Phone Number:"/>
+            <TextBox Text="{Binding UserDetails.PhoneNumber, UpdateSourceTrigger=PropertyChanged}" Margin="0 0 0 10"/>
+            <TextBlock Text="{Binding UserDetails.PhoneNumberValidationMessage}" Foreground="Red"/>
+
+            <TextBlock Text="Password:"/>
+			<TextBox Text="{Binding UserDetails.Password, UpdateSourceTrigger=PropertyChanged}" Margin="0 0 0 10"/>
+            <TextBlock Text="{Binding UserDetails.PasswordValidationMessage}" Foreground="Red"/>
+
+            <TextBlock Text="Confirm Password:"/>
+            <TextBox Text="{Binding UserDetails.ConfirmPassword, UpdateSourceTrigger=PropertyChanged}" Margin="0 0 0 10"/>
+
+            <Button Content="Register" Command="{Binding RegisterCommand}" HorizontalAlignment="Center"  />
+        </StackPanel>
+    </Grid>
+</Window>
