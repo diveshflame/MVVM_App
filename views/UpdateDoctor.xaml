@@ -46,7 +46,7 @@
             </StackPanel>
 
 
-            <Button x:Name="updatedoc"  Grid.Row="4" Content="Update Doctor" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="70,-30,0,-20" Padding="30 5" Width="120" Height="30" Background="#2B547E" 
+            <Button x:Name="updatedoc"  Grid.Row="4" Content="Update Doctor" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="70,-30,0,-20" Padding="30 5" Width="120" Height="30" Background="CadetBlue" 
                     Foreground="White" FontSize="16" FontWeight="Bold" BorderThickness="0" Command="{Binding UpdateDoctor}">
                 <Button.Template>
                     <ControlTemplate TargetType="Button">
