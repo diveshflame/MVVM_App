@@ -34,16 +34,13 @@ namespace MVVM_App.views
             {
                 AddDoctorViewModel add = new AddDoctorViewModel();
                 add.Insert(Doctor.Text, ConsultType.SelectedItem.ToString());
+                Doctor.Text = null;
+                ConsultType.SelectedItem = null;    
             }
         }
         public bool isValid()
         {
 
-            /* if (timeslot.SelectedItem.ToString() == string.Empty)
-             {
-                 MessageBox.Show("Timeslot is required", "Failed", MessageBoxButton.OK, MessageBoxImage.Error);
-                 return false;
-             }*/
             int b = 0;
             string expression = "^(?!^\\.)(?!.*\\d)[a-zA-Z.]*$";
             Regex NamePattern = new Regex(expression);
