@@ -15,6 +15,7 @@ namespace MVVM_App.Models
 
         public string Email { get; set; }
 
+        public bool SuperUser { get; set; }
 
     }
 }
