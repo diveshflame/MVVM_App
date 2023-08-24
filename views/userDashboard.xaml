@@ -16,11 +16,11 @@
 
    <Window.Resources>
 
-        <!--<DataTemplate DataType="{x:Type viewModel:AddTimingsViewModel}">
+        <DataTemplate DataType="{x:Type viewModel:AddTimingsViewModel}">
             <local:AddTimings/>
         </DataTemplate>
 
-        <DataTemplate DataType="{x:Type viewModel:UpdateDoctor}">
+        <DataTemplate DataType="{x:Type viewModel:UpdateDoctorViewModel}">
             <local:UpdateDoctor/>
         </DataTemplate>
 
@@ -28,9 +28,10 @@
             <local:AddConsult/>
         </DataTemplate>
 
-        <DataTemplate DataType="{x:Type viewModel:AddDoctorViewModel}">
-            <local:AddDoctor/>
-        </DataTemplate>-->
+        <DataTemplate DataType="{x:Type viewModel:BookAppointmentViewModel}">
+            <local:BookAppointment/>
+        </DataTemplate>
+
         <DataTemplate DataType="{x:Type viewModel:UserViewBookingsModel}">
             <local:UserViewBookings/>
         </DataTemplate>
@@ -112,8 +113,6 @@
             </Border>
 
             <StackPanel Grid.Column="0">
-
-                <!--Logo-->
                 <StackPanel Orientation="Horizontal"
                                 Height="35"
                                 Margin="15,25,0,40">
@@ -134,19 +133,21 @@
                         <TextBlock Text="Home" Margin="10,0,0,0"/>
                     </StackPanel>
                 </RadioButton>
-                <RadioButton Style="{StaticResource menuButton}"
+        <RadioButton Style="{StaticResource menuButton}"
                                  Tag="{StaticResource primaryBackColor1}"
                                  IsChecked="True"
-                                  Command="{Binding ShowBookApp}" >
-                    <StackPanel Orientation="Horizontal">
-                        <fa:FontAwesome Icon="FileText" Margin="10,2,0,0"/>
-                        <TextBlock Text="Book Appointments" Margin="10,0,0,0"/>
-                    </StackPanel>
-                </RadioButton>
+                                  Command="{Binding ShowBookApp}">
 
-                <RadioButton Style="{StaticResource menuButton}"
+        <StackPanel Orientation="Horizontal">
+            <fa:FontAwesome Icon="FileText" Margin="10,2,0,0"/>
+            <TextBlock Text="Book Appointments" Margin="10,0,0,0"/>
+        </StackPanel>
+</RadioButton>
+
+        <RadioButton Style="{StaticResource menuButton}"
                                  Tag="{StaticResource primaryBackColor1}"
-                                  Command="{Binding ShowUserBookings}">
+                                 
+                                 Command="{Binding ShowUserBookings}">
                     <StackPanel Orientation="Horizontal">
                         <fa:FontAwesome Icon="User"  Margin="15,2,0,0" />
                         <TextBlock Text="View Appointments"  Margin="10,0,0,0"/>
@@ -201,7 +202,7 @@
                     </StackPanel>
                     <StackPanel Grid.Column="0">
                     </StackPanel>
-                    <Grid Grid.Row="1" Margin="0,10,0,0" Background="#281269" >
+                    <Grid Grid.Row="1" Margin="0,10,0,0" Background="Teal" >
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition/>
                             <ColumnDefinition/>
@@ -253,7 +254,7 @@
                                      StrokeThickness="2"
                                      >
                                                 <Ellipse.Fill>
-                                                    <ImageBrush ImageSource="C:\Users\ashal\source\repos\MVVM_App\images\arjun12 (4).png"/>
+                                                    <ImageBrush ImageSource="C:\Users\arjkr\source\repos\MVVM_App\images\arjun12 (4).png"/>
                                                 </Ellipse.Fill>
                                             </Ellipse>
                                         </DataTemplate>
@@ -271,7 +272,7 @@
                                                     <DataTemplate>
                                                         <StackPanel Orientation="Horizontal">
 
-                                                            <Image Source="images\logout1.png" Width="16" Height="16" VerticalAlignment="Center"/>
+                                                            <Image Source="C:\Users\arjkr\source\repos\MVVM_App\images\logout1.png" Width="16" Height="16" VerticalAlignment="Center"/>
 
                                                             <TextBlock Text="Logout" VerticalAlignment="Center"/>
                                                         </StackPanel>

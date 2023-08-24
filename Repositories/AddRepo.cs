@@ -294,8 +294,9 @@ namespace MVVM_App.Repositories
 
         }
 
-        public void selectionconchanged(DateTime dat1, DateTime dat2, string s, DateTime startDate, DateTime EndDate)
+        public int selectionconchanged(DateTime dat1, DateTime dat2,string s,DateTime startDate,DateTime EndDate)
         {
+            int keeptab = 0;
 
 
             int b = 0;
@@ -339,9 +340,15 @@ namespace MVVM_App.Repositories
             }
             if (matchingCount > 0)
             {
+                keeptab = 1;
+               
                 MessageBox.Show("Already added timings", "Failed", MessageBoxButton.OK, MessageBoxImage.Error);
-                return;
+          
+             
             }
+
+            return keeptab;
+
 
         }
 
@@ -356,72 +363,73 @@ namespace MVVM_App.Repositories
             DateTime dc2 = DateTime.Now;
             DateTime dc3 = DateTime.Now;
             int b = 0;
-            using (var connection = GetConnection()) // You need to replace GetConnection() with your actual connection creation logic
-            using (var command = new NpgsqlCommand())
-            {
-                connection.Open();
-                command.Connection = connection;
-                command.CommandText = "SELECT doctor_Id from doctor_table where @d=Doctor_Name";
-                command.Parameters.Add(new NpgsqlParameter("@d", s));
-                using (NpgsqlDataReader reader = command.ExecuteReader())
+            
+                using (var connection = GetConnection()) // You need to replace GetConnection() with your actual connection creation logic
+                using (var command = new NpgsqlCommand())
                 {
-                    while (reader.Read())
+                    connection.Open();
+                    command.Connection = connection;
+                    command.CommandText = "SELECT doctor_Id from doctor_table where @d=Doctor_Name";
+                    command.Parameters.Add(new NpgsqlParameter("@d", s));
+                    using (NpgsqlDataReader reader = command.ExecuteReader())
                     {
-                        // Add the value from the "Doctor_Name" column to the j list
-                        b = reader.GetInt32(0);
+                        while (reader.Read())
+                        {
+                            // Add the value from the "Doctor_Name" column to the j list
+                            b = reader.GetInt32(0);
 
-                        // Assuming the column is of string type
+                            // Assuming the column is of string type
+                        }
                     }
                 }
-            }
-            for (DateTime currentDate = startDate; currentDate <= EndDate; currentDate = currentDate.AddDays(1))
-            {
-
-
-
-                if (currentDate.DayOfWeek != DayOfWeek.Saturday && currentDate.DayOfWeek != DayOfWeek.Sunday)
+                for (DateTime currentDate = startDate; currentDate <= EndDate; currentDate = currentDate.AddDays(1))
                 {
-                    if (FromTime != null)
-                    {
-                        string s1 = FromTime;
-                        DateTime dt;
-                        DateTime.TryParse(s1, out dt);
-                        string Time = dt.ToString("HH:mm:ss");
-                        d1 = DateTime.Parse(currentDate.ToString("dd/MM/yyyy ") + Time);
-                    }
-                    if (EndTime != null)
-                    {
-                        string s1 = EndTime;
-                        DateTime dt1;
-                        DateTime.TryParse(s1, out dt1);
-                        string Time = dt1.ToString("HH:mm:ss");
-                        d2 = DateTime.Parse(currentDate.ToString("dd/MM/yyyy ") + Time);
-                    }
 
-                    if (t == 1)
+
+
+                    if (currentDate.DayOfWeek != DayOfWeek.Saturday && currentDate.DayOfWeek != DayOfWeek.Sunday)
                     {
-                        dc1 = d1;
-                        dc2 = d2;
-                        dc3 = d1.AddHours(1);
-                        while (dc1 != dc2)
+                        if (FromTime != null)
                         {
-                            using (NpgsqlConnection conn = GetConnection())
-                            {
-                                string insert = "INSERT INTO doctor_availability (doctor_id,available_starttime,available_endtime) VALUES (@doctorid,@starttime,@endtime)";
-                                NpgsqlCommand cmd = new NpgsqlCommand(insert, conn);
-                                cmd.Parameters.Add(new NpgsqlParameter("@doctorid", b));
-                                cmd.Parameters.Add(new NpgsqlParameter("@starttime", dc1));
-                                cmd.Parameters.Add(new NpgsqlParameter("@endtime", dc3));
-
-                                conn.Open();
-                                cmd.ExecuteNonQuery();
-
-                                conn.Close();
-                            }
-
-                            dc1 = dc1.AddHours(1);
-                            dc3 = dc3.AddHours(1);
+                            string s1 = FromTime;
+                            DateTime dt;
+                            DateTime.TryParse(s1, out dt);
+                            string Time = dt.ToString("HH:mm:ss");
+                            d1 = DateTime.Parse(currentDate.ToString("dd/MM/yyyy ") + Time);
                         }
+                        if (EndTime != null)
+                        {
+                            string s1 = EndTime;
+                            DateTime dt1;
+                            DateTime.TryParse(s1, out dt1);
+                            string Time = dt1.ToString("HH:mm:ss");
+                            d2 = DateTime.Parse(currentDate.ToString("dd/MM/yyyy ") + Time);
+                        }
+
+                        if (t == 1)
+                        {
+                            dc1 = d1;
+                            dc2 = d2;
+                            dc3 = d1.AddHours(1);
+                            while (dc1 != dc2)
+                            {
+                                using (NpgsqlConnection conn = GetConnection())
+                                {
+                                    string insert = "INSERT INTO doctor_availability (doctor_id,available_starttime,available_endtime) VALUES (@doctorid,@starttime,@endtime)";
+                                    NpgsqlCommand cmd = new NpgsqlCommand(insert, conn);
+                                    cmd.Parameters.Add(new NpgsqlParameter("@doctorid", b));
+                                    cmd.Parameters.Add(new NpgsqlParameter("@starttime", dc1));
+                                    cmd.Parameters.Add(new NpgsqlParameter("@endtime", dc3));
+
+                                    conn.Open();
+                                    cmd.ExecuteNonQuery();
+
+                                    conn.Close();
+                                }
+
+                                dc1 = dc1.AddHours(1);
+                                dc3 = dc3.AddHours(1);
+                            }
 
                         MessageBox.Show("Successfully Registered", "Saved", MessageBoxButton.OK, MessageBoxImage.Information);
                     }

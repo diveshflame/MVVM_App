@@ -16,7 +16,7 @@ namespace MVVM_App.ViewModels
     public class AddTimingsViewModel : ViewModelBase
     {
         public IAddDocRepo repocall = new AddRepo();
-
+        int a = 0;
         public List<string> DoctorNames { get; set; }
         public List<string> Consult { get; set; }
         public List<TimeSpan> StartTime { get; set; }
@@ -31,7 +31,7 @@ namespace MVVM_App.ViewModels
 
 
         }
-        public List<string> selectdoc(string text)
+        public List<string> selectDoc(string text)
         {
             AddRepo addRepo = new AddRepo();
 
@@ -41,11 +41,11 @@ namespace MVVM_App.ViewModels
 
         }
 
-        public void Selectcon(DateTime dat1, DateTime dat2, string s, DateTime startDate, DateTime endDate)
+        public int Selectcon(DateTime dat1, DateTime dat2, string s, DateTime startDate, DateTime endDate)
         {
             AddRepo addRepo = new AddRepo();
-            addRepo.selectionconchanged(dat1, dat2, s, startDate, endDate);
-          
+           a= addRepo.selectionconchanged(dat1, dat2, s, startDate, endDate);
+            return a;
         }
 
         public void check(DateTime dat1, DateTime dat2, string s, DateTime startDate, DateTime endDate, string FromTime, string EndTime,int T)
