@@ -20,10 +20,10 @@ namespace MVVM_App.ViewModels
         private ObservableCollection<DataGridItem> userNewDatagridItems;
         private bool _isDataGridVisible = true;
         private bool _isDataGridVisible2 = true;
-        private bool _isbuttonvisible = true;
+        //private bool _isbuttonvisible = false;
         public bool IsDataGridVisible { get => _isDataGridVisible; set { _isDataGridVisible = value; OnPropertyChanged(nameof(IsDataGridVisible)); } }
 
-        public bool Isbuttonvisible { get => _isbuttonvisible; set { _isbuttonvisible = value; OnPropertyChanged(nameof(Isbuttonvisible));} }
+       // public bool Isbuttonvisible { get => _isbuttonvisible; set { _isbuttonvisible = value; OnPropertyChanged(nameof(Isbuttonvisible));} }
 
         public bool IsDataGridVisible2 { get => _isDataGridVisible2; set { _isDataGridVisible2 = value; OnPropertyChanged(nameof(IsDataGridVisible2));}
 }
