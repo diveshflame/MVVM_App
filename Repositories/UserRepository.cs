@@ -6,7 +6,6 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Data;
 using MVVM_App.Models;
-
 using Npgsql;
 using NpgsqlTypes;
 using Microsoft.Identity.Client.Platforms.Features.DesktopOs.Kerberos;
