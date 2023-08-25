@@ -50,8 +50,8 @@ namespace MVVM_App.ViewModels
             UserAccount = new UserAccountModel();
             ShowUserBookings = new ViewModelCommand(ExecuteShowUserBookings);
             ShowBookApp = new ViewModelCommand(ExecuteShowBookings);
-           // LoadCurrentUserData();
-
+            // LoadCurrentUserData();
+            ExecuteShowUserBookings(null);
         }
 
         private void ExecuteShowBookings(object obj)

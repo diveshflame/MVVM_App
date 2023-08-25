@@ -16,7 +16,7 @@
         <viewModels:RegistrationViewModel/>
     </Window.DataContext>
     <Window.Background>
-        <ImageBrush ImageSource="https://img.freepik.com/free-vector/clean-medical-background_53876-116875.jpg?size=626" />
+        <ImageBrush ImageSource="C:\Users\arjkr\source\repos\MVVM_App\images\h3.jpg" />
     </Window.Background>
     <Window.Resources>
         <BooleanToVisibilityConverter x:Key="Boolean"/>
