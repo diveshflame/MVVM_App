@@ -17,13 +17,13 @@ namespace MVVM_App.ViewModels
     {
         public IAddDocRepo repocall = new AddRepo();
         int a = 0;
-        public List<string> DoctorNames { get; set; }
-        public List<string> Consult { get; set; }
+        public List<string> consultTypes { get; set; }
+        public List<string> Doctor { get; set; }
         public List<string> StartTime { get; set; }
         public List<string> EndTime { get; set; }
         public AddTimingsViewModel()
         {
-            DoctorNames = repocall.get();
+            consultTypes = repocall.get();
 
             StartTime = repocall.startT();
 
@@ -35,8 +35,8 @@ namespace MVVM_App.ViewModels
         {
             AddRepo addRepo = new AddRepo();
 
-            Consult = addRepo.selectionchangedoc1(text);
-            return Consult;
+            Doctor = addRepo.selectionchangedoc1(text);
+            return Doctor;
 
 
         }
@@ -53,6 +53,13 @@ namespace MVVM_App.ViewModels
             AddRepo addRepo = new AddRepo();
             addRepo.ischecked(dat1, dat2, s, startDate, endDate, FromTime, EndTime,T);
 
+        }
+
+        public List<DateTime> Blackout(string? s)
+        {
+            AddRepo addRepo = new AddRepo();
+            List<DateTime> dt = addRepo.black(s);
+            return dt;
         }
     }
 }

@@ -146,13 +146,38 @@ namespace MVVM_App.views
 
         private void Doctor_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            string s=Doctor.SelectedItem.ToString(); 
+            Datepicker.BlackoutDates.Clear();
+            DisableWeekends();
+            DisablePastDates();
+            string s = "";
+            if (Doctor.SelectedItem != null)
+            {
+                s = Doctor.SelectedItem.ToString();
+            }
             
             DateTime? Blackout_Date=viewModel.Blackout(s);
             if (Blackout_Date.HasValue)
             {
                 Datepicker.BlackoutDates.Add(new CalendarDateRange(Blackout_Date.Value));
             }
+        }
+        private void DisableWeekends()
+        {
+            DateTime startDate = DateTime.Today;
+            DateTime endDate = startDate.AddYears(1); // Set an end date (1 year from today in this example)
+            while (startDate.DayOfWeek != DayOfWeek.Monday)
+            {
+                startDate = startDate.AddDays(-1);
+            }
+            while (startDate <= endDate)
+            {
+                Datepicker.BlackoutDates.Add(new CalendarDateRange(startDate.AddDays(5), startDate.AddDays(6))); // Friday and Saturday
+                startDate = startDate.AddDays(7);
+            }
+        }
+        private void DisablePastDates()
+        {
+            Datepicker.BlackoutDates.Add(new CalendarDateRange(DateTime.MinValue, DateTime.Today.AddDays(-1)));
         }
     }
 }

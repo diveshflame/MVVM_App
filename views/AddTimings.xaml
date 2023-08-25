@@ -40,15 +40,15 @@
 
                 <TextBlock Grid.Row="0"  Margin="0,35,0,5" Text="Enter the Information" FontSize="24" FontWeight="Bold"/>
 
-                <StackPanel Grid.Row="2" Orientation="Horizontal" HorizontalAlignment="Left"  Margin="0,10">
+                <StackPanel Grid.Row="3" Orientation="Horizontal" HorizontalAlignment="Left"  Margin="0,10">
 
                     <TextBlock x:Name="text8" Text="Registered Doctors" Width="200" VerticalAlignment="Center" FontSize="16" FontWeight="Bold" />
                     <ComboBox x:Name="doctorType1" Width="250" VerticalAlignment="Center"  Margin="50,0,0,0" ItemsSource="{Binding DoctorNames}" SelectionChanged="doctorType1_SelectionChanged" />
                 </StackPanel>
-                <StackPanel Grid.Row="3" Orientation="Horizontal" HorizontalAlignment="Left"  Margin="0,10">
+                <StackPanel Grid.Row="2" Orientation="Horizontal" HorizontalAlignment="Left"  Margin="0,10">
 
                     <TextBlock x:Name="text1" Text="Select Department" Width="200" VerticalAlignment="Center" FontSize="16" FontWeight="Bold" />
-                    <ComboBox x:Name="ConsultType1" Width="250" VerticalAlignment="Center" Margin="50,0,0,0" SelectionChanged="ConsultType1_SelectionChanged"/>
+                    <ComboBox x:Name="ConsultType1" Width="250" VerticalAlignment="Center" Margin="50,0,0,0"  ItemsSource="{Binding consultTypes}" SelectionChanged="ConsultType1_SelectionChanged"/>
                 </StackPanel>
 
 
