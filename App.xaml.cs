@@ -19,6 +19,7 @@ namespace MVVM_App
         {
             var loginview = new Window1();
             loginview.Show();
+            
 
             loginview.IsVisibleChanged += (s, ev) =>
             {
@@ -28,6 +29,7 @@ namespace MVVM_App
                     mainview.Show();
                     loginview.Close();
                 }
+             
             };
 
 
