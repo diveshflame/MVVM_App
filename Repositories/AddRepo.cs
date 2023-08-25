@@ -29,7 +29,7 @@ namespace MVVM_App.Repositories
             {
                 connection.Open();
                 command.Connection = connection;
-                command.CommandText = "SELECT Doctor_Name from Doctor_Table";
+                command.CommandText = "SELECT consultant_desc from consultant_type";
 
                 using (NpgsqlDataReader reader = command.ExecuteReader())
                 {
@@ -246,8 +246,8 @@ namespace MVVM_App.Repositories
             {
                 connection.Open();
                 command.Connection = connection;
-                command.CommandText = "SELECT doctor_Id from doctor_table where @d=Doctor_Name";
-                command.Parameters.Add(new NpgsqlParameter("@d", v));
+                command.CommandText = "SELECT consultant_id from consultant_Type where @c = consultant_desc";
+                command.Parameters.Add(new NpgsqlParameter("@c", v));
                 using (NpgsqlDataReader reader = command.ExecuteReader())
                 {
                     while (reader.Read())
@@ -259,25 +259,7 @@ namespace MVVM_App.Repositories
                     }
                 }
             }
-            int a = 0;
-            using (var connection = GetConnection()) // You need to replace GetConnection() with your actual connection creation logic
-            using (var command = new NpgsqlCommand())
-            {
-                connection.Open();
-                command.Connection = connection;
-                command.CommandText = "SELECT consultant_id from doctor_table where @c = doctor_Id";
-                command.Parameters.Add(new NpgsqlParameter("@c", b));
-                using (NpgsqlDataReader reader = command.ExecuteReader())
-                {
-                    while (reader.Read())
-                    {
-                        // Add the value from the "Doctor_Name" column to the j list
-                        a = reader.GetInt32(0);
-
-                        // Assuming the column is of string type
-                    }
-                }
-            }
+         
             List<string> list2 = new List<string>();
 
             using (var connection = GetConnection()) // You need to replace GetConnection() with your actual connection creation logic
@@ -285,8 +267,8 @@ namespace MVVM_App.Repositories
             {
                 connection.Open();
                 command.Connection = connection;
-                command.CommandText = "SELECT consultant_desc from consultant_type where consultant_id = @d";
-                command.Parameters.Add(new NpgsqlParameter("@d", a));
+                command.CommandText = "SELECT doctor_name from doctor_table where consultant_id = @d";
+                command.Parameters.Add(new NpgsqlParameter("@d", b));
                 using (NpgsqlDataReader reader = command.ExecuteReader())
                 {
                     while (reader.Read())
@@ -595,6 +577,63 @@ namespace MVVM_App.Repositories
               return IsValid;
         }
 
+        public List<DateTime> black(string? s)
+        {
+            int b = 0;
+            using (var connection = GetConnection()) // You need to replace GetConnection() with your actual connection creation logic
+            using (var command = new NpgsqlCommand())
+            {
+                connection.Open();
+                command.Connection = connection;
+                command.CommandText = "SELECT doctor_Id from doctor_table where @d=Doctor_Name";
+                command.Parameters.Add(new NpgsqlParameter("@d", s));
+                using (NpgsqlDataReader reader = command.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        // Add the value from the "Doctor_Name" column to the j list
+                        b = reader.GetInt32(0);
+
+                        // Assuming the column is of string type
+                    }
+                }
+            }
+
+            List<DateTime> slotlist = new List<DateTime>();
+            using (var connection = GetConnection()) // You need to replace GetConnection() with your actual connection creation logic
+            using (var command = new NpgsqlCommand())
+            {
+                connection.Open();
+                command.Connection = connection;
+                command.CommandText = "SELECT available_starttime FROM Doctor_Availability where @doctorid=Doctor_Id";
+                command.Parameters.Add(new NpgsqlParameter("@doctorid", b));
+                using (NpgsqlDataReader reader = command.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        // Add the value from the "Doctor_Name" column to the j list
+                        slotlist.Add(reader.GetDateTime(0));
+
+                        // Assuming the column is of string type
+                    }
+                }
+            }
+            slotlist.Sort();
+            List<DateTime> date1 = new List<DateTime>();
+            foreach (DateTime dat in slotlist)
+            {
+                int occurrences = slotlist.Count(dt => dt.Date == dat.Date);
+                if (occurrences >= 8)
+                {
+                    date1.Add(dat); 
+                    
+                }
+
+            }
+            return date1;
+        
+
+    }
     }
 }
 

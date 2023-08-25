@@ -45,6 +45,8 @@ namespace MVVM_App.ViewModels
 
         public ICommand ShowAddDoctorCommand { get; }
 
+        //public ICommand showPieChart { get; }
+
 
 
         public MainViewModel() 
@@ -59,11 +61,15 @@ namespace MVVM_App.ViewModels
       
             ShowBookings = new ViewModelCommand(ExecuteShowBookings);
 
-            //LoadCurrentUserData();
-        
-        }
+            //showPieChart = new ViewModelCommand(Executechart); //executeChart
 
-     
+            //LoadCurrentUserData();
+
+        }
+        //private void Executechart(object obj)
+        //{
+        //    CurrentChildView = new chartViewModel();
+        //}
 
         private void ExecuteShowBookings(object obj)
         {

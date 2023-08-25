@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
+using System.Numerics;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -25,23 +26,43 @@ namespace MVVM_App.views
         public AddTimings()
         {
             InitializeComponent();
-            DisableWeekends();  //Greying out Past Dates and weekends
-            DisablePastDates();
+            
            
         }
-        public List<string> consultType { get; set; }
+        public List<string> docType { get; set; }
         private void doctorType1_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            AddTimingsViewModel selectDoc = new AddTimingsViewModel();
+
+            AddTimingsViewModel docChange = new AddTimingsViewModel();
+            Datepicker1.BlackoutDates.Clear();
+            Datepicker2.BlackoutDates.Clear();
+            DisableWeekends();
+            DisablePastDates();
+            string s = "";
             if (doctorType1.SelectedItem != null)
             {
-                consultType = selectDoc.selectDoc(doctorType1.SelectedItem.ToString());
+                s = doctorType1.SelectedItem.ToString();
             }
-            ConsultType1.ItemsSource = consultType; 
+
+            List<DateTime> Blackout_Date = docChange.Blackout(s);
+            foreach (DateTime dat in Blackout_Date)
+            {
+                
+                Datepicker1.BlackoutDates.Add(new CalendarDateRange(dat));
+                Datepicker2.BlackoutDates.Add(new CalendarDateRange(dat));
+            }
+
+
         }
 
         private void ConsultType1_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
+            AddTimingsViewModel selectCon = new AddTimingsViewModel();
+            if (ConsultType1.SelectedItem != null)
+            {
+                docType = selectCon.selectDoc(ConsultType1.SelectedItem.ToString());
+            }
+            doctorType1.ItemsSource = docType;
 
         }
         private void CheckBox_Checked(object sender, RoutedEventArgs e)
