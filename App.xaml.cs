@@ -43,6 +43,18 @@ namespace MVVM_App
                     registerView.Close();
                 }
             };
+
+
+            var changepasswordView = new ChangePassword();
+            changepasswordView.IsVisibleChanged += (s, ev) =>
+            {
+                if (changepasswordView.IsVisible == false)
+                {
+                    var mainview = new Window1();
+                    mainview.Show();
+                    changepasswordView.Close();
+                }
+            };
         }
 
     }

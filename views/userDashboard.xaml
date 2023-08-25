@@ -9,7 +9,9 @@
         WindowStyle="None" 
         Background="Transparent"
         AllowsTransparency="True"
-        Height="650" Width="1000">
+        Height="650" Width="1000"
+        WindowState="Maximized"
+        ResizeMode="CanResize">
     <Window.DataContext>
         <viewModel:UserViewModel/>
     </Window.DataContext>
@@ -252,7 +254,7 @@
                                      StrokeThickness="2"
                                      >
                                                 <Ellipse.Fill>
-                                                    <ImageBrush ImageSource="C:\Users\ashal\source\repos\MVVM_App\images\arjun12 (4).png"/>
+                                                    <ImageBrush ImageSource="C:\Users\divsh\source\repos\MVVM_Main_App\Images\BoyIcon.png"/>
                                                 </Ellipse.Fill>
                                             </Ellipse>
                                         </DataTemplate>
