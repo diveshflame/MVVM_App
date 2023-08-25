@@ -17,5 +17,9 @@ namespace MVVM_App.Models
 
         public bool SuperUser { get; set; }
 
+        //Models for chart label :
+        public string ConsultantType { get; set; }
+        public double DoctorCount { get; set; }
+
     }
 }
