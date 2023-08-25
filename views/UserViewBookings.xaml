@@ -26,10 +26,10 @@
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="Auto"/>
-            <RowDefinition Height="10"/>
+            <!--<RowDefinition Height="10"/>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="Auto"/>
-            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>-->
             <RowDefinition />
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
@@ -49,7 +49,7 @@
                 <Setter Property="Template">
                     <Setter.Value>
                         <ControlTemplate TargetType="RadioButton">
-                            <Border BorderThickness="0 0 0 1" BorderBrush="#784ff2">
+                            <Border BorderThickness="0 0 0 1" BorderBrush="Teal">
                                 <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"></ContentPresenter>
                             </Border>
                         </ControlTemplate>
@@ -57,7 +57,7 @@
                 </Setter>
                 <Style.Triggers>
                     <Trigger Property="IsMouseOver" Value="True">
-                        <Setter Property="Foreground" Value="#784ff2"/>
+                        <Setter Property="Foreground" Value="Teal"/>
                     </Trigger>
                     <Trigger Property="IsPressed" Value="True">
                         <Setter Property="Background" Value="DarkBlue"/>
@@ -65,7 +65,7 @@
                     </Trigger>
                     <Trigger Property="IsChecked" Value="True">
                         <Setter Property="Background" Value="DarkBlue"/>
-                        <Setter Property="Foreground" Value="#784ff2"/>
+                        <Setter Property="Foreground" Value="Teal"/>
                     </Trigger>
                 </Style.Triggers>
 
@@ -73,19 +73,22 @@
             </Style>
         </Grid.Resources>
        
+
             <StackPanel Grid.Row="1" Grid.Column="1" Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,0,0,15">
             <RadioButton Content="View All Bookings" Height="50" Width="120" Command="{Binding ViewUserBookings}" FontSize="13" Style="{StaticResource tabButton}"   BorderBrush="#784ff2"/>
+
                 <RadioButton Content="Today Bookings"  Height="50" Width="120" Style="{StaticResource tabButton}" FontSize="13" Command="{Binding ViewUserTodayBooking}"/>
                 <RadioButton Content="Booking History"  Height="50" Width="120" Style="{StaticResource tabButton}" FontSize="13" Command="{Binding ViewUserBookingHistory}" />
         </StackPanel>
 
         <!--Data grid for View all appointment table-->
 
-        <DataGrid Grid.Row="3" Grid.Column="1" ItemsSource="{Binding UserDatagridItems}" AutoGenerateColumns="False" GridLinesVisibility="None" BorderBrush="Transparent"
+        <DataGrid Grid.Row="2" Grid.Column="1" ItemsSource="{Binding UserDatagridItems}" AutoGenerateColumns="False" GridLinesVisibility="None" BorderBrush="Transparent"
                    HeadersVisibility="Column" CanUserResizeRows="False" 
                       ColumnWidth="130" Background="White"  
                       IsReadOnly="True" HorizontalAlignment="Center"
-                      CanUserReorderColumns="False" Name="UserBooking" Visibility="{Binding IsDataGridVisible, Converter={StaticResource BooleanToVisibilityConverter}}">
+                      CanUserReorderColumns="False" Name="UserBooking" Visibility="{Binding IsDataGridVisible, Converter={StaticResource BooleanToVisibilityConverter}}"
+                      ScrollViewer.VerticalScrollBarVisibility="Auto">
            
             <DataGrid.Columns>
                 <DataGridTextColumn Binding="{Binding DoctorName , UpdateSourceTrigger=PropertyChanged}" Header="Doctor Name"/>
@@ -108,10 +111,11 @@
 
         <!--Data grid for Today and History table-->
 
-        <DataGrid Grid.Row="3" Grid.Column="1" ItemsSource="{Binding UserNewDatagridItems}" AutoGenerateColumns="False" GridLinesVisibility="None" BorderBrush="Transparent"
+        <DataGrid Grid.Row="2" Grid.Column="1" ItemsSource="{Binding UserNewDatagridItems}" AutoGenerateColumns="False" GridLinesVisibility="None" BorderBrush="Transparent"
                    HeadersVisibility="Column" CanUserResizeRows="False" 
                       ColumnWidth="130" Background="White"  
                       IsReadOnly="True" HorizontalAlignment="Center"
+                      ScrollViewer.VerticalScrollBarVisibility="Auto"
                       CanUserReorderColumns="False"  Visibility="{Binding IsDataGridVisible2, Converter={StaticResource BooleanToVisibilityConverter}}" >
             <DataGrid.Columns>
                 <DataGridTextColumn Binding="{Binding DoctorName , UpdateSourceTrigger=PropertyChanged}" Header="Doctor Name"/>
