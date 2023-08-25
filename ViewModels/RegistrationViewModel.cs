@@ -94,7 +94,7 @@ namespace MVVM_App.ViewModels
                             cmd.ExecuteNonQuery();
 
                             Thread.CurrentPrincipal = new GenericPrincipal(
-                   new GenericIdentity(UserDetails.Username), null);
+                            new GenericIdentity(UserDetails.Username), null);
 
                             Window1 loadLogin = new Window1();
                             loadLogin.Show();

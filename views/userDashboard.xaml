@@ -9,7 +9,9 @@
         WindowStyle="None" 
         Background="Transparent"
         AllowsTransparency="True"
-        Height="650" Width="1000">
+        Height="650" Width="1000"
+        WindowState="Maximized"
+        ResizeMode="CanResize">
     <Window.DataContext>
         <viewModel:UserViewModel/>
     </Window.DataContext>
