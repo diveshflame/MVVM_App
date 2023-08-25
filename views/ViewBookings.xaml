@@ -21,10 +21,10 @@
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto"/>
                 <RowDefinition Height="Auto"/>
-                <RowDefinition Height="10"/>
+                <!--<RowDefinition Height="Auto"/>
                 <RowDefinition Height="Auto"/>
                 <RowDefinition Height="Auto"/>
-                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>-->
                 <RowDefinition />
             </Grid.RowDefinitions>
             <Grid.ColumnDefinitions>
@@ -44,7 +44,7 @@
                     <Setter Property="Template">
                         <Setter.Value>
                             <ControlTemplate TargetType="RadioButton">
-                                <Border BorderThickness="0 0 0 1" BorderBrush="#784ff2">
+                                <Border BorderThickness="0 0 0 1" BorderBrush="Teal">
                                     <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"></ContentPresenter>
                                 </Border>
                             </ControlTemplate>
@@ -52,7 +52,7 @@
                     </Setter>
                     <Style.Triggers>
                         <Trigger Property="IsMouseOver" Value="True">
-                            <Setter Property="Foreground" Value="#784ff2"/>
+                            <Setter Property="Foreground" Value="Teal"/>
                         </Trigger>
                         <Trigger Property="IsPressed" Value="True">
                             <Setter Property="Background" Value="DarkBlue"/>
@@ -60,7 +60,7 @@
                         </Trigger>
                         <Trigger Property="IsChecked" Value="True">
                             <Setter Property="Background" Value="DarkBlue"/>
-                            <Setter Property="Foreground" Value="#784ff2"/>
+                            <Setter Property="Foreground" Value="Teal"/>
                         </Trigger>
                     </Style.Triggers>
 
@@ -69,27 +69,26 @@
             </Grid.Resources>
 
             <StackPanel Grid.Row="1" Grid.Column="1" Orientation="Horizontal" Margin="0,0,0,30" HorizontalAlignment="Center">
-                <RadioButton Content="View All Bookings" Command="{Binding ViewAdminBookings}"  Style="{StaticResource tabButton}"   BorderBrush="#784ff2"/>
+                <RadioButton Content="View All Bookings" Command="{Binding ViewAdminBookings}"  Style="{StaticResource tabButton}"   BorderBrush="Teal"/>
                 <RadioButton Content="Today Bookings" Style="{StaticResource tabButton}" Command="{Binding ViewTodayBooking}"/>
                 <RadioButton Content="Booking History" Style="{StaticResource tabButton}" Command="{Binding ViewBookingHistory}" />
             </StackPanel>
 
             <!--Data grid for table-->
-
-            <DataGrid Grid.Row="3" Grid.Column="1" ItemsSource="{Binding DataGridItems}" AutoGenerateColumns="False" GridLinesVisibility="None" BorderBrush="Transparent"
+            
+                <DataGrid Grid.Row="2" Grid.Column="1" ItemsSource="{Binding DataGridItems}" AutoGenerateColumns="False" GridLinesVisibility="None" BorderBrush="Transparent"
                    HeadersVisibility="Column" CanUserResizeRows="False" 
                       ColumnWidth="130" Background="White"  
                       IsReadOnly="True" HorizontalAlignment="Center"
-                      CanUserReorderColumns="False">
-                <DataGrid.Columns>
-                    <DataGridTextColumn Binding="{Binding Name, UpdateSourceTrigger=PropertyChanged}" Header="User Name"/>
-                    <DataGridTextColumn Binding="{Binding DoctorName , UpdateSourceTrigger=PropertyChanged}" Header="Doctor Name"/>
-                    <DataGridTextColumn Binding="{Binding Consultant_Desc , UpdateSourceTrigger=PropertyChanged}" Header="Department"/>
-                    <DataGridTextColumn Binding="{Binding StartTime , UpdateSourceTrigger=PropertyChanged}" Header="Start Time"/>
-                    <DataGridTextColumn Binding="{Binding EndTime , UpdateSourceTrigger=PropertyChanged}" Header="End Time"/>
-                </DataGrid.Columns>
-            </DataGrid>
-
-        </Grid>
+                      CanUserReorderColumns="False" ScrollViewer.VerticalScrollBarVisibility="Auto" >
+                    <DataGrid.Columns>
+                        <DataGridTextColumn Binding="{Binding Name, UpdateSourceTrigger=PropertyChanged}" Header="User Name"/>
+                        <DataGridTextColumn Binding="{Binding DoctorName , UpdateSourceTrigger=PropertyChanged}" Header="Doctor Name"/>
+                        <DataGridTextColumn Binding="{Binding Consultant_Desc , UpdateSourceTrigger=PropertyChanged}" Header="Department"/>
+                        <DataGridTextColumn Binding="{Binding StartTime , UpdateSourceTrigger=PropertyChanged}" Header="Start Time"/>
+                        <DataGridTextColumn Binding="{Binding EndTime , UpdateSourceTrigger=PropertyChanged}" Header="End Time"/>
+                    </DataGrid.Columns>
+                </DataGrid>
+            </Grid>
     </Border>
 </UserControl>
