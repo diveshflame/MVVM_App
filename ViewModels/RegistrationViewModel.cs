@@ -69,26 +69,19 @@ namespace MVVM_App.ViewModels
             if (CanRegister())
             {
 
-                try
-                {
-                    string connectionString = @"Server=localhost;Port=5432;User Id=postgres;Password=007;Database=WeCareDB";
+                _registrationRepo.InsertUser(UserDetails);
+                // a success message
+                MessageBox.Show("Registered Successfully");
 
-                    // a success message
-                    MessageBox.Show("Registered Successfully");
+                Thread.CurrentPrincipal = new GenericPrincipal(
+                new GenericIdentity(UserDetails.Username), null);
 
-                    Thread.CurrentPrincipal = new GenericPrincipal(
-                    new GenericIdentity(UserDetails.Username), null);
+                Window1 loadLogin = new Window1();
+                loadLogin.Show();                     // navigate to another page
 
-                    Window1 loadLogin = new Window1();
-                    loadLogin.Show();                     // navigate to another page
-
-                    IsViewVisible = false;                //To close the current page
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show("An error occured :", ex.Message);
-                }
+                IsViewVisible = false;                //To close the current page
             }
+ 
         }
 
         //All validations for Registration Page
