@@ -2,32 +2,58 @@
 using MVVM_App.Repositories;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Input;
+using static System.Net.Mime.MediaTypeNames;
 
 namespace MVVM_App.ViewModels
 {
-    public class AddDoctorViewModel : ViewModelBase
+    public class AddDoctorViewModel : ViewModelBase,INotifyPropertyChanged
     {
-        public List<string> consuld { get; set; }
+        private List<string> consult;
+        private string selectedConsultationtype;
+        public List<string> Consult { get => consult; set { consult = value; OnPropertyChanged(nameof(Consult)); } }
+        public string SelectedConsultationtype { get => selectedConsultationtype; set { selectedConsultationtype = value; OnPropertyChanged(nameof(SelectedConsultationtype)); } }
         public IAddDocRepo repocall = new AddRepo();
+        public ICommand AddDoctor { get; }
         public AddDoctorViewModel()
         {
-            consuld = repocall.getco();
+            consult = repocall.getco();
+            AddDoctor = new ViewModelCommand(ExecuteAddDoctor);
         }
-
-        public void Insert(string text, string v)
+        private string DocName;
+        public string DocNameChange
         {
+            get { return DocName; }
+            set
+            {
+                if (DocName != value)
+                {
+                    DocName = value;
+                    OnPropertyChanged(nameof(Text));
+                }
+            }
 
-            ConsultModel consultModel = new ConsultModel();
-            consultModel.docname=text;
-            consultModel.consulD = v;
-            AddRepo addRepo = new AddRepo();
-            addRepo.addDoctor(text,v);
+        }
+
+        AddRepo addRepo = new AddRepo();
+        private void ExecuteAddDoctor(object obj)
+        {
+            addRepo.addDoctor(DocNameChange,selectedConsultationtype);
+        }
+
+  
+
+        public event PropertyChangedEventHandler PropertyChanged;
+
+        protected virtual void OnPropertyChanged(string propertyName)
+        {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
 
 
-        
     }
 }

@@ -28,16 +28,7 @@ namespace MVVM_App.views
          
         }
 
-        private void btn1_Click(object sender, RoutedEventArgs e)
-        {
-            if (isValid())
-            {
-                AddDoctorViewModel add = new AddDoctorViewModel();
-                add.Insert(Doctor.Text, ConsultType.SelectedItem.ToString());
-                Doctor.Text = null;
-                ConsultType.SelectedItem = null;    
-            }
-        }
+     
         public bool isValid()
         {
 

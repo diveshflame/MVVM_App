@@ -58,6 +58,8 @@ namespace MVVM_App.ViewModels
 
         public ICommand ShowAddDoctorCommand { get; }
 
+        public ICommand ShowHomeCommand { get; }
+
         //public ICommand showPieChart { get; }
 
 
@@ -73,13 +75,21 @@ namespace MVVM_App.ViewModels
             ShowUpdateDoctorCommand = new ViewModelCommand(ExecuteUpdateDoctorView);
       
             ShowBookings = new ViewModelCommand(ExecuteShowBookings);
-
+            ShowHomeCommand = new ViewModelCommand(ExecuteHome);
             ExecuteShowBookings(null);
             //showPieChart = new ViewModelCommand(Executechart); //executeChart
 
          /*   LoadCurrentUserData();*/
 
         }
+
+        private void ExecuteHome(object obj)
+        {
+            CurrentChildView = new HomePageViewModel();
+            Caption = "Home";
+
+        }
+
         //private void Executechart(object obj)
         //{
         //    CurrentChildView = new chartViewModel();

@@ -36,6 +36,9 @@
         <DataTemplate DataType="{x:Type viewModel:ViewBookings}">
             <local:ViewBookings/>
         </DataTemplate>
+        <DataTemplate DataType="{x:Type viewModel:HomePageViewModel}">
+            <local:showChart/>
+        </DataTemplate>
 
         <Style x:Key="DropdownItemStyle" TargetType="Button">
             <Setter Property="Padding" Value="10"/>
@@ -139,7 +142,7 @@
                 </StackPanel>
                 <RadioButton Style="{StaticResource menuButton}"
                                  Tag="{StaticResource primaryBackColor1}"
-                                 Command="{Binding showPieChart}"> <!--arjun connect-->
+                                 Command="{Binding ShowHomeCommand}"> 
                     <StackPanel Orientation="Horizontal">
                         <fa:FontAwesome Icon="Book" Margin="10,2,0,0" />
                         <TextBlock Text="Home" Margin="10,0,0,0"/>
@@ -173,7 +176,7 @@
                 </RadioButton>
                 <RadioButton Style="{StaticResource menuButton}"
                                  Tag="{StaticResource primaryBackColor1}"
-                                 IsChecked="True"
+                                
                                  Command="{Binding ShowAddTimingsCommand}" >
                     <StackPanel Orientation="Horizontal">
                         <fa:FontAwesome Icon="ClockOutline" Margin="15,2,0,0"/>
@@ -182,6 +185,7 @@
                 </RadioButton>
                 <RadioButton Style="{StaticResource menuButton}"
                                  Tag="{StaticResource primaryBackColor2}"
+                              
                                  Command="{Binding ShowUpdateDoctorCommand}">
                     <StackPanel Orientation="Horizontal">
                         <fa:FontAwesome Icon="User"  Margin="15,2,0,0" />

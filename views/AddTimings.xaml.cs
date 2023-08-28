@@ -26,16 +26,22 @@ namespace MVVM_App.views
         public AddTimings()
         {
             InitializeComponent();
-            
-           
+            DateTime defaultDate = DateTime.Today;
+            Datepicker1.SelectedDate = defaultDate;
+            Datepicker2.SelectedDate = defaultDate;
+
         }
         public List<string> docType { get; set; }
         private void doctorType1_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-
+          
             AddTimingsViewModel docChange = new AddTimingsViewModel();
             Datepicker1.BlackoutDates.Clear();
             Datepicker2.BlackoutDates.Clear();
+            DateTime defaultDate = DateTime.Today;
+            Datepicker1.SelectedDate = null;
+            Datepicker2.SelectedDate = null;
+
             DisableWeekends();
             DisablePastDates();
             string s = "";
@@ -97,120 +103,7 @@ namespace MVVM_App.views
         }
 
     
-        private void btn1_Click(object sender, RoutedEventArgs e)
-        {
-            int Temp2 = 0;//variables to store checker status
-            int Temp = 0;
-           
-            DateTime date1 = DateTime.Now;
-            DateTime date2 = DateTime.Now;
-            DateTime startDate=DateTime.Now;
-             DateTime endDate=DateTime.Now; 
-            string FromTime="";
-            string EndTime="";
-            if (Datepicker1.SelectedDate != null && Datepicker2.SelectedDate != null)
-            {
-                startDate = Datepicker1.SelectedDate.Value;
-                endDate = Datepicker2.SelectedDate.Value;
-            }
-            if (Fromtime1.SelectedItem != null && Endtime1.SelectedItem != null)
-            {
-                FromTime = Fromtime1.SelectedItem.ToString();
-                EndTime= Endtime1.SelectedItem.ToString();
-            }
-            AddTimingsViewModel selectC = new AddTimingsViewModel();
-            if (isValid())
-            {
-                if (Fromtime1.SelectedItem != null)
-                {
-                    string s = Fromtime1.SelectedItem.ToString();
-                    DateTime DateTime1;
-                    DateTime.TryParse(s, out DateTime1);
-                    string Time = DateTime1.ToString("HH:mm");
-                    string datestring = Datepicker1.SelectedDate.Value.ToString("yyyy/MM/dd");
-                    DateTime parsedDate = DateTime.ParseExact(datestring, "yyyy/MM/dd", null);
-                    date1 = DateTime.Parse(parsedDate.ToString("yyyy/MM/dd ") + Time);
-                }
-                if (Endtime1.SelectedItem != null)
-                {
-                    string s = Endtime1.SelectedItem.ToString();
-                    DateTime DateTime2;
-                    DateTime.TryParse(s, out DateTime2);
-                    string Time = DateTime2.ToString("HH:mm");
-                    date2 = DateTime.Parse(Datepicker1.SelectedDate.Value.ToString("yyyy/MM/dd ") + Time);
-                }
-
-             Temp= selectC.Selectcon(date1, date2, doctorType1.SelectedItem.ToString(), startDate, endDate);
-
-                if (checker1.IsChecked == false)
-                {
-                    Temp2 = 1;
-                }
-                if (Temp == 0)
-                {
-                    selectC.check(date1, date2, doctorType1.SelectedItem.ToString(), startDate, endDate, FromTime, EndTime, Temp2);
-                }
-                doctorType1.SelectedItem = null;
-                ConsultType1.SelectedItem = null;
-                Datepicker1.SelectedDate = null;
-                Datepicker2.SelectedDate = null;    
-                Fromtime1.SelectedItem = null;
-                Endtime1.SelectedItem = null;
-
-                
-            }
-        }
-
-        public bool isValid()
-        {
-
-            if (doctorType1.SelectedItem == null)
-            {
-                MessageBox.Show("Please Enter a Doctor", "Failed", MessageBoxButton.OK, MessageBoxImage.Error);
-                return false;
-            }
-            if (ConsultType1.SelectedItem == null)
-            {
-                MessageBox.Show("Department is required", "Failed", MessageBoxButton.OK, MessageBoxImage.Error);
-                return false;
-            }
-            if (Datepicker1.SelectedDate == null)
-            {
-                MessageBox.Show("A valid From Date should be selected", "Failed", MessageBoxButton.OK, MessageBoxImage.Error);
-                return false;
-            }
-            if (Datepicker2.SelectedDate == null)
-            {
-                MessageBox.Show("A valid To Date should be selected", "Failed", MessageBoxButton.OK, MessageBoxImage.Error);
-                return false;
-            }
-            if (checker1.IsChecked == false && (Fromtime1.SelectedItem == null || Endtime1.SelectedItem == null))
-            {
-                MessageBox.Show("Enter valid From and To", "Failed", MessageBoxButton.OK, MessageBoxImage.Error);
-                return false;
-            }
-            if (Datepicker1.SelectedDate > Datepicker2.SelectedDate)
-            {
-                MessageBox.Show("Enter valid From date and To date", "Failed", MessageBoxButton.OK, MessageBoxImage.Error);
-                return false;
-            }
-            TimeSpan selectedTime1= new TimeSpan();
-            TimeSpan selectedTime2= new TimeSpan();
-            if (Fromtime1.SelectedItem != null && Endtime1.SelectedItem != null)
-            {
-                selectedTime1 = TimeSpan.Parse(Fromtime1.SelectedItem.ToString());
-                selectedTime2 = TimeSpan.Parse(Endtime1.SelectedItem.ToString());
-            }
-            if (selectedTime1 > selectedTime2 && checker1.IsChecked == false)
-            {
-                Fromtime1.SelectedItem = null;
-                Endtime1.SelectedItem = null;
-                MessageBox.Show("Enter valid From time and To time", "Failed", MessageBoxButton.OK, MessageBoxImage.Error);
-                return false;
-
-            }
-            return true;
-        }
+     
         private void DisableWeekends()
         {
             DateTime startDate = DateTime.Today;

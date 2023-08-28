@@ -71,7 +71,7 @@ namespace MVVM_App.ViewModels
                
                 try
                 {
-                    string connectionString = @"Server=localhost;Port=5432;User Id=postgres;Password=pass;Database=postgres";
+                    string connectionString = @"Server=localhost;Port=5432;User Id=postgres;Password=007;Database=WeCareDB";
 
                     using (var connection = new NpgsqlConnection(connectionString))
                     {

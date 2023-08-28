@@ -7,39 +7,39 @@ using System.Threading.Tasks;
 
 namespace MVVM_App.ViewModels
 {
-    public class BookAppointmentViewModel: ViewModelBase
+    public class BookAppointmentViewModel : ViewModelBase
     {
-       public List<string> slotlist =new List<string>();
-       public List<string> slotlist2 = new List<string>();
+        public List<string> slotlist = new List<string>();
+        public List<string> slotlist2 = new List<string>();
         public List<string> Consult { get; set; }
 
         public List<string> Doctor { get; set; }
         BookRepo bookRepo = new BookRepo();
 
-        public BookAppointmentViewModel() 
-        
-        { 
-        
-        BookRepo bookRepo = new BookRepo();
-        Consult = bookRepo.bookgetco();   
-        
+        public BookAppointmentViewModel()
+
+        {
+
+            BookRepo bookRepo = new BookRepo();
+            Consult = bookRepo.bookgetco();
+
         }
 
         public List<string> consulchange(string s)
         {
-            
+
             Doctor = bookRepo.bookgetDoc(s);
             return Doctor;
         }
 
         public void docSelChanged(string doc, DateTime selectedDate)
         {
-         
+
             slotlist.Clear();
-            slotlist2.Clear();  
+            slotlist2.Clear();
             bookRepo.BookGetTime(doc, selectedDate);
-            slotlist= bookRepo.slotlist;
-            slotlist2= bookRepo.slotlist2;  
+            slotlist = bookRepo.slotlist;
+            slotlist2 = bookRepo.slotlist2;
         }
 
         public void Add(string selectedDep, DateTime selectedDate, string doc, DateTime d1, DateTime d2)

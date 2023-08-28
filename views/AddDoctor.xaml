@@ -43,19 +43,19 @@
                 <StackPanel Grid.Row="3" Orientation="Horizontal" HorizontalAlignment="Left"  Margin="0,10,0,20">
 
                     <TextBlock x:Name="text1" HorizontalAlignment="Left" Text="Select Department" Width="200" VerticalAlignment="Center" FontSize="15" FontWeight="Bold" />
-                    <ComboBox x:Name="ConsultType" Width="250" VerticalAlignment="Center" ItemsSource="{Binding consuld}"></ComboBox>
+                    <ComboBox x:Name="ConsultType" Width="250" VerticalAlignment="Center" ItemsSource="{Binding Consult}" SelectedItem="{Binding SelectedConsultationtype}"  ></ComboBox>
                 </StackPanel>
 
                 <StackPanel Grid.Row="2" Orientation="Horizontal"  HorizontalAlignment="Left" Margin="0,10">
                     <TextBlock x:Name="text2" Text="Enter the Name" Width="200" VerticalAlignment="Center" FontSize="15" FontWeight="Bold"  />
-                    <TextBox x:Name="Doctor" Width="250" VerticalAlignment="Center" />
+                    <TextBox x:Name="Doctor" Width="250" VerticalAlignment="Center" Text="{Binding DocNameChange}"/>
                 </StackPanel>
 
 
                 <StackPanel Grid.Column="0" Grid.Row="4" Orientation="Horizontal"  HorizontalAlignment="Right" Margin="80,0,0,0">
                     <Button x:Name="btn1" Content="Add Doctor"  Width="90"
                             Height="25" Background="CadetBlue" Foreground="White" FontSize="14"
-                            FontWeight="SemiBold" BorderThickness="0" Click="btn1_Click">
+                            FontWeight="SemiBold" BorderThickness="0" Command="{Binding AddDoctor}">
                         <Button.Template>
                             <ControlTemplate TargetType="{x:Type Button}">
                                 <Border Background="{TemplateBinding Background}" BorderThickness="{TemplateBinding BorderThickness}" BorderBrush="{TemplateBinding BorderBrush}" CornerRadius="5">
