@@ -289,7 +289,7 @@
                                      StrokeThickness="2"
                                      >
                                                 <Ellipse.Fill>
-                                                    <ImageBrush ImageSource="//images/arjun12 (4).png"/>
+                                                    <ImageBrush ImageSource="\images\arjun12 (4).png"/>
                                                 </Ellipse.Fill>
                                             </Ellipse>
                                         </DataTemplate>
