@@ -20,11 +20,12 @@ namespace MVVM_App.Repositories
 
     public class AddRepo : RepositoryBase, IAddDocRepo 
     {
+        //get doctor names
         public List<string> get()
         {
             List<string> list2 = new List<string>();
 
-            using (var connection = GetConnection()) // You need to replace GetConnection() with your actual connection creation logic
+            using (var connection = GetConnection()) 
             using (var command = new NpgsqlCommand())
             {
                 connection.Open();
@@ -35,19 +36,20 @@ namespace MVVM_App.Repositories
                 {
                     while (reader.Read())
                     {
-                        // Add the value from the "Doctor_Name" column to the j list
-                        list2.Add(reader.GetString(0)); // Assuming the column is of string type
+                       
+                        list2.Add(reader.GetString(0)); 
                     }
                 }
             }
             return list2;
         }
 
+        //To get consultation Descriptions
         public List<string> getco()
         {
             List<string> list2 = new List<string>();
 
-            using (var connection = GetConnection()) // You need to replace GetConnection() with your actual connection creation logic
+            using (var connection = GetConnection()) 
             using (var command = new NpgsqlCommand())
             {
                 connection.Open();
@@ -58,8 +60,8 @@ namespace MVVM_App.Repositories
                 {
                     while (reader.Read())
                     {
-                        // Add the value from the "Doctor_Name" column to the j list
-                        list2.Add(reader.GetString(0)); // Assuming the column is of string type
+                        
+                        list2.Add(reader.GetString(0)); 
                     }
                 }
             }
@@ -75,7 +77,7 @@ namespace MVVM_App.Repositories
            
            
                 int count = 0;
-                using (var connection = GetConnection()) // You need to replace GetConnection() with your actual connection creation logic
+                using (var connection = GetConnection()) 
                 using (var command = new NpgsqlCommand())
                 {
                     connection.Open();
@@ -123,7 +125,7 @@ namespace MVVM_App.Repositories
         {
             List<string> list2 = new List<string>();
 
-            using (var connection = GetConnection()) // You need to replace GetConnection() with your actual connection creation logic
+            using (var connection = GetConnection())
             using (var command = new NpgsqlCommand())
             {
                 connection.Open();
@@ -134,22 +136,23 @@ namespace MVVM_App.Repositories
                 {
                     while (reader.Read())
                     {
-                        // Add the value from the "Doctor_Name" column to the j list
+                       
                         TimeSpan timeSpan = reader.GetTimeSpan(0);
                         string hhmmFormat = $"{timeSpan.Hours:D2}:{timeSpan.Minutes:D2}";
-                        // Assuming the column is of string type
+                    
                         list2.Add(hhmmFormat);
                     }
                 }
             }
             return list2;
         }
+       //Get End Time
 
         public List<string> EndT()
         {
             List<string> list2 = new List<string>();
 
-            using (var connection = GetConnection()) // You need to replace GetConnection() with your actual connection creation logic
+            using (var connection = GetConnection()) 
             using (var command = new NpgsqlCommand())
             {
                 connection.Open();
@@ -160,21 +163,21 @@ namespace MVVM_App.Repositories
                 {
                     while (reader.Read())
                     {
-                        // Add the value from the "Doctor_Name" column to the j list
+                        
                         TimeSpan timeSpan = reader.GetTimeSpan(0);
                         string hhmmFormat = $"{timeSpan.Hours:D2}:{timeSpan.Minutes:D2}";
-                        // Assuming the column is of string type
+                       
                         list2.Add(hhmmFormat);// Assuming the column is of string type
                     }
                 }
             }
             return list2;
         }
-
+        //Insert New Doctor 
         public void addDoctor(string text, string v)
         {
             int a = 0;
-            using (var connection = GetConnection()) // You need to replace GetConnection() with your actual connection creation logic
+            using (var connection = GetConnection()) 
             using (var command = new NpgsqlCommand())
             {
                 connection.Open();
@@ -185,15 +188,15 @@ namespace MVVM_App.Repositories
                 {
                     while (reader.Read())
                     {
-                        // Add the value from the "Doctor_Name" column to the j list
+                        
                         a = reader.GetInt32(0);
 
-                        // Assuming the column is of string type
+                 
                     }
                 }
             }
             int? b = null;
-            using (var connection = GetConnection()) // You need to replace GetConnection() with your actual connection creation logic
+            using (var connection = GetConnection()) 
             using (var command = new NpgsqlCommand())
             {
                 connection.Open();
@@ -204,10 +207,10 @@ namespace MVVM_App.Repositories
                 {
                     while (reader.Read())
                     {
-                        // Add the value from the "Doctor_Name" column to the j list
+                      
                         b = reader.GetInt32(0);
 
-                        // Assuming the column is of string type
+                  
                     }
                 }
             }
@@ -234,10 +237,11 @@ namespace MVVM_App.Repositories
 
         }
 
+        //when consultation selection changes get Doctor names for it
         public List<string> selectionchangedoc1(string v)
         {
             int b = 0;
-            using (var connection = GetConnection()) // You need to replace GetConnection() with your actual connection creation logic
+            using (var connection = GetConnection()) 
             using (var command = new NpgsqlCommand())
             {
                 connection.Open();
@@ -248,17 +252,17 @@ namespace MVVM_App.Repositories
                 {
                     while (reader.Read())
                     {
-                        // Add the value from the "Doctor_Name" column to the j list
+                        
                         b = reader.GetInt32(0);
 
-                        // Assuming the column is of string type
+                        
                     }
                 }
             }
          
             List<string> list2 = new List<string>();
 
-            using (var connection = GetConnection()) // You need to replace GetConnection() with your actual connection creation logic
+            using (var connection = GetConnection()) 
             using (var command = new NpgsqlCommand())
             {
                 connection.Open();
@@ -269,8 +273,8 @@ namespace MVVM_App.Repositories
                 {
                     while (reader.Read())
                     {
-                        // Add the value from the "Doctor_Name" column to the j list
-                        list2.Add(reader.GetString(0)); // Assuming the column is of string type
+                      
+                        list2.Add(reader.GetString(0));
                     }
                 }
             }
@@ -278,13 +282,14 @@ namespace MVVM_App.Repositories
 
         }
 
+        //When selected Date changes check if already booked timings or not
         public int selectionconchanged(DateTime dat1, DateTime dat2,string s,DateTime startDate,DateTime EndDate)
         {
             int keeptab = 0;
 
 
             int b = 0;
-            using (var connection = GetConnection()) // You need to replace GetConnection() with your actual connection creation logic
+            using (var connection = GetConnection())
             using (var command = new NpgsqlCommand())
             {
                 connection.Open();
@@ -336,7 +341,7 @@ namespace MVVM_App.Repositories
 
         }
 
-
+        //If check mark returns true then insert from 10-6 else specific selected 
 
 
         public void ischecked(DateTime dat1, DateTime dat2, string s, DateTime startDate, DateTime EndDate, string FromTime, string EndTime, int t)
@@ -348,7 +353,7 @@ namespace MVVM_App.Repositories
             DateTime dc3 = DateTime.Now;
             int b = 0;
             
-                using (var connection = GetConnection()) // You need to replace GetConnection() with your actual connection creation logic
+                using (var connection = GetConnection()) 
                 using (var command = new NpgsqlCommand())
                 {
                     connection.Open();
@@ -359,10 +364,10 @@ namespace MVVM_App.Repositories
                     {
                         while (reader.Read())
                         {
-                            // Add the value from the "Doctor_Name" column to the j list
+                           
                             b = reader.GetInt32(0);
 
-                            // Assuming the column is of string type
+                            
                         }
                     }
                 }
@@ -463,6 +468,9 @@ namespace MVVM_App.Repositories
        /// </summary>
        /// 
         //Get DoctorId using DoctorId
+        
+
+        //Function to only get the doctor ID
         public int GetDoctorId(string DocName)
         {
             int Doc_Id = 0;
@@ -494,6 +502,8 @@ namespace MVVM_App.Repositories
             /// </summary>
             /// <param name="ConsultName"></param>
             /// <returns></returns>
+            /// 
+            //Function to get consultant ID
             public int GetConsultantId(string ConsultName)
             {
                 int Consult_Id = 0;
@@ -567,10 +577,11 @@ namespace MVVM_App.Repositories
               return IsValid;
         }
 
+        //Get dates for blackout
         public List<DateTime> black(string? s)
         {
             int b = 0;
-            using (var connection = GetConnection()) // You need to replace GetConnection() with your actual connection creation logic
+            using (var connection = GetConnection()) 
             using (var command = new NpgsqlCommand())
             {
                 connection.Open();
@@ -581,16 +592,16 @@ namespace MVVM_App.Repositories
                 {
                     while (reader.Read())
                     {
-                        // Add the value from the "Doctor_Name" column to the j list
+                       
                         b = reader.GetInt32(0);
 
-                        // Assuming the column is of string type
+                       
                     }
                 }
             }
 
             List<DateTime> slotlist = new List<DateTime>();
-            using (var connection = GetConnection()) // You need to replace GetConnection() with your actual connection creation logic
+            using (var connection = GetConnection()) 
             using (var command = new NpgsqlCommand())
             {
                 connection.Open();
@@ -601,10 +612,10 @@ namespace MVVM_App.Repositories
                 {
                     while (reader.Read())
                     {
-                        // Add the value from the "Doctor_Name" column to the j list
+                        
                         slotlist.Add(reader.GetDateTime(0));
 
-                        // Assuming the column is of string type
+                      
                     }
                 }
             }
