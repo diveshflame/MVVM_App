@@ -34,4 +34,4 @@ namespace MVVM_App.Services
 }
 
 
-//This navigation service has not been appllied yet
+//This navigation service has not been appllied to this project yet

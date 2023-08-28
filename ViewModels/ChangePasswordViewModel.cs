@@ -1,4 +1,5 @@
 ﻿using MVVM_App.Models;
+using MVVM_App.Repositories;
 using MVVM_App.views;
 using Npgsql;
 using System;
@@ -24,6 +25,7 @@ namespace MVVM_App.ViewModels
         private bool _isViewVisible = true;
         public bool IsViewVisible { get => _isViewVisible; set { _isViewVisible = value; OnPropertyChanged(nameof(IsViewVisible)); } }
 
+        private ChangePassRepo _changePassRepo;
 
         public UserDetails UserDetails
         {
@@ -39,6 +41,7 @@ namespace MVVM_App.ViewModels
         {
             UserDetails=new UserDetails();
             ChangePasswordCommand = new RelayCommand(Update, Canupdate);
+            _changePassRepo = new ChangePassRepo();
         }
         private bool Canupdate()
         {
@@ -51,29 +54,15 @@ namespace MVVM_App.ViewModels
             {
                 try
                 {
-                    string connectionString = @"Server=localhost;Port=5432;User Id=postgres;Password=pass;Database=postgres";
+                   
+                    _changePassRepo.ChangeUserPass(UserDetails);
+                    MessageBox.Show("Password changed successfully");
 
-                    using (var connection = new NpgsqlConnection(connectionString))
-                    {
-
-                        connection.Open();
-
-                        using (var cmd = new NpgsqlCommand())
-                        {
-                            cmd.Connection = connection;
-                            cmd.CommandText = "update userDetails set password=@password where username=@username";
-                            cmd.Parameters.Add(new NpgsqlParameter("@username", UserDetails.ChangeUsername));
-                            cmd.Parameters.Add(new NpgsqlParameter("@password", UserDetails.ChangePassword));
-                            cmd.ExecuteNonQuery();
-
-                            MessageBox.Show("Password changed successfully");
-
-                            Window1 loginView = new Window1();
-                            loginView.Show();
+                    Window1 loginView = new Window1();
+                    loginView.Show();
                            
-                            IsViewVisible = false;
-                        }
-                    }
+                    IsViewVisible = false;
+
                 }
                 catch (Exception ex)
                 {
