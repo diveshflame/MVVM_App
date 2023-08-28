@@ -1,6 +1,3 @@
 # MVVM_App
 
-This is a patient appointment booking application.
-
-Framework: WPF
-DB: Postgres
+Change your postgres database configuration go to Repositories>RepositoryBase.
