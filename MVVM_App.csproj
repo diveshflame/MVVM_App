@@ -23,11 +23,27 @@
   </ItemGroup>
 
   <ItemGroup>
+    <None Remove="images\arjun12 %284%29.png" />
+    <None Remove="images\BoyIcon.png" />
+    <None Remove="images\h3.jpg" />
     <None Remove="Images\logo.png" />
+    <None Remove="images\Logout.png" />
+    <None Remove="images\logout1.png" />
   </ItemGroup>
 
   <ItemGroup>
+    <Resource Include="images\logout1.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="images\BoyIcon.png" />
+    <Resource Include="images\h3.jpg" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="images\arjun12 (4).png" />
     <Resource Include="Images\logo.png" />
+    <Resource Include="images\Logout.png" />
   </ItemGroup>
 
   <ItemGroup>

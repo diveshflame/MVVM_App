@@ -15,18 +15,19 @@ using System.Text.RegularExpressions;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement.StartPanel;
 using System.Security.Principal;
 using System.Threading;
+using MVVM_App.Repositories;
 
 namespace MVVM_App.ViewModels
 {
-    public class RegistrationViewModel : BaseViewModel/*, INotifyDataErrorInfo*/
+    public class RegistrationViewModel : ViewModelBase
     {
         private UserDetails _userDetails;
         private Dictionary<string, List<string>> _validationErrors;
         private bool _isViewVisible = true;
+        private RegistrationRepo _registrationRepo;
 
         public bool HasErrors => _validationErrors.Values.Any(list => list != null && list.Count > 0);
         public bool IsViewVisible { get => _isViewVisible; set { _isViewVisible = value; OnPropertyChanged(nameof(IsViewVisible)); } }
-
 
         public UserDetails UserDetails
         {
@@ -34,17 +35,17 @@ namespace MVVM_App.ViewModels
             set
             {
                 _userDetails = value;
-                OnPropertyChanged();
+                OnPropertyChanged(nameof(UserDetails));
             }
         }
 
         public ICommand RegisterCommand { get; private set; }
         public IEnumerable<string> Genders { get; } = new List<string> { "Male", "Female", "Other" };
 
-        
+
 
         public event EventHandler<DataErrorsChangedEventArgs> ErrorsChanged;
-       
+
 
         private void RaiseErrorsChanged(string propertyName) => ErrorsChanged?.Invoke(this, new DataErrorsChangedEventArgs(propertyName));
 
@@ -54,7 +55,7 @@ namespace MVVM_App.ViewModels
             UserDetails = new UserDetails();
             RegisterCommand = new RelayCommand(Validations, CanRegister);
             _validationErrors = new Dictionary<string, List<string>>();
-            //UserDetails.PropertyChanged += ValidateProperty;
+            _registrationRepo = new RegistrationRepo();
         }
 
         private bool CanRegister()
@@ -64,88 +65,33 @@ namespace MVVM_App.ViewModels
 
         private void Register()
         {
-            // Implement registration logic here
             // Insert UserDetails into the database
             if (CanRegister())
             {
-               
+
                 try
                 {
-                    string connectionString = @"Server=localhost;Port=5432;User Id=postgres;Password=pass;Database=postgres";
+                    _registrationRepo.InsertUser(UserDetails);
 
-                    using (var connection = new NpgsqlConnection(connectionString))
-                    {
-                        connection.Open();
+                    // a success message
+                    MessageBox.Show("Registered Successfully");
 
-                        using (var cmd = new NpgsqlCommand())
-                        {
-                            cmd.Connection = connection;
-                            cmd.CommandText = "INSERT INTO userdetails (username, name, age, gender, email, phone_number, password) " +
-                                              "VALUES (@username, @name, @age, @gender, @email, @phone_number, @password)";
+                    Thread.CurrentPrincipal = new GenericPrincipal(
+                    new GenericIdentity(UserDetails.Username), null);
 
-                            cmd.Parameters.AddWithValue("username", UserDetails.Username);
-                            cmd.Parameters.AddWithValue("name", UserDetails.FullName);
-                            cmd.Parameters.AddWithValue("age", UserDetails.Age);
-                            cmd.Parameters.AddWithValue("gender", UserDetails.Gender);
-                            cmd.Parameters.AddWithValue("email", UserDetails.Email);
-                            cmd.Parameters.AddWithValue("phone_number", UserDetails.PhoneNumber);
-                            cmd.Parameters.AddWithValue("password", UserDetails.Password);
+                    Window1 loadLogin = new Window1();
+                    loadLogin.Show();                     // navigate to another page
 
-                            cmd.ExecuteNonQuery();
-
-                            Thread.CurrentPrincipal = new GenericPrincipal(
-                            new GenericIdentity(UserDetails.Username), null);
-
-                            Window1 loadLogin = new Window1();
-                            loadLogin.Show();
-
-                            IsViewVisible = false;
-
-                        }
-                    }
-                    
-                    // Optionally, you can show a success message or navigate to another page
+                    IsViewVisible = false;                //To close the current page
                 }
                 catch (Exception ex)
                 {
-                    // Handle exceptions (e.g., database errors) and show an error message
-                    MessageBox.Show("An error occured :",ex.Message);
+                    MessageBox.Show("An error occured :", ex.Message);
                 }
             }
         }
 
-        //private void ValidateProperty(object sender, PropertyChangedEventArgs e)
-        //{
-        //    if (_validationErrors.ContainsKey(e.PropertyName))
-        //    {
-        //        _validationErrors.Remove(e.PropertyName);
-        //        RaiseErrorsChanged(e.PropertyName);
-        //    }
-
-        //    var context = new ValidationContext(UserDetails) { MemberName = e.PropertyName };
-        //    var validationResults = new List<ValidationResult>();
-        //    Validator.TryValidateProperty(UserDetails.GetType().GetProperty(e.PropertyName).GetValue(UserDetails), context, validationResults);
-
-        //    if (validationResults.Count > 0)
-        //    {
-        //        _validationErrors.Add(e.PropertyName, new List<string>());
-        //        foreach (var validationResult in validationResults)
-        //        {
-        //            _validationErrors[e.PropertyName].Add(validationResult.ErrorMessage);
-        //        }
-        //        RaiseErrorsChanged(e.PropertyName);
-        //    }
-        //}
-
-        //public System.Collections.IEnumerable GetErrors(string propertyName)
-        //{
-        //    if (string.IsNullOrEmpty(propertyName) || !_validationErrors.ContainsKey(propertyName))
-        //    {
-        //        return null;
-        //    }
-        //    return _validationErrors[propertyName];
-        //}
-
+        //All validations for Registration Page
         private void Validations()
         {
             string phoneNumber = UserDetails.PhoneNumber;
@@ -161,88 +107,95 @@ namespace MVVM_App.ViewModels
             {
                 if (UserDetails.FullName != null)
                 {
-                    if (UserDetails.Gender != null)
+                    if (UserDetails.Age > 15 && UserDetails.Age < 120)
                     {
-                        if (UserDetails.PhoneNumber != null)
+                        if (UserDetails.Gender != null)
                         {
-                            if (UserDetails.Email != null)
+                            if (UserDetails.PhoneNumber != null)
                             {
-                                if (emailPattern.IsMatch(email))
+                                if (UserDetails.Email != null)
                                 {
-                                    if (phonePattern.IsMatch(phoneNumber))
+                                    if (emailPattern.IsMatch(email))
                                     {
-                                        if (UserDetails.Password != null)
+                                        if (phonePattern.IsMatch(phoneNumber))
                                         {
-                                            if (UserDetails.ConfirmPassword != null)
+                                            if (UserDetails.Password != null)
                                             {
-                                                if (password.IsMatch(pass))
+                                                if (UserDetails.ConfirmPassword != null)
                                                 {
-                                                    if (UserDetails.Password != string.Empty)
+                                                    if (password.IsMatch(pass))
                                                     {
-                                                        if (UserDetails.Password == UserDetails.ConfirmPassword)
+                                                        if (UserDetails.Password != string.Empty)
                                                         {
-                                                            Register();      // Call to Insert User Data into Database
+                                                            if (UserDetails.Password == UserDetails.ConfirmPassword)
+                                                            {
+                                                                Register();      // Call to Insert User Data into Database
+                                                            }
+                                                            else
+                                                            {
+                                                                MessageBox.Show("Passwords dont match");
+                                                            }
                                                         }
                                                         else
                                                         {
-                                                            MessageBox.Show("Passwords dont match");
+                                                            MessageBox.Show("Password Cannot be Empty");
                                                         }
                                                     }
                                                     else
                                                     {
-                                                        MessageBox.Show("Password Cannot be Empty");
+                                                        MessageBox.Show("Password should have 1 Uppercase/1 Special character/1 digit/7 characters");
                                                     }
                                                 }
                                                 else
                                                 {
-                                                    MessageBox.Show("Password should have 1 Uppercase/1 Special character/1 digit/7 characters");
+                                                    MessageBox.Show("Enter confirm password");
                                                 }
                                             }
                                             else
                                             {
-                                                MessageBox.Show("Enter confirm password");
+                                                MessageBox.Show("Enter Password");
                                             }
                                         }
+
                                         else
                                         {
-                                            MessageBox.Show("Enter Password");
+                                            MessageBox.Show("Invalid Phone Number");
                                         }
                                     }
-
                                     else
                                     {
-                                        MessageBox.Show("Invalid Phone Number");
+                                        MessageBox.Show("Invalid Email Adress");
                                     }
+
                                 }
                                 else
                                 {
-                                    MessageBox.Show("Invalid Email Adress");
+                                    MessageBox.Show("Enter Email Adress");
                                 }
-
                             }
                             else
                             {
-                                MessageBox.Show("Enter Email Adress");
+                                MessageBox.Show("Enter Phone Number");
                             }
                         }
                         else
                         {
-                            MessageBox.Show("Enter Phone Number");
+                            MessageBox.Show("Enter Your Gender");
                         }
                     }
                     else
                     {
-                        MessageBox.Show("Enter Your Gender");
+                        MessageBox.Show("Age should be Greater than 15 or less than 120");
                     }
                 }
                 else
                 {
                     MessageBox.Show("Enter Full Name");
-                }               
+                }
             }
             else { MessageBox.Show("Please enter your name"); }
         }
     }
-    
+
 }
 
