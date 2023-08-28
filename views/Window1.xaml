@@ -32,7 +32,7 @@
     </Window.Visibility>
 
     <Window.Background>
-        <ImageBrush ImageSource="C:\Users\arjkr\source\repos\MVVM_App\images\h3.jpg" ></ImageBrush>
+        <ImageBrush ImageSource="https://img.freepik.com/free-vector/clean-medical-background_53876-116875.jpg?size=626" ></ImageBrush>
     </Window.Background>
     <Viewbox>
         <Grid Width="550" Height="800" 

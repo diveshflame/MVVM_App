@@ -16,7 +16,7 @@ namespace MVVM_App.Models
 
         private string _username;
         private string _fullName;
-        private int _age;
+        private int ?_age;
         private string _gender;
         private string _email;
         private string _phoneNumber;
@@ -53,7 +53,7 @@ namespace MVVM_App.Models
 
         [Required(ErrorMessage = "Age is required.")]
         [Range(18, 120, ErrorMessage = "Age must be between 18 and 120.")]
-        public int Age
+        public int ?Age
         {
             get { return _age; }
             set { _age = value;
