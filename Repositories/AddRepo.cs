@@ -45,7 +45,7 @@ namespace MVVM_App.Repositories
         }
 
         //To get consultation Descriptions
-        public List<string> getco()
+        public List<string> getCo()
         {
             List<string> list2 = new List<string>();
 
@@ -238,7 +238,7 @@ namespace MVVM_App.Repositories
         }
 
         //when consultation selection changes get Doctor names for it
-        public List<string> selectionchangedoc1(string v)
+        public List<string> selectionChangeDoc1(string v)
         {
             int b = 0;
             using (var connection = GetConnection()) 
@@ -283,7 +283,7 @@ namespace MVVM_App.Repositories
         }
 
         //When selected Date changes check if already booked timings or not
-        public int selectionconchanged(DateTime dat1, DateTime dat2,string s,DateTime startDate,DateTime EndDate)
+        public int selectionConChanged(DateTime dat1, DateTime dat2,string s,DateTime startDate,DateTime EndDate)
         {
             int keeptab = 0;
 
@@ -344,7 +344,7 @@ namespace MVVM_App.Repositories
         //If check mark returns true then insert from 10-6 else specific selected 
 
 
-        public void ischecked(DateTime dat1, DateTime dat2, string s, DateTime startDate, DateTime EndDate, string FromTime, string EndTime, int t)
+        public void isChecked(DateTime dat1, DateTime dat2, string s, DateTime startDate, DateTime EndDate, string FromTime, string EndTime, int t)
         {
             DateTime d1 = DateTime.Now;
             DateTime d2 = DateTime.Now;
@@ -371,6 +371,7 @@ namespace MVVM_App.Repositories
                         }
                     }
                 }
+                //If not weekends
                 for (DateTime currentDate = startDate; currentDate <= EndDate; currentDate = currentDate.AddDays(1))
                 {
 
@@ -422,6 +423,7 @@ namespace MVVM_App.Repositories
 
                        
                     }
+                        //Insert values from starting to ending specified hours
                     else
                     {
                         TimeSpan startTime = TimeSpan.FromHours(10);
@@ -540,12 +542,12 @@ namespace MVVM_App.Repositories
               using (var con = GetConnection()) 
               {
                 con.Open();
-                NpgsqlCommand checkdoc_id = new NpgsqlCommand("Select Doctor_Id from Doctor_Availability where Doctor_id=@d", con);
-                checkdoc_id.Parameters.AddWithValue("@d", Doc_id);
-                using (checkdoc_id)
+                NpgsqlCommand checkDoc_id = new NpgsqlCommand("Select Doctor_Id from Doctor_Availability where Doctor_id=@d", con);
+                checkDoc_id.Parameters.AddWithValue("@d", Doc_id);
+                using (checkDoc_id)
                 {
                     
-                    using (NpgsqlDataReader reader = checkdoc_id.ExecuteReader())
+                    using (NpgsqlDataReader reader = checkDoc_id.ExecuteReader())
                     {
                         while (reader.Read())
                         {
@@ -561,12 +563,12 @@ namespace MVVM_App.Repositories
                 }
                 else
                 {
-                    NpgsqlCommand updatecmd = new NpgsqlCommand("UPDATE Doctor_Table SET consultant_Id =@cId WHERE Doctor_id=@DocId and Doctor_id  Not in " +
+                    NpgsqlCommand updateCmd = new NpgsqlCommand("UPDATE Doctor_Table SET consultant_Id =@cId WHERE Doctor_id=@DocId and Doctor_id  Not in " +
                         "(Select Doctor_id from Doctor_Availability);", con);
-                    updatecmd.Parameters.AddWithValue("@cId", Consult_id);
-                    updatecmd.Parameters.AddWithValue("@DocId", Doc_id);
+                    updateCmd.Parameters.AddWithValue("@cId", Consult_id);
+                    updateCmd.Parameters.AddWithValue("@DocId", Doc_id);
                     
-                    updatecmd.ExecuteNonQuery();
+                    updateCmd.ExecuteNonQuery();
                     con.Close();
                     MessageBox.Show("Successfully Updated", "Success", MessageBoxButton.OK, MessageBoxImage.Information);
 

@@ -14,9 +14,9 @@ namespace MVVM_App.Models
         public List<string> startT();
         public List<string> EndT();
 
-        public List<string> getco();
+        public List<string> getCo();
         public bool UpdateDoc(int Doc_id, int Consult_id);
         int GetDoctorId(string selectedDoctorName);
-        int GetConsultantId(string selectedConsultationtype);
+        int GetConsultantId(string selectedConsultationType);
     }
 }

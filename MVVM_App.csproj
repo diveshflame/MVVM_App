@@ -23,27 +23,31 @@
   </ItemGroup>
 
   <ItemGroup>
-    <None Remove="images\arjun12 %284%29.png" />
-    <None Remove="images\BoyIcon.png" />
-    <None Remove="images\h3.jpg" />
+    <None Remove="Images\BoyIcon.png" />
+    <None Remove="Images\coming-soon-page.png" />
+    <None Remove="Images\h3.jpg" />
+    <None Remove="Images\Homeback.jpg" />
     <None Remove="Images\logo.png" />
-    <None Remove="images\Logout.png" />
-    <None Remove="images\logout1.png" />
+    <None Remove="Images\Logout.png" />
+    <None Remove="Images\logout1.png" />
+    <None Remove="Images\pic.png" />
   </ItemGroup>
 
   <ItemGroup>
-    <Resource Include="images\logout1.png" />
+    <Resource Include="Images\coming-soon-page.png" />
+    <Resource Include="Images\Homeback.jpg" />
+    <Resource Include="Images\logout1.png" />
   </ItemGroup>
 
   <ItemGroup>
-    <Resource Include="images\BoyIcon.png" />
-    <Resource Include="images\h3.jpg" />
+    <Resource Include="Images\BoyIcon.png" />
+    <Resource Include="Images\h3.jpg" />
   </ItemGroup>
 
   <ItemGroup>
-    <Resource Include="images\arjun12 (4).png" />
     <Resource Include="Images\logo.png" />
-    <Resource Include="images\Logout.png" />
+    <Resource Include="Images\Logout.png" />
+    <Resource Include="Images\pic.png" />
   </ItemGroup>
 
   <ItemGroup>
