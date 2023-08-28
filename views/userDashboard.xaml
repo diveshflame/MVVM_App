@@ -122,7 +122,7 @@
                                 Height="35"
                                 Margin="15,25,0,40">
 
-                    <Image Source="C:\Users\arjkr\source\repos\MVVM_App\Images\logo.png" Height="30"/>
+                    <Image Source="/images/logo.png" Height="30"/>
                     <TextBlock Text="We Care"
                                    Foreground="{StaticResource titleColor2}"
                                    FontSize="20"
@@ -265,7 +265,7 @@
                                      StrokeThickness="2"
                                      >
                                                 <Ellipse.Fill>
-                                                    <ImageBrush ImageSource="/images/arjun12 (4).png"/>
+                                                    <ImageBrush ImageSource="/images/pic.png"/>
                                                 </Ellipse.Fill>
                                             </Ellipse>
                                         </DataTemplate>
