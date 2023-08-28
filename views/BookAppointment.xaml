@@ -17,8 +17,6 @@
           Width="700">
 
             <!-- Header - Book Your Appointment -->
-           
-
 
             <!-- Main Content -->
 
@@ -78,7 +76,7 @@
                         <Label x:Name="label1"  Width="200" VerticalAlignment="Center"  FontSize="14" FontWeight="Bold" />
 
                     </StackPanel>
-                  
+
 
 
 

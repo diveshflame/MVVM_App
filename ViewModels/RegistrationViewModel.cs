@@ -71,7 +71,7 @@ namespace MVVM_App.ViewModels
 
                 try
                 {
-                    _registrationRepo.InsertUser(UserDetails);
+                    string connectionString = @"Server=localhost;Port=5432;User Id=postgres;Password=007;Database=WeCareDB";
 
                     // a success message
                     MessageBox.Show("Registered Successfully");

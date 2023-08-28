@@ -68,7 +68,7 @@ namespace MVVM_App.ViewModels
         {
             List<UserModel> data = new List<UserModel>();
 
-            using (NpgsqlConnection connection = new NpgsqlConnection(@"Server=localhost;Port=5432;User Id=postgres;Password=pass;Database=postgres"))
+            using (NpgsqlConnection connection = new NpgsqlConnection(@"Server=localhost;Port=5432;User Id=postgres;Password=007;Database=WeCareDB"))
             {
                 connection.Open();
 
@@ -94,21 +94,27 @@ namespace MVVM_App.ViewModels
         {
             // Define a dictionary to map consultant types to colors
             Dictionary<string, Color> colorMapping = new Dictionary<string, Color>
-    {
-        { "Dental", Colors.Blue },
-        { "ENT", Colors.Green },
-        { "Type C", Colors.Red },
-        // Add more consultant types and colors as needed
-    };
+            {
+                { "Dentist", Colors.Blue },
+                { "Cardiologist", Colors.Green },
+                { "Root Canal", Colors.Red },
+                { "Dermatology", Colors.Orange },
+                { "ENT Specialist", Colors.Purple },
+                // Add more consultant types and colors as needed
+            };
 
             // Default color if not found in the dictionary
             Color defaultColor = Colors.Gray;
+
+
 
             // Try to get the color from the dictionary, use default if not found
             if (colorMapping.TryGetValue(consultantType, out Color color))
             {
                 return color;
             }
+
+
 
             return defaultColor;
         }

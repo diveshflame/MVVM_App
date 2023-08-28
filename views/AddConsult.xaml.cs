@@ -27,17 +27,7 @@ namespace MVVM_App.views
             InitializeComponent();
         }
 
-        private void btn1_Click(object sender, RoutedEventArgs e)
-        {
-            if (string.IsNullOrWhiteSpace(addConsultant.Text))
-            {
-                MessageBox.Show("Please enter a Valid Department Type!!", "Error Message");
-                return;
-            }
-            AddConsultViewModel add= new AddConsultViewModel();
-            add.Insert(addConsultant.Text);
-            addConsultant.Text = null;
-        }
+        
         private void TextBox_Consultation(object sender, TextCompositionEventArgs e)
         {
             Regex regex = new Regex("[^a-zA-Z]+");

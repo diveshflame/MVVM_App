@@ -30,7 +30,7 @@ namespace MVVM_App.views
 
         private void Consul_SelectionChanged(object sender, SelectionChangedEventArgs e) //changing Doctor name with dept
         {
-            string s="";
+            string s = "";
             if (ConsultType.SelectedItem != null)
             {
                 s = ConsultType.SelectedItem.ToString();
@@ -45,10 +45,10 @@ namespace MVVM_App.views
         private void Date_SelectionChanged(object sender, SelectionChangedEventArgs e) //Setting the From time and To time
         {
             Fromtime.ItemsSource = null;
-            Endtime.ItemsSource = null; 
-     
+            Endtime.ItemsSource = null;
+
             string doc = "";
-            DateTime selectedDate=DateTime.Now;
+            DateTime selectedDate = DateTime.Now;
             if (Doctor.SelectedItem != null && Datepicker.SelectedDate != null)
             {
                 doc = Doctor.SelectedItem.ToString();
@@ -57,12 +57,12 @@ namespace MVVM_App.views
             viewModel.docSelChanged(doc, selectedDate);
             Fromtime.ItemsSource = viewModel.slotlist;
             Endtime.ItemsSource = viewModel.slotlist2;
-            
+
         }
 
-        private void btn1_Click(object sender, RoutedEventArgs e) 
+        private void btn1_Click(object sender, RoutedEventArgs e)
         {
-            string selectedDep="";
+            string selectedDep = "";
             string doc = "";
             DateTime selectedDate = DateTime.Now;
             if (ConsultType.SelectedItem != null && Doctor.SelectedItem != null && Datepicker.SelectedDate != null)
@@ -98,7 +98,7 @@ namespace MVVM_App.views
             Doctor.SelectedItem = null;
             ConsultType.SelectedItem = null;
             Datepicker.SelectedDate = null;
-            Fromtime.SelectedItem = null;   
+            Fromtime.SelectedItem = null;
             Endtime.SelectedItem = null;
 
         }
@@ -154,8 +154,8 @@ namespace MVVM_App.views
             {
                 s = Doctor.SelectedItem.ToString();
             }
-            
-            DateTime? Blackout_Date=viewModel.Blackout(s);
+
+            DateTime? Blackout_Date = viewModel.Blackout(s);
             if (Blackout_Date.HasValue)
             {
                 Datepicker.BlackoutDates.Add(new CalendarDateRange(Blackout_Date.Value));
