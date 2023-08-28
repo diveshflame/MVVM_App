@@ -20,7 +20,7 @@ namespace MVVM_App.Repositories
         {
             List<string> list2 = new List<string>();
 
-            using (var connection = GetConnection()) // You need to replace GetConnection() with your actual connection creation logic
+            using (var connection = GetConnection()) 
             using (var command = new NpgsqlCommand())
             {
                 connection.Open();
@@ -31,8 +31,8 @@ namespace MVVM_App.Repositories
                 {
                     while (reader.Read())
                     {
-                        // Add the value from the "Doctor_Name" column to the j list
-                        list2.Add(reader.GetString(0)); // Assuming the column is of string type
+                        
+                        list2.Add(reader.GetString(0)); 
                     }
                 }
             }
@@ -42,7 +42,7 @@ namespace MVVM_App.Repositories
         public List<string> bookgetDoc(string s)
         {
             int a = 0;
-            using (var connection = GetConnection()) // You need to replace GetConnection() with your actual connection creation logic
+            using (var connection = GetConnection()) 
             using (var command = new NpgsqlCommand())
             {
                 connection.Open();
@@ -53,15 +53,15 @@ namespace MVVM_App.Repositories
                 {
                     while (reader.Read())
                     {
-                        // Add the value from the "Doctor_Name" column to the j list
+                        
                         a = reader.GetInt32(0);
 
-                        // Assuming the column is of string type
+                        
                     }
                 }
             }
            List<string> list = new List<string>();  
-            using (var connection = GetConnection()) // You need to replace GetConnection() with your actual connection creation logic
+            using (var connection = GetConnection())
             using (var command = new NpgsqlCommand())
             {
                 connection.Open();
@@ -72,10 +72,10 @@ namespace MVVM_App.Repositories
                 {
                     while (reader.Read())
                     {
-                        // Add the value from the "Doctor_Name" column to the j list
+                        
                         list.Add(reader.GetString(0));  
 
-                        // Assuming the column is of string type
+                        
                     }
                 }
             }
@@ -89,7 +89,7 @@ namespace MVVM_App.Repositories
             DateTime ne = DateTime.Now;
          
             int b = 0;
-            using (var connection = GetConnection()) // You need to replace GetConnection() with your actual connection creation logic
+            using (var connection = GetConnection()) 
             using (var command = new NpgsqlCommand())
             {
                 connection.Open();
@@ -100,14 +100,14 @@ namespace MVVM_App.Repositories
                 {
                     while (reader.Read())
                     {
-                        // Add the value from the "Doctor_Name" column to the j list
+                       
                         b = reader.GetInt32(0);
 
-                        // Assuming the column is of string type
+                      
                     }
                 }
             }
-            using (var connection = GetConnection()) // You need to replace GetConnection() with your actual connection creation logic
+            using (var connection = GetConnection()) 
             using (var command = new NpgsqlCommand())
             {
                 connection.Open();
@@ -119,17 +119,17 @@ namespace MVVM_App.Repositories
                 {
                     while (reader.Read())
                     {
-                        // Add the value from the "Doctor_Name" column to the j list
+                       
                         TimeSpan timeSpan1= reader.GetDateTime(0).TimeOfDay;
                         TimeSpan timeSpan2= reader.GetDateTime(1).TimeOfDay;
                       
                         string hhmmFormat1 = $"{timeSpan1.Hours:D2}:{timeSpan1.Minutes:D2}";
                         string hhmmFormat2 = $"{timeSpan2.Hours:D2}:{timeSpan2.Minutes:D2}";
-                        // Assuming the column is of string type
+                       
                         slotlist.Add(hhmmFormat1);
                         slotlist2.Add(hhmmFormat2); 
 
-                        // Assuming the column is of string type
+                       
                     }
                 }
             }
@@ -139,7 +139,7 @@ namespace MVVM_App.Repositories
         public void AddBook(string selectedDep, DateTime selectedDate, string doc, DateTime d1, DateTime d2)
         {
             int a = 0;
-            using (var connection = GetConnection()) // You need to replace GetConnection() with your actual connection creation logic
+            using (var connection = GetConnection()) 
             using (var command = new NpgsqlCommand())
             {
                 connection.Open();
@@ -150,15 +150,15 @@ namespace MVVM_App.Repositories
                 {
                     while (reader.Read())
                     {
-                        // Add the value from the "Doctor_Name" column to the j list
+                       
                         a = reader.GetInt32(0);
 
-                        // Assuming the column is of string type
+                       
                     }
                 }
             }
             int b = 0;
-            using (var connection = GetConnection()) // You need to replace GetConnection() with your actual connection creation logic
+            using (var connection = GetConnection()) 
             using (var command = new NpgsqlCommand())
             {
                 connection.Open();
@@ -169,10 +169,10 @@ namespace MVVM_App.Repositories
                 {
                     while (reader.Read())
                     {
-                        // Add the value from the "Doctor_Name" column to the j list
+                        
                         b = reader.GetInt32(0);
 
-                        // Assuming the column is of string type
+                       
                     }
                 }
             }
@@ -188,7 +188,7 @@ namespace MVVM_App.Repositories
                 {
                     while (reader.Read())
                     {
-                        // Add the value from the "Doctor_Name" column to the j list
+                       
                         k = reader.GetInt32(0);
 
                         // Assuming the column is of string type

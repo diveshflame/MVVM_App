@@ -43,31 +43,31 @@
                 <StackPanel Grid.Row="3" Orientation="Horizontal" HorizontalAlignment="Left"  Margin="0,10">
 
                     <TextBlock x:Name="text8" Text="Registered Doctors" Width="200" VerticalAlignment="Center" FontSize="16" FontWeight="Bold" />
-                    <ComboBox x:Name="doctorType1" Width="250" VerticalAlignment="Center"  Margin="50,0,0,0" ItemsSource="{Binding DoctorNames}" SelectionChanged="doctorType1_SelectionChanged" />
+                    <ComboBox x:Name="doctorType1" Width="250" VerticalAlignment="Center"  Margin="50,0,0,0" ItemsSource="{Binding Doctor,Mode=TwoWay}" SelectedItem="{Binding SelectedDoc, Mode=TwoWay}" SelectionChanged="doctorType1_SelectionChanged" />
                 </StackPanel>
                 <StackPanel Grid.Row="2" Orientation="Horizontal" HorizontalAlignment="Left"  Margin="0,10">
 
                     <TextBlock x:Name="text1" Text="Select Department" Width="200" VerticalAlignment="Center" FontSize="16" FontWeight="Bold" />
-                    <ComboBox x:Name="ConsultType1" Width="250" VerticalAlignment="Center" Margin="50,0,0,0"  ItemsSource="{Binding consultTypes}" SelectionChanged="ConsultType1_SelectionChanged"/>
+                    <ComboBox x:Name="ConsultType1" Width="250" VerticalAlignment="Center" Margin="50,0,0,0"  ItemsSource="{Binding consultTypes}" SelectedItem="{Binding ConsultSelected,Mode=TwoWay}" SelectionChanged="ConsultType1_SelectionChanged"/>
                 </StackPanel>
 
 
                 <StackPanel Grid.Row="4" Orientation="Horizontal"  HorizontalAlignment="Left" Margin="0,10">
                     <TextBlock x:Name="text3" Text="Select From Date " Width="200" VerticalAlignment="Center" FontSize="16" FontWeight="Bold"/>
-                    <DatePicker x:Name="Datepicker1" Width="250" VerticalAlignment="Center" Margin="50,0,0,0" />
+                    <DatePicker x:Name="Datepicker1" Width="250" VerticalAlignment="Center" Margin="50,0,0,0" SelectedDate="{Binding SelectedDate1, Mode=TwoWay}"/>
                 </StackPanel>
                 <StackPanel Grid.Row="5" Orientation="Horizontal"  HorizontalAlignment="Left" Margin="0,10">
                     <TextBlock x:Name="text7" Text="Select To Date " Width="200" VerticalAlignment="Center" FontSize="16" FontWeight="Bold"/>
-                    <DatePicker x:Name="Datepicker2" Width="250" VerticalAlignment="Center" Margin="50,0,0,0" />
+                    <DatePicker x:Name="Datepicker2" Width="250" VerticalAlignment="Center" Margin="50,0,0,0" SelectedDate="{Binding SelectedDate2,Mode=TwoWay}" />
                 </StackPanel>
                 <StackPanel Grid.Row="6" Orientation="Horizontal" HorizontalAlignment="Left" Margin="0,10">
                     <TextBlock x:Name="text9" Text="Doctor Availibility" Width="200" VerticalAlignment="Center" FontSize="16" FontWeight="Bold" />
-                    <CheckBox x:Name="checker1" Width="15" VerticalAlignment="Center"  Margin="50,10" Checked="CheckBox_Checked" Unchecked="CheckBox_Unchecked"/>
+                    <CheckBox x:Name="checker1" Width="15" VerticalAlignment="Center"  Margin="50,10" Checked="CheckBox_Checked" Unchecked="CheckBox_Unchecked" IsChecked="{Binding IsChecked}"/>
                     <TextBlock x:Name="text10" Text="10-6 on selected date" Width="200" Margin="-40,0" VerticalAlignment="Center" FontSize="14" FontWeight="SemiBold"  />
                 </StackPanel>
                 <StackPanel Grid.Row="7" Orientation="Horizontal" HorizontalAlignment="Left" Margin="0,10">
                     <TextBlock x:Name="text4" Text="Select From Time" Width="200" VerticalAlignment="Center" FontSize="16" FontWeight="Bold" />
-                    <ComboBox x:Name="Fromtime1" Width="250" VerticalAlignment="Center" Margin="50,0,0,0" ItemsSource="{Binding StartTime}"  >
+                    <ComboBox x:Name="Fromtime1" Width="250" VerticalAlignment="Center" Margin="50,0,0,0" ItemsSource="{Binding StartTime}" SelectedItem="{Binding SelectedFromTime, Mode=TwoWay}"  >
                         <ComboBox.ItemTemplate>
                             <DataTemplate>
                                 <TextBlock Text="{Binding}" />
@@ -79,7 +79,7 @@
 
                 <StackPanel Grid.Row="8" Orientation="Horizontal"   Margin="0,10">
                     <TextBlock x:Name="text5" Text="Select To Time" Width="200" VerticalAlignment="Center"  FontSize="16" FontWeight="Bold" />
-                    <ComboBox x:Name="Endtime1" Width="250" VerticalAlignment="Center"  Margin="50,0,0,0"  ItemsSource="{Binding EndTime}">
+                    <ComboBox x:Name="Endtime1" Width="250" VerticalAlignment="Center"  Margin="50,0,0,0"  ItemsSource="{Binding EndTime}" SelectedItem="{Binding SelectedEndTime,Mode=TwoWay}">
                         <ComboBox.ItemTemplate>
                             <DataTemplate>
                                 <TextBlock Text="{Binding}" />
@@ -114,7 +114,7 @@
                 <Button x:Name="btn3"  Grid.Row="9"  Content="Update Time" HorizontalAlignment="Right"
                             VerticalAlignment="Top" Margin="90,10,0,0" Padding="15 5" Width="90"
                             Height="30" Background="CadetBlue" Foreground="White" FontSize="13"
-                            FontWeight="SemiBold" BorderThickness="0"  Grid.RowSpan="4" Grid.ColumnSpan="4" Click="btn1_Click">
+                            FontWeight="SemiBold" BorderThickness="0"  Grid.RowSpan="4" Grid.ColumnSpan="4" Command="{Binding AddTimings}">
                     <Button.Template>
                         <ControlTemplate TargetType="{x:Type Button}">
                             <Border Background="{TemplateBinding Background}" BorderThickness="{TemplateBinding BorderThickness}" BorderBrush="{TemplateBinding BorderBrush}" CornerRadius="5">

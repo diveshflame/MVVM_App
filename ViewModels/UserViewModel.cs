@@ -43,15 +43,22 @@ namespace MVVM_App.ViewModels
         public ICommand ShowUserBookings { get; }
 
 
-
+        public ICommand ShowHomeCommand { get; }
         public UserViewModel()
         {
             _userRepository = new UserRepository();
             UserAccount = new UserAccountModel();
             ShowUserBookings = new ViewModelCommand(ExecuteShowUserBookings);
             ShowBookApp = new ViewModelCommand(ExecuteShowBookings);
+            ShowHomeCommand = new ViewModelCommand(ExecuteHome);
             // LoadCurrentUserData();
             ExecuteShowUserBookings(null);
+        }
+
+        private void ExecuteHome(object obj)
+        {
+            CurrentChildView = new HomePageViewModel();
+            Caption = "Home";
         }
 
         private void ExecuteShowBookings(object obj)

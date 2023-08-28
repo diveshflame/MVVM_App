@@ -37,6 +37,10 @@
             <local:UserViewBookings/>
         </DataTemplate>
 
+        <DataTemplate DataType="{x:Type viewModel:HomePageViewModel}">
+            <local:UserHomePage/>
+        </DataTemplate>
+
         <Style x:Key="DropdownItemStyle" TargetType="Button">
             <Setter Property="Padding" Value="10"/>
             <Setter Property="Foreground" Value="White"/>
@@ -135,7 +139,7 @@
                                    Margin="-60,25,0,0"/>
                 </StackPanel>
                 <RadioButton Style="{StaticResource menuButton}"
-                                 Tag="{StaticResource color2}">
+                                 Tag="{StaticResource primaryBackColor1}" Command="{Binding ShowHomeCommand}" >
                     <StackPanel Orientation="Horizontal">
                         <fa:FontAwesome Icon="Home" Margin="10,2,0,0" />
                         <TextBlock Text="Home" Margin="10,0,0,0"/>
@@ -143,7 +147,7 @@
                 </RadioButton>
         <RadioButton Style="{StaticResource menuButton}"
                                  Tag="{StaticResource primaryBackColor1}"
-                                 IsChecked="True"
+                               
                                   Command="{Binding ShowBookApp}" >
                     <StackPanel Orientation="Horizontal">
                         <fa:FontAwesome Icon="FileText" Margin="10,2,0,0"/>

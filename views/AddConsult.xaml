@@ -9,6 +9,10 @@
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
 
+	<UserControl.DataContext>
+		<viewModel:AddConsultViewModel/>
+	</UserControl.DataContext>
+	
 	<Viewbox>
 		<Grid  Margin="55">
 			
@@ -27,7 +31,7 @@
 					</Grid.ColumnDefinitions>
 					<StackPanel Grid.Row="0" Orientation="Horizontal" HorizontalAlignment="Left"  Margin="0,10">
 						<TextBlock x:Name="text1" Text="Enter New Department:" Width="160" VerticalAlignment="Center" FontSize="14" FontWeight="Bold" />
-                        <TextBox x:Name="addConsultant" Margin="10,0" Width="200" Height="20" PreviewTextInput="TextBox_Consultation" VerticalAlignment="Center"></TextBox>
+                        <TextBox x:Name="addConsultant" Margin="10,0" Text="{Binding Text, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged }" Width="200" Height="20" PreviewTextInput="TextBox_Consultation" VerticalAlignment="Center"></TextBox>
 					</StackPanel>
 
 					<Button x:Name="btn1"
@@ -41,7 +45,7 @@
                             FontWeight="SemiBold"
                             BorderBrush="Black"
                             BorderThickness="0"
-                            Click="btn1_Click"
+                            Command="{Binding AddDepartment}"
                             Background="CadetBlue" >
 
 

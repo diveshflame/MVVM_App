@@ -86,10 +86,10 @@
                 <Label Grid.Row="8" Grid.Column="1" Content=":" Foreground="Black" />
 
                 <TextBlock  Grid.Row="9" Grid.Column="0" Text="Confirm Password:" />
-                <TextBox Name="confirmTxtbox"  Grid.Row="9" Grid.Column="2" Text="{Binding UserDetails.ConfirmPassword, UpdateSourceTrigger=PropertyChanged}" Margin="20,3,15,20"  />
+                <TextBox Name="confirmTxtbox"  Grid.Row="9" Grid.Column="2" Text="{Binding UserDetails.ConfirmPassword, UpdateSourceTrigger=PropertyChanged}" Margin="20,3,15,20" Height="30" />
 
                 <Button Grid.Row="9" Grid.Column="2"
-                         FontSize="14" Click="MaskButton_Click" 
+                         FontSize="14" Click="MaskButton_Click" VerticalAlignment="Center"
                         Style="{StaticResource iconButton2}" Margin="350,3,10,23"
                                    >
                     <fa:FontAwesome Icon="Eye" 
