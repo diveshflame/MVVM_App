@@ -29,22 +29,5 @@ namespace MVVM_App.views
         {
             InitializeComponent();
         }
-
-        private void Deleteappoitment(object sender, RoutedEventArgs e)
-        {
-
-            UserViewBookingsModel add = new UserViewBookingsModel();
-            DataGridItem row = UserBooking.SelectedItem as DataGridItem;
-
-           // DataRowView row = UserBooking.SelectedItem as DataRowView;
-            int BookingId = row.Booking_Id;
-            DateTime starttime =Convert.ToDateTime( row.StartTime);
-            DateTime endtime = Convert.ToDateTime(row.EndTime);
-            int docid = row.Doctor_Id;
-            add.DeleteAppointment(BookingId,docid,starttime,endtime);
-           
-
-
-        }
     }
 }
