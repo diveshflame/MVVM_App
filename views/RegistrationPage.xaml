@@ -16,7 +16,7 @@
         <viewModels:RegistrationViewModel/>
     </Window.DataContext>
     <Window.Background>
-        <ImageBrush ImageSource="C:\Users\arjkr\source\repos\MVVM_App\images\h3.jpg" />
+        <ImageBrush ImageSource="\images\h3.jpg" />
     </Window.Background>
     <Window.Resources>
         <BooleanToVisibilityConverter x:Key="Boolean"/>
