@@ -113,10 +113,7 @@
              
             </Border>
 
-            <Border BorderBrush="Black"
-                BorderThickness="100,0,0,0" 
-                Width="5" Margin="246,0,0,0"
-                VerticalAlignment="Stretch" Panel.ZIndex="1" />
+            
             <StackPanel Grid.Column="0" >
                 
                     <!--Logo-->
@@ -131,7 +128,14 @@
                                    FontFamily="Montserrat"
                                    FontWeight="Medium"
                                    VerticalAlignment="Center"
-                                   Margin="10,0,0,0"/>
+                                   Margin="10,0,0,12"/>
+                    <TextBlock Text="for One Care"
+                                   Foreground="{StaticResource titleColor2}"
+                                   FontSize="10"
+                                   FontFamily="Montserrat"
+                                   FontWeight="Medium"
+                                   VerticalAlignment="Center"
+                                   Margin="-60,25,0,0"/>
                 </StackPanel>
                 <RadioButton Style="{StaticResource menuButton}"
                                  Tag="{StaticResource primaryBackColor1}"
@@ -143,7 +147,7 @@
                 </RadioButton>
                 <RadioButton Style="{StaticResource menuButton}"
                                  Tag="{StaticResource primaryBackColor1}"
-                                 Command="{Binding ShowBookings}">
+                                 Command="{Binding ShowBookings}" IsChecked="True" >
                     <StackPanel Orientation="Horizontal">
                         <fa:FontAwesome Icon="Book" Margin="10,2,0,0" />
                         <TextBlock Text="View Booking" Margin="10,0,0,0"/>
@@ -163,7 +167,7 @@
                                  Tag="{StaticResource primaryBackColor2}"
                                  Command="{Binding ShowAddDoctorCommand}">
                     <StackPanel Orientation="Horizontal">
-                        <fa:FontAwesome Icon="User"  Margin="15,2,0,0" />
+                        <fa:FontAwesome Icon="Medkit"  Margin="15,2,0,0" />
                         <TextBlock Text="Add Doctor"  Margin="10,0,0,0"/>
                     </StackPanel>
                 </RadioButton>
@@ -172,7 +176,7 @@
                                  IsChecked="True"
                                  Command="{Binding ShowAddTimingsCommand}" >
                     <StackPanel Orientation="Horizontal">
-                        <fa:FontAwesome Icon="FileText" Margin="15,2,0,0"/>
+                        <fa:FontAwesome Icon="ClockOutline" Margin="15,2,0,0"/>
                         <TextBlock Text="Update Timings" Margin="10,0,0,0"/>
                     </StackPanel>
                 </RadioButton>
@@ -209,24 +213,24 @@
                                 Orientation="Horizontal"
                                 FlowDirection="RightToLeft"
                                 Background="Transparent"
-                                Margin="0,10,0,0"
+                                Margin="0,10,10,0"
                                 MouseLeftButtonDown="pnlControlBar_MouseLeftButtonDown"
                               MouseEnter="pnlControlBar_MouseEnter" >
                         <Button x:Name="btnClose"
                                 Style="{StaticResource controlButton}"
-                                Tag="{StaticResource color4}"
+                                Tag="{StaticResource color8}"
                               Click="btnClose_Click">
                             <fa:FontAwesome Icon="Close" />
                         </Button>
                         <Button x:Name="btnMaximize"
                                 Style="{StaticResource controlButton}"
-                                Tag="{StaticResource color6}"
+                                Tag="{StaticResource color8}"
                              Click="btnMaximize_Click" >
                             <fa:FontAwesome Icon="SquareOutline" />
                         </Button>
                         <Button x:Name="btnMinimize"
                                 Style="{StaticResource controlButton}"
-                                Tag="{StaticResource color6}"
+                                Tag="{StaticResource color8}"
                              Click="btnMinimize_Click" >
                             <fa:FontAwesome Icon="Minus" Width="12"/>
                         </Button>
@@ -247,7 +251,7 @@
                                           Height="20"
                                           Width="20"
                                           Foreground="{StaticResource titleColor2}"
-                                          Margin="35,0,10,0"/>
+                                          Margin="20,0,10,0"/>
 
                             <TextBlock Text="{Binding Caption}"
                                        Foreground="{StaticResource titleColor2}"
@@ -297,7 +301,11 @@
        VerticalOffset="-35" HorizontalOffset="35">
                                     <Border Background="#333" BorderBrush="#555" BorderThickness="1" CornerRadius="4">
                                         <StackPanel Width="120">
-                                            <Button Content="Settings" HorizontalContentAlignment="Left" Style="{StaticResource DropdownItemStyle}" Click="SettingsButton_Click"/>
+                                            <Button Content="Settings" HorizontalContentAlignment="Left" Style="{StaticResource DropdownItemStyle}" Click="SettingsButton_Click">
+                                                <Button.ToolTip>
+                                                    <ToolTip Content="! Coming Soon" ToolTipService.InitialShowDelay="0"/>
+                                                </Button.ToolTip>
+                                            </Button>
                                             <Button Content="Logout" HorizontalContentAlignment="Left" Style="{StaticResource DropdownItemStyle}" Click="LogoutButton_Click">
                                                 <Button.ContentTemplate>
                                                     <DataTemplate>
@@ -309,6 +317,7 @@
                                                         </StackPanel>
                                                     </DataTemplate>
                                                 </Button.ContentTemplate>
+                                                
                                             </Button>
                                         </StackPanel>
                                     </Border>
@@ -318,14 +327,23 @@
                             <Button Style="{StaticResource iconButton}"
                                     Tag="{StaticResource color3}">
                                 <fa:FontAwesome Icon="TimesCircle" />
+                                <Button.ToolTip>
+                                    <ToolTip Content="! Coming Soon" ToolTipService.InitialShowDelay="0"/>
+                                </Button.ToolTip>
                             </Button>
                             <Button Style="{StaticResource iconButton}"
                                     Tag="{StaticResource color4}">
                                 <fa:FontAwesome Icon="Envelope" />
+                                <Button.ToolTip>
+                                    <ToolTip Content="! Coming Soon" ToolTipService.InitialShowDelay="0"/>
+                                </Button.ToolTip>
                             </Button>
                             <Button Style="{StaticResource iconButton}"
                                     Tag="{StaticResource color5}">
                                 <fa:FontAwesome Icon="Bell" />
+                                <Button.ToolTip>
+                                    <ToolTip Content="! Coming Soon" ToolTipService.InitialShowDelay="0"/>
+                                </Button.ToolTip>
                             </Button>
                         </StackPanel>
 

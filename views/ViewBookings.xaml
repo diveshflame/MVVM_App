@@ -16,7 +16,7 @@
                 CornerRadius="10"
                 Width="800"
                 Padding="2" VerticalAlignment="Center">
-        <Grid Background="White"  Height="400" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="-40,30,0,0" >
+        <Grid Background="White"  Height="400" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="-50,30,0,40" >
 
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto"/>
@@ -68,8 +68,9 @@
                 </Style>
             </Grid.Resources>
 
-            <StackPanel Grid.Row="1" Grid.Column="1" Orientation="Horizontal" Margin="0,0,0,30" HorizontalAlignment="Center">
-                <RadioButton Content="View All Bookings" Command="{Binding ViewAdminBookings}"  Style="{StaticResource tabButton}"   BorderBrush="Teal"/>
+            <StackPanel Grid.Row="1" Grid.Column="1" Orientation="Horizontal" Margin="0,0,0,20" HorizontalAlignment="Center">
+                <RadioButton Content="View All Bookings" Command="{Binding ViewAdminBookings}"  Style="{StaticResource tabButton}"   BorderBrush="#784ff2"/>
+
                 <RadioButton Content="Today Bookings" Style="{StaticResource tabButton}" Command="{Binding ViewTodayBooking}"/>
                 <RadioButton Content="Booking History" Style="{StaticResource tabButton}" Command="{Binding ViewBookingHistory}" />
             </StackPanel>

@@ -11,6 +11,7 @@ using FontAwesome.WPF;
 using System.Windows.Input;
 using System.ComponentModel;
 using MVVM_App.views;
+using FontAwesome.Sharp;
 
 namespace MVVM_App.ViewModels
 {
@@ -20,7 +21,19 @@ namespace MVVM_App.ViewModels
         private IUserRepository _userRepository;
         private ViewModelBase _currentChildView;
         private string _caption;
-     
+        private IconChar _icon;
+        public IconChar Icon
+        {
+            get
+            {
+                return _icon;
+            }
+            set
+            {
+                _icon = value;
+                OnPropertyChanged(nameof(Icon));
+            }
+        }
         public UserAccountModel UserAccount
         {
             get { return _userAccount; }
@@ -61,9 +74,10 @@ namespace MVVM_App.ViewModels
       
             ShowBookings = new ViewModelCommand(ExecuteShowBookings);
 
+            ExecuteShowBookings(null);
             //showPieChart = new ViewModelCommand(Executechart); //executeChart
 
-            //LoadCurrentUserData();
+         /*   LoadCurrentUserData();*/
 
         }
         //private void Executechart(object obj)
@@ -87,32 +101,34 @@ namespace MVVM_App.ViewModels
         {
             CurrentChildView = new AddConsultViewModel();
             Caption = "Add Department";
+            Icon = IconChar.Book;
         }
 
         private void ExecuteUpdateDoctorView(object obj)
         {
             CurrentChildView = new UpdateDoctorViewModel();
             Caption = "Update Doctor";
-         
+            Icon = IconChar.User;
         }
 
         private void ExecuteAddTimingsView(object obj)
         {
             CurrentChildView = new AddTimingsViewModel();
             Caption = "Update Timings";
-         
+            Icon = IconChar.Clock;
+
         }
 
-        //private void LoadCurrentUserData()
-        //{
-        //    var user = _userRepository.GetByUsername(Thread.CurrentPrincipal.Identity.Name);
-        //    if (user != null) 
-        //    {
+      /*  private void LoadCurrentUserData()
+        {
+            var user = _userRepository.GetByUsername(Thread.CurrentPrincipal.Identity.Name);
+            if (user != null) 
+            {
 
-        //        UserAccount.Username = user.UserName;
-        //        UserAccount.DisplayName = $"Welcome {user.UserName};)";
-        //             UserAccount.Profilepic = null;       
-        //    }
-        //}
+                UserAccount.Username = user.UserName;
+               UserAccount.DisplayName = $"Welcome {user.UserName};)";
+                    UserAccount.Profilepic = null;       
+          }
+        }*/
     }
 }

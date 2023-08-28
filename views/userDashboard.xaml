@@ -118,14 +118,21 @@
                                 Height="35"
                                 Margin="15,25,0,40">
 
-                    <Image Source="\images\logo.png" Height="30"/>
+                    <Image Source="C:\Users\arjkr\source\repos\MVVM_App\Images\logo.png" Height="30"/>
                     <TextBlock Text="We Care"
                                    Foreground="{StaticResource titleColor2}"
                                    FontSize="20"
                                    FontFamily="Montserrat"
                                    FontWeight="Medium"
                                    VerticalAlignment="Center"
-                                   Margin="10,0,0,0"/>
+                                   Margin="10,0,0,12"/>
+                    <TextBlock Text="for One Care"
+                                   Foreground="{StaticResource titleColor2}"
+                                   FontSize="10"
+                                   FontFamily="Montserrat"
+                                   FontWeight="Medium"
+                                   VerticalAlignment="Center"
+                                   Margin="-60,25,0,0"/>
                 </StackPanel>
                 <RadioButton Style="{StaticResource menuButton}"
                                  Tag="{StaticResource color2}">
@@ -178,29 +185,29 @@
                                 Orientation="Horizontal"
                                 FlowDirection="RightToLeft"
                                 Background="Transparent"
-                                Margin="0,0,5,0"
+                                Margin="0,10,10,0"
                                 MouseLeftButtonDown="pnlControlBar_MouseLeftButtonDown"
                               MouseEnter="pnlControlBar_MouseEnter" >
                         <Button x:Name="btnClose"
                                 Style="{StaticResource controlButton}"
-                                Tag="{StaticResource color4}"
+                                Tag="{StaticResource color8}"
                               Click="btnClose_Click">
-                            <fa:FontAwesome Icon="WindowClose" />
+                            <fa:FontAwesome Icon="Close" />
                         </Button>
                         <Button x:Name="btnMaximize"
                                 Style="{StaticResource controlButton}"
-                                Tag="{StaticResource color6}"
+                                Tag="{StaticResource color8}"
                              Click="btnMaximize_Click" >
-                            <fa:FontAwesome Icon="Square" />
+                            <fa:FontAwesome Icon="SquareOutline" />
                         </Button>
                         <Button x:Name="btnMinimize"
                                 Style="{StaticResource controlButton}"
-                                Tag="{StaticResource color6}"
+                                Tag="{StaticResource color8}"
                              Click="btnMinimize_Click" >
-                            <fa:FontAwesome Icon="WindowMinimize" Width="12"/>
+                            <fa:FontAwesome Icon="Minus" Width="12"/>
                         </Button>
-                    </StackPanel>
-                    <StackPanel Grid.Column="0">
+                        </StackPanel>
+                        <StackPanel Grid.Column="0">
                     </StackPanel>
                     <Grid Grid.Row="1" Margin="0,10,0,0" Background="Teal" >
                         <Grid.ColumnDefinitions>
@@ -292,14 +299,23 @@
 
                             <Button Style="{StaticResource iconButton}"
                                     Tag="{StaticResource color3}">
+                                <Button.ToolTip>
+                                    <ToolTip Content="! Coming Soon" ToolTipService.InitialShowDelay="0"/>
+                                </Button.ToolTip>
                                 <fa:FontAwesome Icon="TimesCircle" />
                             </Button>
                             <Button Style="{StaticResource iconButton}"
                                     Tag="{StaticResource color4}">
+                                <Button.ToolTip>
+                                    <ToolTip Content="! Coming Soon" ToolTipService.InitialShowDelay="0"/>
+                                </Button.ToolTip>
                                 <fa:FontAwesome Icon="Envelope" />
                             </Button>
                             <Button Style="{StaticResource iconButton}"
                                     Tag="{StaticResource color5}">
+                                <Button.ToolTip>
+                                    <ToolTip Content="! Coming Soon" ToolTipService.InitialShowDelay="0"/>
+                                </Button.ToolTip>
                                 <fa:FontAwesome Icon="Bell" />
                             </Button>
                         </StackPanel>
