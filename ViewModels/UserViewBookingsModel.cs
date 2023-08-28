@@ -8,6 +8,7 @@ using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 using System.Windows.Input;
 
 namespace MVVM_App.ViewModels
@@ -18,13 +19,14 @@ namespace MVVM_App.ViewModels
         private ObservableCollection<DataGridItem> userDatagridItems;
 
         private ObservableCollection<DataGridItem> userNewDatagridItems;
+        private DataGridItem getSelectedRow;
         private bool _isDataGridVisible = true;
         private bool _isDataGridVisible2 = true;
         //private bool _isbuttonvisible = false;
+
+        // public bool Isbuttonvisible { get => _isbuttonvisible; set { _isbuttonvisible = value; OnPropertyChanged(nameof(Isbuttonvisible));} }
         public bool IsDataGridVisible { get => _isDataGridVisible; set { _isDataGridVisible = value; OnPropertyChanged(nameof(IsDataGridVisible)); } }
-
-       // public bool Isbuttonvisible { get => _isbuttonvisible; set { _isbuttonvisible = value; OnPropertyChanged(nameof(Isbuttonvisible));} }
-
+        public DataGridItem GetSelectedRow { get => getSelectedRow; set { getSelectedRow = value; OnPropertyChanged(nameof(GetSelectedRow)); } }
         public bool IsDataGridVisible2 { get => _isDataGridVisible2; set { _isDataGridVisible2 = value; OnPropertyChanged(nameof(IsDataGridVisible2));}
 }
         public ObservableCollection<DataGridItem> UserDatagridItems { get => userDatagridItems; set { userDatagridItems = value; OnPropertyChanged(nameof(UserDatagridItems)); } }
@@ -48,12 +50,33 @@ namespace MVVM_App.ViewModels
             ViewUserBookings = new ViewModelCommand(ExecuteViewUserBookings);
             ViewUserTodayBooking = new ViewModelCommand(ExecuteViewUserTodayBooking);
             ViewUserBookingHistory = new ViewModelCommand(ExecuteViewUserBookingHistory);
+            DeleteUserBookings = new ViewModelCommand(ExecuteDeleteUserBookings);
             IsDataGridVisible = true;
             IsDataGridVisible2 = false;
             LoadData();
         }
 
-     
+        private void ExecuteDeleteUserBookings(object obj)
+        {
+            UserViewBookingsModel add = new UserViewBookingsModel();
+          
+                int bookingId = Convert.ToInt32(GetSelectedRow.Booking_Id);
+                DateTime startTime = Convert.ToDateTime(GetSelectedRow.StartTime);
+                DateTime endTime = Convert.ToDateTime(GetSelectedRow.EndTime);
+                int doctorId = Convert.ToInt32(GetSelectedRow.Doctor_Id);
+
+                bool isvalid = adminbooking.DeleteUserBooking(bookingId, doctorId, startTime, endTime);
+                if (isvalid)
+                {
+                    UserDatagridItems = new ObservableCollection<DataGridItem>();
+                   var dataGridItem = adminbooking.ViewUserBookings();
+                   foreach (var item in dataGridItem)
+                    {
+                    UserDatagridItems.Add(item);
+                    }
+                }
+            LoadData();
+        }
 
         private void ExecuteViewUserBookingHistory(object obj)
         {
@@ -106,30 +129,6 @@ namespace MVVM_App.ViewModels
             
           
         }
-
-        public void DeleteAppointment(int BookingId, int DoctorId, DateTime startTime, DateTime endTime)
-        {
-            UserViewBookingsModel view = new UserViewBookingsModel();
-            UserDatagridItems = new ObservableCollection<DataGridItem>();
-            DataGridItem dataGridItems = new DataGridItem();
-            dataGridItems.Booking_Id = BookingId;
-            dataGridItems.Doctor_Id = DoctorId;
-            dataGridItems.StartTime = startTime.ToString("{dd/MM/yyyy hh:mm}");
-            dataGridItems.EndTime = endTime.ToString("{dd/MM/yyyy hh:mm}");
-
-         
-            bool isvalid = adminbooking.DeleteUserBooking(BookingId, DoctorId,startTime,endTime);
-            if(isvalid)
-            {
-             UserDatagridItems = new ObservableCollection<DataGridItem>();
-            var dataGridItem = adminbooking.ViewUserBookings();
-            foreach (var item in dataGridItem)
-            {
-                UserDatagridItems.Add(item);
-            }
-        }
-      }
-
 
 }
 }

@@ -88,7 +88,7 @@
                       ColumnWidth="130" Background="White"  
                       IsReadOnly="True" HorizontalAlignment="Center"
                       CanUserReorderColumns="False" Name="UserBooking" Visibility="{Binding IsDataGridVisible, Converter={StaticResource BooleanToVisibilityConverter}}"
-                      ScrollViewer.VerticalScrollBarVisibility="Auto">
+                      ScrollViewer.VerticalScrollBarVisibility="Auto" SelectedItem="{Binding GetSelectedRow}" >
            
             <DataGrid.Columns>
                 <DataGridTextColumn Binding="{Binding DoctorName , UpdateSourceTrigger=PropertyChanged}" Header="Doctor Name"/>
@@ -98,8 +98,8 @@
                 <DataGridTemplateColumn Header="Cancel Appointment"  Width="150" >
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate x:Name="Delete_Appnt">
-                            <Button Click="Deleteappoitment" Command="{Binding DataContext.ViewUserBookings, RelativeSource={RelativeSource AncestorType={x:Type DataGrid}}}"
-                                CommandParameter="{Binding}" Width="90" Height="30" Opacity="0.8" Background="Transparent" BorderBrush="Transparent" Cursor="Hand"  
+                                <Button Command="{Binding DataContext.DeleteUserBookings, RelativeSource={RelativeSource AncestorType={x:Type DataGrid}}}"
+                                    Width="90" Height="30" Opacity="0.8" Background="Transparent" BorderBrush="Transparent" Cursor="Hand"  
                                    >
                                 <fa:ImageAwesome Icon="TrashOutline" Foreground="red" Width="90" Height="25" ></fa:ImageAwesome>
                             </Button>
