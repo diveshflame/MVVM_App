@@ -37,7 +37,7 @@
             <local:ViewBookings/>
         </DataTemplate>
         <DataTemplate DataType="{x:Type viewModel:HomePageViewModel}">
-            <local:showChart/>
+            <local:ShowChart/>
         </DataTemplate>
 
         <Style x:Key="DropdownItemStyle" TargetType="Button">
@@ -124,7 +124,7 @@
                                 Height="35"
                                 Margin="15,25,0,40">
 
-                    <Image Source="\images\Logo.png" Height="30"/>
+                    <Image Source="\Images\Logo.png" Height="30"/>
                     <TextBlock Text="We Care"
                                    Foreground="{StaticResource titleColor2}"
                                    FontSize="20"
@@ -293,7 +293,7 @@
                                      StrokeThickness="2"
                                      >
                                                 <Ellipse.Fill>
-                                                    <ImageBrush ImageSource="//images/arjun12 (4).png"/>
+                                                    <ImageBrush ImageSource="\Images\pic.png"/>
                                                 </Ellipse.Fill>
                                             </Ellipse>
                                         </DataTemplate>
@@ -315,7 +315,7 @@
                                                     <DataTemplate>
                                                         <StackPanel Orientation="Horizontal">
 
-                                                            <Image Source="\images\logout1.png" Width="16" Height="16" VerticalAlignment="Center"/>
+                                                            <Image Source="\Images\logout1.png" Width="16" Height="16" VerticalAlignment="Center"/>
 
                                                             <TextBlock Text="Logout" VerticalAlignment="Center"/>
                                                         </StackPanel>
