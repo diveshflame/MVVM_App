@@ -2,10 +2,10 @@
 
 How to set database Confirguration :
 Change your postgres database configuration in this file : Repositories>RepositoryBase.
-Go yo DBScripts folder and run all the queries present to create the respective tables needed.
+Go to DBScripts folder and run all the queries present to create the respective tables needed.
 
 Admin Setup:
-After registering a new user, go to the userdetails table and edit the superuser column to 1. This will make that particular user as a Admin user.
+After registering a new user, go to the "userdetails" table and edit the superuser column to 1. This will make that particular user as a Admin user.
 Admin user can only be set through database.
 
 Steps to follow (from admin side):
