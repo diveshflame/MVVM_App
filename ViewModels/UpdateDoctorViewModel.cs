@@ -36,7 +36,7 @@ namespace MVVM_App.ViewModels
         public UpdateDoctorViewModel()
         {
             addDocRepo = new AddRepo();
-            consult = addDocRepo.getco();
+            consult = addDocRepo.getCo();
             doctorNames = addDocRepo.get();
             UpdateDoctor = new ViewModelCommand(ExecuteUpdateDoctor);
         }

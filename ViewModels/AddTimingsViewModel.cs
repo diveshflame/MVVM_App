@@ -26,7 +26,7 @@ namespace MVVM_App.ViewModels
         public List<string> EndTime { get; set; }
         public AddTimingsViewModel()
         {
-            consultTypes = repocall.getco();
+            consultTypes = repocall.getCo();
 
             StartTime = repocall.startT();
 
@@ -39,7 +39,7 @@ namespace MVVM_App.ViewModels
         {
             AddRepo addRepo = new AddRepo();
 
-            Doctor = addRepo.selectionchangedoc1(text);
+            Doctor = addRepo.selectionChangeDoc1(text);
             return Doctor;
 
 
@@ -157,7 +157,7 @@ namespace MVVM_App.ViewModels
                     date2 = DateTime.Parse(SelectedDate1.ToString("yyyy/MM/dd ") + Time);
                 }
                 AddRepo addRepo = new AddRepo();
-                Temp = addRepo.selectionconchanged(date1, date2, SelectedDate1.ToString(), startDate, endDate);
+                Temp = addRepo.selectionConChanged(date1, date2, SelectedDate1.ToString(), startDate, endDate);
    
 
                 if (IsChecked == false)
@@ -167,7 +167,7 @@ namespace MVVM_App.ViewModels
                 if (Temp == 0)
                 {
                 AddRepo addRepo1 = new();
-                addRepo1.ischecked(date1, date2, SelectedDoc.ToString(), startDate, endDate, FromTime, EndTime, Temp2);
+                addRepo1.isChecked(date1, date2, SelectedDoc.ToString(), startDate, endDate, FromTime, EndTime, Temp2);
                 }
                  SelectedDoc = null;
                  ConsultSelected = null;

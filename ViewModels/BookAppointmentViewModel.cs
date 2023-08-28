@@ -21,14 +21,14 @@ namespace MVVM_App.ViewModels
         {
 
             BookRepo bookRepo = new BookRepo();
-            Consult = bookRepo.bookgetco();
+            Consult = bookRepo.BookGetCo();
 
         }
 
         public List<string> consulchange(string s)
         {
 
-            Doctor = bookRepo.bookgetDoc(s);
+            Doctor = bookRepo.BookGetDoc(s);
             return Doctor;
         }
 
@@ -38,8 +38,8 @@ namespace MVVM_App.ViewModels
             slotlist.Clear();
             slotlist2.Clear();
             bookRepo.BookGetTime(doc, selectedDate);
-            slotlist = bookRepo.slotlist;
-            slotlist2 = bookRepo.slotlist2;
+            slotlist = bookRepo.slotList;
+            slotlist2 = bookRepo.slotList2;
         }
 
         public void Add(string selectedDep, DateTime selectedDate, string doc, DateTime d1, DateTime d2)

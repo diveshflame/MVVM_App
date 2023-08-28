@@ -21,7 +21,7 @@ namespace MVVM_App.ViewModels
         public ICommand AddDoctor { get; }
         public AddDoctorViewModel()
         {
-            consult = repocall.getco();
+            consult = repocall.getCo();
             AddDoctor = new ViewModelCommand(ExecuteAddDoctor);
         }
         private string DocName;

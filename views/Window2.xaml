@@ -37,7 +37,7 @@
             <local:ViewBookings/>
         </DataTemplate>
         <DataTemplate DataType="{x:Type viewModel:HomePageViewModel}">
-            <local:ShowChart/>
+            <local:showChart/>
         </DataTemplate>
 
         <Style x:Key="DropdownItemStyle" TargetType="Button">
@@ -293,7 +293,7 @@
                                      StrokeThickness="2"
                                      >
                                                 <Ellipse.Fill>
-                                                    <ImageBrush ImageSource="\Images\pic.png"/>
+                                                    <ImageBrush ImageSource="\images\pic.png"/>
                                                 </Ellipse.Fill>
                                             </Ellipse>
                                         </DataTemplate>
