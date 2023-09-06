@@ -24,5 +24,8 @@ namespace MVVM_App.views
         {
             InitializeComponent();
         }
+
+
+      
     }
 }
