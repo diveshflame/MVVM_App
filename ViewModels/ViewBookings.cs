@@ -21,9 +21,14 @@ namespace MVVM_App.ViewModels
         public ObservableCollection<DataGridItem> DataGridItems { get => dataGridItems; set { dataGridItems = value; OnPropertyChanged(nameof(DataGridItems)); } }
 
         //Commands
+        public string searchContent { get; set; }   
+
+    
         public ICommand ViewAdminBookings { get; }
         public ICommand ViewTodayBooking { get; }
         public ICommand ViewBookingHistory { get; }
+
+        public ICommand SearchCommand { get; }
 
         private IAdminBooking adminbooking;
 
@@ -34,9 +39,24 @@ namespace MVVM_App.ViewModels
             ViewAdminBookings = new ViewModelCommand(ExecuteViewAdminBookings);
             ViewBookingHistory = new ViewModelCommand(ExecuteViewBookingHistory);
             ViewTodayBooking = new ViewModelCommand(ExecuteViewTodayBooking);
+            searchContent = "Enter your text here..";
+            SearchCommand = new ViewModelCommand(ExecuteSearch);
             DataGridItems = new ObservableCollection<DataGridItem>();
             LoadData();
         }
+
+        public void ExecuteSearch(object obj)
+        {
+            DataGridRepository data = new DataGridRepository();
+            DataGridItems = new ObservableCollection<DataGridItem>();
+            var dataGridItem=data.Search(searchContent);
+            foreach (var item in dataGridItem)
+            {
+                DataGridItems.Add(item);
+            }
+        }
+
+   
 
         private void ExecuteViewTodayBooking(object obj)
         {

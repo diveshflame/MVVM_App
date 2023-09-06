@@ -13,7 +13,6 @@ namespace MVVM_App.Models
         void Add(UserModel userModel);
         UserModel GetByUsername(string username);   
         UserModel GetById(int id);
-
         bool IsUserSuperUser(NetworkCredential credential);
 
     }

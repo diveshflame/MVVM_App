@@ -174,47 +174,47 @@ namespace MVVM_App.Repositories
             return list2;
         }
         //Insert New Doctor 
-        public void addDoctor(string text, string v)
+        public void addDoctor(string text, string consultantDesc)
         {
-            int a = 0;
+            int tempConsultID = 0;
             using (var connection = GetConnection()) 
             using (var command = new NpgsqlCommand())
             {
                 connection.Open();
                 command.Connection = connection;
-                command.CommandText = "SELECT consultant_id from consultant_Type where @c = consultant_desc";
-                command.Parameters.Add(new NpgsqlParameter("@c", v));
+                command.CommandText = "SELECT consultant_id from consultant_Type where @consultantDesc = consultant_desc";
+                command.Parameters.Add(new NpgsqlParameter("@consultantDesc", consultantDesc));
                 using (NpgsqlDataReader reader = command.ExecuteReader())
                 {
                     while (reader.Read())
                     {
-                        
-                        a = reader.GetInt32(0);
+
+                        tempConsultID = reader.GetInt32(0);
 
                  
                     }
                 }
             }
-            int? b = null;
+            int? docId = null;
             using (var connection = GetConnection()) 
             using (var command = new NpgsqlCommand())
             {
                 connection.Open();
                 command.Connection = connection;
-                command.CommandText = "SELECT doctor_Id from doctor_table where @d=Doctor_Name";
-                command.Parameters.Add(new NpgsqlParameter("@d", text));
+                command.CommandText = "SELECT doctor_Id from doctor_table where @Doctor_Name=doctor_name";
+                command.Parameters.Add(new NpgsqlParameter("@Doctor_Name", text));
                 using (NpgsqlDataReader reader = command.ExecuteReader())
                 {
                     while (reader.Read())
                     {
-                      
-                        b = reader.GetInt32(0);
+
+                        docId = reader.GetInt32(0);
 
                   
                     }
                 }
             }
-            if (b != null)
+            if (docId != null)
             {
                 MessageBox.Show("This name already exists. Please enter a valid Full Name", "Failed", MessageBoxButton.OK, MessageBoxImage.Error);
             }
@@ -222,11 +222,11 @@ namespace MVVM_App.Repositories
             {
                 using (NpgsqlConnection conn = GetConnection())
                 {
-                    string insert = "insert into doctor_table(Doctor_name,consultant_id) values(@Doctorn,@Consult_Id)";
+                    string insert = "insert into doctor_table(Doctor_name,consultant_id) values(@DoctorN,@Consult_Id)";
                     NpgsqlCommand cmd = new NpgsqlCommand(insert, conn);
-                    cmd.Parameters.Add(new NpgsqlParameter("@Consult_Id", a));
+                    cmd.Parameters.Add(new NpgsqlParameter("@Consult_Id", tempConsultID));
 
-                    cmd.Parameters.Add(new NpgsqlParameter("@Doctorn", text));
+                    cmd.Parameters.Add(new NpgsqlParameter("@DoctorN", text));
 
                     conn.Open();
                     cmd.ExecuteNonQuery();
@@ -238,22 +238,22 @@ namespace MVVM_App.Repositories
         }
 
         //when consultation selection changes get Doctor names for it
-        public List<string> selectionChangeDoc1(string v)
+        public List<string> selectionChangeDoc1(string consultant_desc)
         {
-            int b = 0;
+            int TempConsultId = 0;
             using (var connection = GetConnection()) 
             using (var command = new NpgsqlCommand())
             {
                 connection.Open();
                 command.Connection = connection;
-                command.CommandText = "SELECT consultant_id from consultant_Type where @c = consultant_desc";
-                command.Parameters.Add(new NpgsqlParameter("@c", v));
+                command.CommandText = "SELECT consultant_id from consultant_Type where @ConsultDesc = consultant_desc";
+                command.Parameters.Add(new NpgsqlParameter("@ConsultDesc", consultant_desc));
                 using (NpgsqlDataReader reader = command.ExecuteReader())
                 {
                     while (reader.Read())
                     {
-                        
-                        b = reader.GetInt32(0);
+
+                        TempConsultId = reader.GetInt32(0);
 
                         
                     }
@@ -267,8 +267,8 @@ namespace MVVM_App.Repositories
             {
                 connection.Open();
                 command.Connection = connection;
-                command.CommandText = "SELECT doctor_name from doctor_table where consultant_id = @d";
-                command.Parameters.Add(new NpgsqlParameter("@d", b));
+                command.CommandText = "SELECT doctor_name from doctor_table where consultant_id = @ConsultId";
+                command.Parameters.Add(new NpgsqlParameter("@ConsultId", TempConsultId));
                 using (NpgsqlDataReader reader = command.ExecuteReader())
                 {
                     while (reader.Read())
@@ -283,60 +283,59 @@ namespace MVVM_App.Repositories
         }
 
         //When selected Date changes check if already booked timings or not
-        public int selectionConChanged(DateTime dat1, DateTime dat2,string s,DateTime startDate,DateTime EndDate)
+        public int selectionConChanged(DateTime dat1, DateTime dat2,string docName,DateTime startDate,DateTime EndDate)
         {
-            int keeptab = 0;
+            int keepTab = 0;  //To check if matching count value
 
 
-            int b = 0;
+            int TempDocId = 0;
             using (var connection = GetConnection())
             using (var command = new NpgsqlCommand())
             {
                 connection.Open();
                 command.Connection = connection;
                 command.CommandText = "SELECT doctor_Id from doctor_table where @d=Doctor_Name";
-                command.Parameters.Add(new NpgsqlParameter("@d", s));
+                command.Parameters.Add(new NpgsqlParameter("@d", docName));
                 using (NpgsqlDataReader reader = command.ExecuteReader())
                 {
                     while (reader.Read())
                     {
-                        // Add the value from the "Doctor_Name" column to the j list
-                        b = reader.GetInt32(0);
+                      
+                        TempDocId = reader.GetInt32(0);
 
-                        // Assuming the column is of string type
+                        
                     }
                 }
             }
             int matchingCount = 0;
-            using (var connection = GetConnection()) // You need to replace GetConnection() with your actual connection creation logic
+            using (var connection = GetConnection()) 
             using (var command = new NpgsqlCommand())
             {
                 connection.Open();
                 command.Connection = connection;
                 command.CommandText = "SELECT COUNT(*) FROM doctor_availability WHERE TO_CHAR(available_starttime, 'YYYY-MM-DD HH24:MI:SS') = @SelectedDateTime  AND doctor_id = @docid;";
                 command.Parameters.Add(new NpgsqlParameter("@SelectedDateTime", dat1.ToString("yyyy-MM-dd HH:mm:ss")));
-                command.Parameters.Add(new NpgsqlParameter("@docid", b));
+                command.Parameters.Add(new NpgsqlParameter("@docid", TempDocId));
                 using (NpgsqlDataReader reader = command.ExecuteReader())
                 {
                     while (reader.Read())
                     {
-                        // Add the value from the "Doctor_Name" column to the j list
                         matchingCount = reader.GetInt32(0);
 
-                        // Assuming the column is of string type
+                        
                     }
                 }
             }
             if (matchingCount > 0)
             {
-                keeptab = 1;
+                keepTab = 1;
                
                 MessageBox.Show("Already added timings", "Failed", MessageBoxButton.OK, MessageBoxImage.Error);
           
              
             }
 
-            return keeptab;
+            return keepTab;
 
 
         }
@@ -344,28 +343,28 @@ namespace MVVM_App.Repositories
         //If check mark returns true then insert from 10-6 else specific selected 
 
 
-        public void isChecked(DateTime dat1, DateTime dat2, string s, DateTime startDate, DateTime EndDate, string FromTime, string EndTime, int t)
+        public void isChecked(DateTime dat1, DateTime dat2, string doc_name, DateTime startDate, DateTime EndDate, string FromTime, string EndTime, int t)
         {
             DateTime d1 = DateTime.Now;
             DateTime d2 = DateTime.Now;
-            DateTime dc1 = DateTime.Now;
-            DateTime dc2 = DateTime.Now;
-            DateTime dc3 = DateTime.Now;
-            int b = 0;
+            DateTime TempDate1 = DateTime.Now;
+            DateTime TempDate2 = DateTime.Now;
+            DateTime TempDate3 = DateTime.Now;
+            int TempDocId = 0;
             
                 using (var connection = GetConnection()) 
                 using (var command = new NpgsqlCommand())
                 {
                     connection.Open();
                     command.Connection = connection;
-                    command.CommandText = "SELECT doctor_Id from doctor_table where @d=Doctor_Name";
-                    command.Parameters.Add(new NpgsqlParameter("@d", s));
+                    command.CommandText = "SELECT doctor_Id from doctor_table where @doc_name=Doctor_Name";
+                    command.Parameters.Add(new NpgsqlParameter("@doc_name", doc_name));
                     using (NpgsqlDataReader reader = command.ExecuteReader())
                     {
                         while (reader.Read())
                         {
-                           
-                            b = reader.GetInt32(0);
+
+                        TempDocId = reader.GetInt32(0);
 
                             
                         }
@@ -398,18 +397,18 @@ namespace MVVM_App.Repositories
 
                         if (t == 1)
                         {
-                            dc1 = d1;
-                            dc2 = d2;
-                            dc3 = d1.AddHours(1);
-                            while (dc1 != dc2)
+                        TempDate1 = d1;
+                        TempDate2 = d2;
+                        TempDate3 = d1.AddHours(1);
+                            while (TempDate1 != TempDate2)
                             {
                                 using (NpgsqlConnection conn = GetConnection())
                                 {
                                     string insert = "INSERT INTO doctor_availability (doctor_id,available_starttime,available_endtime) VALUES (@doctorid,@starttime,@endtime)";
                                     NpgsqlCommand cmd = new NpgsqlCommand(insert, conn);
-                                    cmd.Parameters.Add(new NpgsqlParameter("@doctorid", b));
-                                    cmd.Parameters.Add(new NpgsqlParameter("@starttime", dc1));
-                                    cmd.Parameters.Add(new NpgsqlParameter("@endtime", dc3));
+                                    cmd.Parameters.Add(new NpgsqlParameter("@doctorid", TempDocId));
+                                    cmd.Parameters.Add(new NpgsqlParameter("@starttime", TempDate1));
+                                    cmd.Parameters.Add(new NpgsqlParameter("@endtime", TempDate3));
 
                                     conn.Open();
                                     cmd.ExecuteNonQuery();
@@ -417,8 +416,8 @@ namespace MVVM_App.Repositories
                                     conn.Close();
                                 }
 
-                                dc1 = dc1.AddHours(1);
-                                dc3 = dc3.AddHours(1);
+                            TempDate1 = TempDate1.AddHours(1);
+                            TempDate3 = TempDate3.AddHours(1);
                             }
 
                        
@@ -437,7 +436,7 @@ namespace MVVM_App.Repositories
 
                             using (NpgsqlCommand cmd = new NpgsqlCommand(insert, conn))
                             {
-                                cmd.Parameters.AddWithValue("@doctorid", b);
+                                cmd.Parameters.AddWithValue("@doctorid", TempDocId);
 
                                 while (startTime + slotDuration <= endTime)
                                 {

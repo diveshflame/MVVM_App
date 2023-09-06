@@ -18,7 +18,7 @@ namespace MVVM_App.Repositories
     public class BookRepo : RepositoryBase
     {
         public List<string> slotList = new List<string>();
-       public List<string> slotList2 = new List<string>();
+        public List<string> slotList2 = new List<string>();
         public List<string> BookGetCo()
         {
             List<string> list = new List<string>();
@@ -45,20 +45,20 @@ namespace MVVM_App.Repositories
         //Get the Doctor Names
         public List<string> BookGetDoc(string selectedConsultation)
         {
-            int a = 0;
+            int tempConsultID = 0;
             using (var connection = GetConnection()) 
             using (var command = new NpgsqlCommand())
             {
                 connection.Open();
                 command.Connection = connection;
-                command.CommandText = "SELECT consultant_id from consultant_Type where @c = consultant_desc";
-                command.Parameters.Add(new NpgsqlParameter("@c", selectedConsultation));
+                command.CommandText = "SELECT consultant_id from consultant_Type where @consultant_Desc = consultant_desc";
+                command.Parameters.Add(new NpgsqlParameter("@consultant_Desc", selectedConsultation));
                 using (NpgsqlDataReader reader = command.ExecuteReader())
                 {
                     while (reader.Read())
                     {
-                        
-                        a = reader.GetInt32(0);
+
+                        tempConsultID = reader.GetInt32(0);
 
                         
                     }
@@ -70,8 +70,8 @@ namespace MVVM_App.Repositories
             {
                 connection.Open();
                 command.Connection = connection;
-                command.CommandText = "SELECT doctor_Name from doctor_table where @d=consultant_id";
-                command.Parameters.Add(new NpgsqlParameter("@d", a));
+                command.CommandText = "SELECT doctor_Name from doctor_table where @Consultant_Id=consultant_id";
+                command.Parameters.Add(new NpgsqlParameter("@Consultant_Id", tempConsultID));
                 using (NpgsqlDataReader reader = command.ExecuteReader())
                 {
                     while (reader.Read())
@@ -89,24 +89,24 @@ namespace MVVM_App.Repositories
         //Get the available time of specific doctors
         public void BookGetTime(string doc, DateTime selectedDate)
         {
-            string c = "";
-            int id = 0;
+        
+       
             DateTime ne = DateTime.Now;
          
-            int b = 0;
+            int Id = 0;
             using (var connection = GetConnection()) 
             using (var command = new NpgsqlCommand())
             {
                 connection.Open();
                 command.Connection = connection;
-                command.CommandText = "SELECT doctor_Id from doctor_table where @d=Doctor_Name";
-                command.Parameters.Add(new NpgsqlParameter("@d", doc));
+                command.CommandText = "SELECT doctor_Id from doctor_table where @DocName=Doctor_Name";
+                command.Parameters.Add(new NpgsqlParameter("@DocName", doc));
                 using (NpgsqlDataReader reader = command.ExecuteReader())
                 {
                     while (reader.Read())
                     {
                        
-                        b = reader.GetInt32(0);
+                        Id = reader.GetInt32(0);
 
                       
                     }
@@ -117,9 +117,9 @@ namespace MVVM_App.Repositories
             {
                 connection.Open();
                 command.Connection = connection;
-                command.CommandText = "SELECT available_starttime, available_endtime FROM doctor_availability WHERE DATE(doctor_availability.available_starttime) = @j AND DATE(doctor_availability.available_endtime) = @j AND doctor_availability.doctor_id = @u EXCEPT SELECT available_starttime, available_endtime FROM booking_table, doctor_availability WHERE booking_table.StartTime = available_starttime AND booking_table.doctor_id = @u AND booking_table.EndTime = available_endtime AND Deleted_TimeStamp IS NULL ORDER BY available_starttime, available_endtime;";
-                command.Parameters.Add(new NpgsqlParameter("@j", selectedDate));
-                command.Parameters.Add(new NpgsqlParameter("@u", b));
+                command.CommandText = "SELECT available_starttime, available_endtime FROM doctor_availability WHERE DATE(doctor_availability.available_starttime) = @Date AND DATE(doctor_availability.available_endtime) = @Date AND doctor_availability.doctor_id = @DocId EXCEPT SELECT available_starttime, available_endtime FROM booking_table, doctor_availability WHERE booking_table.StartTime = available_starttime AND booking_table.doctor_id = @DocId AND booking_table.EndTime = available_endtime AND Deleted_TimeStamp IS NULL ORDER BY available_starttime, available_endtime;";
+                command.Parameters.Add(new NpgsqlParameter("@Date", selectedDate));
+                command.Parameters.Add(new NpgsqlParameter("@DocId", Id));
                 using (NpgsqlDataReader reader = command.ExecuteReader())
                 {
                     while (reader.Read())
@@ -128,11 +128,11 @@ namespace MVVM_App.Repositories
                         TimeSpan timeSpan1= reader.GetDateTime(0).TimeOfDay;
                         TimeSpan timeSpan2= reader.GetDateTime(1).TimeOfDay;
                       
-                        string hhmmFormat1 = $"{timeSpan1.Hours:D2}:{timeSpan1.Minutes:D2}";
-                        string hhmmFormat2 = $"{timeSpan2.Hours:D2}:{timeSpan2.Minutes:D2}";
+                        string Format1 = $"{timeSpan1.Hours:D2}:{timeSpan1.Minutes:D2}";
+                        string Format2 = $"{timeSpan2.Hours:D2}:{timeSpan2.Minutes:D2}";
                        
-                        slotList.Add(hhmmFormat1);
-                        slotList2.Add(hhmmFormat2); 
+                        slotList.Add(Format1);
+                        slotList2.Add(Format2); 
 
                        
                     }
@@ -144,7 +144,7 @@ namespace MVVM_App.Repositories
 
         public void AddBook(string selectedDep, DateTime selectedDate, string doc, DateTime d1, DateTime d2)
         {
-            int a = 0;
+            int tempConsultID = 0;
             using (var connection = GetConnection()) 
             using (var command = new NpgsqlCommand())
             {
@@ -156,14 +156,14 @@ namespace MVVM_App.Repositories
                 {
                     while (reader.Read())
                     {
-                       
-                        a = reader.GetInt32(0);
+
+                        tempConsultID = reader.GetInt32(0);
 
                        
                     }
                 }
             }
-            int b = 0;
+            int tempDoctorID = 0;
             using (var connection = GetConnection()) 
             using (var command = new NpgsqlCommand())
             {
@@ -175,14 +175,14 @@ namespace MVVM_App.Repositories
                 {
                     while (reader.Read())
                     {
-                        
-                        b = reader.GetInt32(0);
+
+                        tempDoctorID = reader.GetInt32(0);
 
                        
                     }
                 }
             }
-            int k = 0;
+            int userId = 0;
             using (var connection = GetConnection()) 
             using (var command = new NpgsqlCommand())
             {
@@ -195,40 +195,40 @@ namespace MVVM_App.Repositories
                     while (reader.Read())
                     {
                        
-                        k = reader.GetInt32(0);
+                        userId = reader.GetInt32(0);
 
                         
                     }
                 }
             }
-            DateTime dc1 = DateTime.Now;
-            DateTime dc2 = DateTime.Now;
-            DateTime dc3 = DateTime.Now;
+            DateTime TempDate1 = DateTime.Now;
+            DateTime TempDate2 = DateTime.Now;
+            DateTime TempDate3 = DateTime.Now;
 
-            dc1 = d1;
-            dc2 = d2;
-            dc3 = d1.AddHours(1);
-            if (dc1 >= DateTime.Now && dc2 >= DateTime.Now)
+            TempDate1 = d1;
+            TempDate2 = d2;
+            TempDate3 = d1.AddHours(1);
+            if (TempDate1 >= DateTime.Now && TempDate2 >= DateTime.Now)
             {
-                while (dc1 != dc2)
+                while (TempDate1 != TempDate2)
                 {
 
                     using (NpgsqlConnection conn = GetConnection())
                     {
 
-                        string insert = "INSERT INTO Booking_Table (userid,consultant_id,doctor_id,starttime,endtime) VALUES (@p,@consultType,@Doctor,@timeslot,@timeslot2)";
+                        string insert = "INSERT INTO Booking_Table (userid,consultant_id,doctor_id,starttime,endtime) VALUES (@userId,@consultType,@Doctor,@timeslot,@timeslot2)";
                         NpgsqlCommand cmd = new NpgsqlCommand(insert, conn);
                         cmd.CommandType = CommandType.Text;
-                        cmd.Parameters.Add(new NpgsqlParameter("@consultType", a));
-                        cmd.Parameters.AddWithValue("@Doctor", b);
-                        cmd.Parameters.AddWithValue("@p", k);
-                        cmd.Parameters.AddWithValue("@timeslot", dc1);
-                        cmd.Parameters.AddWithValue("@timeslot2", dc3);
+                        cmd.Parameters.Add(new NpgsqlParameter("@consultType", tempConsultID));
+                        cmd.Parameters.AddWithValue("@Doctor", tempDoctorID);
+                        cmd.Parameters.AddWithValue("@userId", userId);
+                        cmd.Parameters.AddWithValue("@timeslot", TempDate1);
+                        cmd.Parameters.AddWithValue("@timeslot2", TempDate3);
                         conn.Open();
                         cmd.ExecuteNonQuery();
-                        conn.Close();   
-                        dc1 = dc1.AddHours(1);
-                        dc3 = dc3.AddHours(1);
+                        conn.Close();
+                        TempDate1 = TempDate1.AddHours(1);
+                        TempDate3 = TempDate3.AddHours(1);
                     }
                 }
                 MessageBox.Show("Successfully Registered", "Saved", MessageBoxButton.OK, MessageBoxImage.Information);

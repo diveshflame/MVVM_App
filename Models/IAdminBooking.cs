@@ -16,6 +16,8 @@ namespace MVVM_App.Models
         
         //User View Bookings
         public List<DataGridItem> ViewUserBookings();
+
+        public List<DataGridItem> Search(string searchContent);
         public List<DataGridItem> ViewUsersTodayBooking();
         public List<DataGridItem> ViewUsersHistory();
 
